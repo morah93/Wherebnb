@@ -3,7 +3,7 @@
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+![Screen Shot 2022-09-22 at 5 37 26 PM](https://user-images.githubusercontent.com/97058803/191855988-07b1ba5d-71de-4c49-aa34-3b84ce376476.png)
 
 ## API Documentation
 
@@ -1475,6 +1475,6 @@ Return spots filtered by query parameters.
       }
     }
     ```
-![Screen Shot 2022-09-22 at 5 37 26 PM](https://user-images.githubusercontent.com/97058803/191855988-07b1ba5d-71de-4c49-aa34-3b84ce376476.png)
+
 
 
