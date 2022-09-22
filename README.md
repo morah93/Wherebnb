@@ -1475,5 +1475,6 @@ Return spots filtered by query parameters.
       }
     }
     ```
-    <img width="1009" alt="Screen Shot 2022-09-21 at 5 37 38 PM" src="https://user-images.githubusercontent.com/97058803/191615342-22bc4b72-54a3-46dc-b44f-6fbab203a996.png">
+![Screen Shot 2022-09-22 at 5 37 26 PM](https://user-images.githubusercontent.com/97058803/191855988-07b1ba5d-71de-4c49-aa34-3b84ce376476.png)
+
 
