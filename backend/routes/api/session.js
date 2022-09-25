@@ -38,6 +38,6 @@ router.get('/', restoreUser, (req, res) => {
       user: user.toSafeObject()
     });
   } else return res.json({})
-})
+});
 
 module.exports = router;
