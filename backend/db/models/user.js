@@ -1,6 +1,7 @@
 'use strict';
 const bcrypt = require('bcryptjs');
 const { Model, validator } = require('sequelize');
+const { FOREIGNKEYS } = require('sequelize/types/query-types');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -44,21 +45,34 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // 1 to *
+      User.hasMany(models.Spot, { through: models.Booking, foreignKey: 'userId', otherKey: 'spotId', onDelete: 'CASCADE'})
+      User.hasMany(models.Booking, {foriegnKey: 'userId'})
+      User.hasMany(models.Review, {foriegnKey: 'userID'})
+      User.hasMany(models.Spot, {foriegnKey: 'ownerID'})
     }
   }
   User.init({
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      validate: {
-        len: [4, 30],
-        isNotEmail(value) {
-          if (validator.isEmail(value)) {
-            throw new Error("Cannot be email.");
-          }
-        }
-      }
+      // validate: {
+      //   len: [4, 30],
+      //   isNotEmail(value) {
+      //     if (validator.isEmail(value)) {
+      //       throw new Error("Cannot be email.");
+      //     }
+      //   }
+      // }
     },
     email: {
       type: DataTypes.STRING,
