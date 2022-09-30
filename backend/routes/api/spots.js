@@ -150,9 +150,9 @@ router.post("/:spotId/images", async (req, res) => {
 
 
 // edit a spot
-router.post("/", requireAuth, async (req, res) => {
-  // const {}
-});
+// router.post("/", requireAuth, async (req, res) => {
+//   // const {}
+// });
 
 
 
@@ -238,6 +238,8 @@ router.post("/", requireAuth, async (req, res) => {
 
   // const id = user.id
   // await setTokenCookie(res, user);
-  res.json(newSpot);
+  return res.json(newSpot);
+
+  //
 });
 module.exports = router;
