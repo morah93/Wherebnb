@@ -14,6 +14,36 @@ const { handleValidationErrors } = require("../../utils/validation");
 // const Spot = require("../../db/models/spot");
 const { Op } = require("sequelize");
 
+//get reviews of current user
+
+router.get('/current', requireAuth, async(req, res) => {
+  const currentReviews = await Review.findAll({
+      where: {
+          userId: req.user.id
+      },
+      include: [
+          {
+              model: User
+          },
+          {model: Spot,
+          attributes: {
+              exclude: ['description', 'createdAt', 'updatedAt']
+          }
+      },
+          {model: ReviewImage,
+          attributes: {
+              exclude: ['reviewId', 'createdAt', 'updatedAt']
+          }
+
+          }
+      ]
+  })
+
+  res.json({
+      Reviews: currentReviews
+  })
+})
+
 
 
 //Add an Image to a Review based on the Review's id
@@ -31,12 +61,12 @@ router.post("/:reviewId/images", requireAuth, async (req, res) => {
       statusCode: 404,
     });
   }
-  // console.log(reviewInfo,'--------------')
+
   if (reviewInfo.userId !== userId) {
     res.status(403);
     res.json({
       message: "Unauthorized for such action",
-      statusCode: res.statusCode,
+      statusCode: 403,
     });
   }
   const reviewImgs = await ReviewImage.findAll({
@@ -49,7 +79,7 @@ router.post("/:reviewId/images", requireAuth, async (req, res) => {
     res.status(403);
     res.json({
       message: "Maximum number of images for this resource was reached",
-      statusCode: res.statusCode,
+      statusCode: 403,
     });
   }
 
@@ -85,18 +115,11 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
       statusCode: 403
     })
   }
-  // const getspotId = await Spot.findAll({
-  //   where: {
-  //     id: reviewInfo.spotId
-  //   }
-  // })
-  // console.log(reviewInfo, '--------')
+
    await reviewInfo.update({
 
     review,
     stars,
-    // userId: userId,
-    // spotId: getspotId.id
   });
 
   res.json(reviewInfo);
@@ -107,19 +130,20 @@ router.delete('/:reviewId', requireAuth, async (req, res) => {
   const userId = req.user.id
   const userReview  = await Review.findByPk(req.params.reviewId)
 
-  if (userReview.userId !== userId) {
-      res.status(403)
-      res.json({
-          message: 'Unauthorized user input',
-          statusCode: 403
-      })
-  }
   if(!userReview) {
 
       res.status(404)
       res.json({
           "message": "Review couldn't be found",
           "statusCode": 404
+      })
+  }
+
+  if (userReview.userId !== userId) {
+      res.status(403)
+      res.json({
+          message: 'Unauthorized user input',
+          statusCode: 403
       })
   }
   userReview.destroy();

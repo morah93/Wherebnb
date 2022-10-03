@@ -40,6 +40,14 @@ router.put("/:bookingId", requireAuth, async (req, res) => {
   const end = new Date(endDate);
   const userBooking = await Booking.findByPk(req.params.bookingId);
 
+  if (!userBooking) {
+    res.status(404);
+    res.json({
+      message: "Booking couldn't be found",
+      statusCode: 404,
+    });
+  }
+
   if (userBooking.userId !== userId) {
     res.status(403);
     res.json({
@@ -48,13 +56,6 @@ router.put("/:bookingId", requireAuth, async (req, res) => {
     });
   }
 
-  if (!userBooking) {
-    res.status(404);
-    res.json({
-      message: "Booking couldn't be found",
-      statusCode: 404,
-    });
-  }
 
   if (start >= end) {
     res.status(403);
@@ -71,8 +72,8 @@ router.put("/:bookingId", requireAuth, async (req, res) => {
   });
 
   for (let i = 0; i < alluserBookings.length; i++) {
-    const oldStart = alluserBookings[i].dataValues.startDate;
-    const oldEnd = alluserBookings[i].dataValues.endDate;
+    const oldStart = new Date(alluserBookings[i].dataValues.startDate);
+    const oldEnd = new Date(alluserBookings[i].dataValues.endDate);
 
     if (
       oldStart <= start &&
@@ -90,40 +91,40 @@ router.put("/:bookingId", requireAuth, async (req, res) => {
         },
       });
     }
-  }
+    if (start >= oldStart && start <= oldEnd) {
+      res.status(403);
+      res.json({
+        message: "Sorry, this spot is already booked for the specified dates",
+        statusCode: 403,
+        errors: {
+          startDate: "Start date conflicts with an existing booking",
+        },
+      });
+    }
 
-  if (start >= oldStart && start <= oldEnd) {
-    res.status(403);
-    res.json({
-      message: "Sorry, this spot is already booked for the specified dates",
-      statusCode: 403,
-      errors: {
-        startDate: "Start date conflicts with an existing booking",
-      },
-    });
-  }
 
-  if (end >= oldStart && end <= oldEnd) {
-    res.status(403);
-    res.json({
-      message: "Sorry, this spot is already booked for the specified dates",
-      statusCode: 403,
-      errors: {
-        startDate: "Start date conflicts with an existing booking",
-      },
-    });
-  }
-  if (start < oldStart && end > oldEnd) {
-    res.status(403);
-    res.json({
-      message: "Sorry, this spot is already booked for the specified dates",
-      statusCode: 403,
-      errors: {
-        startDate: "Start date conflicts with an existing booking",
-      },
-    });
-  }
+    if (end >= oldStart && end <= oldEnd) {
+      res.status(403);
+      res.json({
+        message: "Sorry, this spot is already booked for the specified dates",
+        statusCode: 403,
+        errors: {
+          startDate: "Start date conflicts with an existing booking",
+        },
+      });
+    }
+    if (start < oldStart && end > oldEnd) {
+      res.status(403);
+      res.json({
+        message: "Sorry, this spot is already booked for the specified dates",
+        statusCode: 403,
+        errors: {
+          startDate: "Start date conflicts with an existing booking",
+        },
+      });
+    }
 
+  }
   await userBooking.update({
     startDate,
     endDate,
@@ -134,7 +135,7 @@ router.put("/:bookingId", requireAuth, async (req, res) => {
 
 // Delete a booking
 
-router.delete("/bookingId", requireAuth, async (req, res) => {
+router.delete("/:bookingId", requireAuth, async (req, res) => {
   let userId = req.user.id;
   const userBooking = await Booking.findByPk(req.params.bookingId);
   if (!userBooking) {

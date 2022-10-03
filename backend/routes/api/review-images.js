@@ -15,10 +15,10 @@ const { handleValidationErrors } = require("../../utils/validation");
 const spot = require("../../db/models/spot");
 const { Op } = require("sequelize");
 const e = require("express");
-const spot = require("../../db/models/spot");
+// const spot = require("../../db/models/spot");
 
 //Delete an existing image for a Review.
-router.delete('/imageId', requireAuth, async (req, res) => {
+router.delete('/:imageId', requireAuth, async (req, res) => {
   const userId = req.user.id
 
   const userImage = await ReviewImage.findByPk(req.params.imageId)

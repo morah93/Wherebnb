@@ -15,11 +15,11 @@ const { handleValidationErrors } = require("../../utils/validation");
 const spot = require("../../db/models/spot");
 const { Op } = require("sequelize");
 const e = require("express");
-const spot = require("../../db/models/spot");
+// const spot = require("../../db/models/spot");
 
 
-router.delete('/:spotImageId', requireAuth, async (req, res) => {
-  const userId = req.user.userId
+router.delete('/:imageId', requireAuth, async (req, res) => {
+  const userId = req.user.id
   const userImage = await SpotImage.findByPk(req.params.imageId)
 
   if (!userImage) {
@@ -32,9 +32,10 @@ router.delete('/:spotImageId', requireAuth, async (req, res) => {
 
   const spotId = await Spot.findOne({
     where: {
-      id: image.spotId
+      id: userImage.spotId
     }
   })
+
   if (spotId.ownerId !== userId) {
     res.status(403)
     res.json({
