@@ -61,6 +61,7 @@ app.use((_req, _res, next) => {
 // Sequelize Error-Handler
 
 const { ValidationError } = require('sequelize');
+const { UniqueConstraintError } = require('sequelize');
 
 // ...
 
@@ -70,6 +71,17 @@ app.use((err, _req, _res, next) => {
   if (err instanceof ValidationError) {
     err.errors = err.errors.map((e) => e.message);
     err.title = 'Validation error';
+  }
+  next(err);
+});
+//signup error check
+app.use((err, _req, _res, next) => {
+  // check if error is a Sequelize error:
+  if (err instanceof UniqueConstraintError) {
+
+    err.title = 'Validation error';
+    err.message = 'Signup validation error'//signup
+    err.status = 403
   }
   next(err);
 });

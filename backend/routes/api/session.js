@@ -1,5 +1,5 @@
 const express = require('express');
-const { setTokenCookie, restoreUser } = require('../../utils/auth');
+const { requireAuth, setTokenCookie, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
 const { route } = require('./users');
 const router = express.Router();
@@ -14,56 +14,42 @@ const validateLogin = [
   handleValidationErrors
 ];
 
-// router.post('/', async (req, res, next) => {
-//   const { credential, password } = req.body;
-
-//   const user = await User.login({ credential, password })
-//   // const user = await User.findAll({
-//   //   where: {
-//   //     username: credential
-//   //   }
-//   // })
-// // console.log(user)
-//   if (!user) {
-//     const err = new Error('Login failed');
-//     err.status = 401;
-//     err.title = 'Login failed';
-//     err.errors = ['The provided credentials were invalid.'];
-//     return next(err);
-//   }
-
-//   await setTokenCookie(res, user);
-//   return res.json({ user })
-// });
 
 router.delete('/', async (_req, res) => {
   res.clearCookie('token');
   return res.json({ message: 'success' })
 });
 
+// get current user
 router.get('/', restoreUser, (req, res) => {
   const { user } = req;
   if (user) {
     return res.json({
-      user: user.toSafeObject()
+      ...user.toSafeObject()
     });
-  } else return res.json({})
+  } else return res.json(null)
 });
 
+//login user
 router.post('/', validateLogin, async (req, res, next) => {
   const { credential, password } = req.body;
   const user = await User.login({ credential, password });
 
   if (!user) {
-    const err = new Error('Login failed');
-      err.status = 401;
-      err.title = 'Login failed';
-      err.errors = ['The provided credentials were invalid.'];
+    const err = new Error('Validation error');
+      err.status = 400;
+      err.title = 'Validation error';
+    err.errors = {
+      'credential': 'The provided credentials were invalid.',
+      'password': 'Password id required'
+    };
       return next(err);
   }
 
-  await setTokenCookie(res, user);
-  return res.json({ user })
+
+  const token = await setTokenCookie(res, user);
+  return res.json({ ...user.toSafeObject(), token })
 })
+
 
 module.exports = router;
