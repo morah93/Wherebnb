@@ -1,1 +1,23 @@
 /* TODO Add site wide styles */
+.outerSpotContainer {
+  border: 1px solid black;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  height: 100%;
+  width: 1080px
+}
+
+.spotCard {
+border: 1px solid black;
+display: flex;
+/* justify-content: center; */
+align-items: center;
+margin: 5px 5px 5px 5px;
+height: 200px;
+width: 100%;
+max-width: fit-content;
+}
+/* .login {
+  display: flex;
+  flex-direction: column;
+} */

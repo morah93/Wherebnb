@@ -4,6 +4,9 @@ import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormModal";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import AllSpots from "./components/AllSpots/allSpots";
+import OneSpot from "./components/oneSpot/oneSpot";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -17,6 +20,12 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path='/'>
+            <AllSpots />
+          </Route>
+          <Route path='/spots/:spotId'>
+            <OneSpot />
+          </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
