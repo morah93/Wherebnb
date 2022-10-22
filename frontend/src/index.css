@@ -1,21 +1,41 @@
 /* TODO Add site wide styles */
 .outerSpotContainer {
+  display: flex;
   border: 1px solid black;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  height: 100%;
-  width: 1080px
+  align-content: space-around;
+  flex-wrap: wrap;
+  /* grid-template-columns: ; */
+  /* height: ;
+  width:  */
 }
 
+.allSpotsInfo {
+  display: flex;
+  border: 1px solid black;
+  align-content: flex-start;
+  flex-direction: column;
+}
+.outerContainer {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  /* height: 100%;
+  width: 100% */
+}
+.spotImg {
+  height: 225px;
+  width: auto;
+  border: 2px solid black;
+}
 .spotCard {
 border: 1px solid black;
 display: flex;
-/* justify-content: center; */
+justify-content: center;
 align-items: center;
 margin: 5px 5px 5px 5px;
-height: 200px;
-width: 100%;
-max-width: fit-content;
+height: 250px;
+width: auto;
+/* max-width: ; */
 }
 /* .login {
   display: flex;
