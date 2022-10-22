@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useParams, useHistory } from "react-router-dom";
-import { getUsersSpots } from "../../store/spots";
+import { getUsersSpots, viewUserSpots } from "../../store/spots";
 import { getUserReviews } from "../../store/reviews";
 import { deleteReview } from "../../store/reviews";
 import "./userSpots.css";
@@ -12,12 +12,21 @@ const AllUserSpots = () => {
   const userSpots = useSelector((state) => state.spot.allSpots); //useSelector for the state being used to attain info
   const allUserSpotsArr = Object.values(userSpots);
   const user = useSelector((state) => state.session.user);
-  const { spotId, reviewId } = useParams();
+  const { spotId, reviewId, userId } = useParams();
   const oneSpot = useSelector((state) => state.spot.spot);
 
   useEffect(() => {
-    dispatch(getUsersSpots(user.id));
+    dispatch(getUsersSpots(user.id))
   }, []);
+
+  console.log(user.id, 'USERID++++++++++++++++??????????')
+
+  // useEffect(() => {
+  //   dispatch(getUsersSpots(user.id))
+  //     .then((userId) => {
+  //     dispatch(viewUserSpots(userId))
+  //   })
+  // }, []);
 
   useEffect(() => {
     dispatch(getUserReviews(spotId));

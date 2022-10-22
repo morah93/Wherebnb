@@ -44,7 +44,7 @@ function ProfileButton({ user }) {
               history.push('/spots')
           }}>Create Spot</button>
             <button onClick={() => {
-              history.push('/spots/:spotId/current')
+              history.push(`/spots/current`)
           }}>User's Spot's</button>
             <button onClick={logout}>Log Out</button>
           </div>
