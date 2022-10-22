@@ -11,7 +11,6 @@ import AddSpot from "./components/addSpot/addSpot";
 import AllUserSpots from "./components/profilePage/userInfo";
 import AddReview from "./components/addReview/addReview";
 
-
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -21,32 +20,43 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          <Route exact path='/'>
-            <AllSpots />
-          </Route>
-          <Route exact path='/spots'>
-          <AddSpot />
-          </Route>
-          <Route path='/spots/current'>
-            <AllUserSpots />
-          </Route>
-          <Route path='/spots/:spotId/edit'>
-          <EditSpot />
-          </Route>
-          <Route exact path='/spots/:spotId/reviews'>
-            <AddReview />
-          </Route>
-          <Route path='/spots/:spotId'>
-            <OneSpot />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-        </Switch>
-      )}
+      <div className='app'>
+        <Navigation isLoaded={isLoaded} />
+        {isLoaded && (
+          <Switch>
+            <Route
+              exact
+              path='/'
+            >
+              <AllSpots />
+            </Route>
+            <Route
+              exact
+              path='/spots'
+            >
+              <AddSpot />
+            </Route>
+            <Route path='/spots/current'>
+              <AllUserSpots />
+            </Route>
+            <Route path='/spots/:spotId/edit'>
+              <EditSpot />
+            </Route>
+            <Route
+              exact
+              path='/spots/:spotId/reviews'
+            >
+              <AddReview />
+            </Route>
+            <Route path='/spots/:spotId'>
+              <OneSpot />
+            </Route>
+            <Route path='/signup'>
+              <SignupFormPage />
+            </Route>
+          </Switch>
+        )}
+      </div>
     </>
   );
 }

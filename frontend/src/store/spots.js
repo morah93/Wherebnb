@@ -24,11 +24,11 @@ const viewCurrent = (spot) => {
   };
 };
 
-const viewUserSpots = (userId, spots) => {
+export const viewUserSpots = (userId, spots) => {
   return {
     type: VIEW_USERS,
-    spots,
-    userId
+    userId,
+    spots
   }
 }
 

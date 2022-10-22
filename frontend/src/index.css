@@ -1,9 +1,29 @@
 /* TODO Add site wide styles */
-.outerSpotContainer {
+.navigation {
+  border: 1px black solid;
+  /* align-content: space-between; */
+  justify-content: space-evenly;
   display: flex;
+  width: auto;
+  /* height: ; */
+}
+
+.home{
+display: grid;
+align-content: center;
+}
+
+.profile {
+  display: flex;
+  justify-content: end;
+}
+
+
+.outerSpotContainer {
+  display: grid;
   border: 1px solid black;
   align-content: space-around;
-  flex-wrap: wrap;
+  justify-content: space-around;
   /* grid-template-columns: ; */
   /* height: ;
   width:  */
@@ -17,8 +37,9 @@
 }
 .outerContainer {
   border: 1px solid black;
-  display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  display: grid;
+  /* justify-content: ; */
   /* height: 100%;
   width: 100% */
 }
@@ -30,11 +51,11 @@
 .spotCard {
 border: 1px solid black;
 display: flex;
-justify-content: center;
-align-items: center;
-margin: 5px 5px 5px 5px;
-height: 250px;
-width: auto;
+/* flex-wrap: */
+/* align-items: ; */
+/* margin: 5px 5px 5px 5px; */
+/* height: 250px; */
+/* width: auto; */
 /* max-width: ; */
 }
 /* .login {
