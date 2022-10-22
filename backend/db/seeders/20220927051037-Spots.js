@@ -14,13 +14,13 @@ module.exports = {
         ownerId:'1',
         address:'1 state st',
         city:'Paris',
-        state:'FrenchFries',
+        state:'French',
         country: 'France',
         lat: 12.34,
         lng: 43.76,
-        name: 'Villa De Franc',
-        description: 'Large villa on lake',
-        price: 3000
+        name: 'Villa Franc',
+        description: 'Large villa with pool',
+        price: 499
       },
       {
         ownerId:'2',
@@ -30,9 +30,9 @@ module.exports = {
         country: 'Italy',
         lat: 76.23,
         lng: 65.24,
-        name: 'El Mansion un el leek',
+        name: 'El Mansion',
         description: 'Mansion on a lake',
-        price: 1500
+        price: 799
       },
       {
         ownerId:'3',
@@ -42,9 +42,9 @@ module.exports = {
         country: 'Spain',
         lat: 40.47,
         lng: -3.70,
-        name: 'Tu era Castele',
-        description: 'Castle',
-        price: 15000
+        name: 'Castele',
+        description: 'Castle with spacious rooms',
+        price: 2999
       },
       {
         ownerId:'4',
@@ -56,19 +56,79 @@ module.exports = {
         lng: 28.98,
         name: 'Topkapi Palace',
         description: 'Palace from Ottoman Empire',
-        price: 20000
+        price: 5999
       },
       {
         ownerId:'5',
         address:'2 River st',
-        city:'JungleBook',
+        city:'Boondocks',
         state:'Jungle',
         country: 'Sherkhans Kingdom',
         lat: 76.21,
         lng: 21.98,
-        name: 'De Mud Hut',
-        description: 'Hut',
+        name: 'Hut',
+        description: 'Modern hut for glamping.',
+        price: 399
+      },
+      {
+        ownerId:'1',
+        address:'12 downing st',
+        city:'london',
+        state:'Westershire',
+        country: '',
+        lat: 76.21,
+        lng: 21.98,
+        name: 'Princes Estate',
+        description: 'A princely vacation rental',
+        price: 799
+      },
+      {
+        ownerId:'2',
+        address:'2 Range grove',
+        city:'Books',
+        state:'Library',
+        country: 'Winston',
+        lat: 76.21,
+        lng: 21.98,
+        name: 'ChurchHill Palace',
+        description: 'Churchills childhood home.',
+        price: 999
+      },
+      {
+        ownerId:'3',
+        address:'mangrove circle',
+        city:'Bradford',
+        state:'Md',
+        country: 'Italy',
+        lat: 76.21,
+        lng: 21.98,
+        name: 'Peace Hill',
+        description: 'Peaceful vacation home to unwind',
+        price: 899
+      },
+      {
+        ownerId:'4',
+        address:'1 Mango ave',
+        city:'Brooklyn',
+        state:'California',
+        country: 'Russia',
+        lat: 76.21,
+        lng: 21.98,
+        name: 'Homestead',
+        description: 'A home away from home.',
         price: 250
+      },
+      {
+        ownerId:'5',
+        address:'2 Winters lane',
+        city:'Edmond',
+        state:'Texas',
+        country: 'Virginia',
+        lat: 76.21,
+        lng: 21.98,
+        name: 'Mangrove Mansion',
+        description: 'Mansion with a history.',
+        price: 1299
       },
 
 

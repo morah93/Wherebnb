@@ -33,7 +33,7 @@ router.get("/", async (req, res, next) => {
         },
         attributes: ["url"],
       })
-    ).url; //keyed into the url and made that the value
+    )?.url; //keyed into the url and made that the value
 
     allSpots[i].dataValues.avgRating = (
       await Review.findOne({
