@@ -40,7 +40,7 @@ const AllSpots = (spot) => {
               </NavLink>
               <div className='allSpotsInfo'>
                 <div>{`${spot?.city}, ${spot?.state}`}</div>
-                <div>{spot?.avgRating}</div>
+                <div>{Math.trunc(spot?.avgRating)}</div>
                 <div>{`$${spot?.price} per night`}</div>
               </div>
             </div>

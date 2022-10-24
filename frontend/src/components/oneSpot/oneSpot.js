@@ -60,11 +60,11 @@ const OneSpot = () => {
         <div className='innerContainer'>
           <ul>
             {/* <i className='fa-sharp fa-solid fa-star'></i> */}
+            <div id='rating'>{Math.trunc(oneSpot?.avgRating)}</div>
             <img
               className='spotImg1'
               src={oneSpot?.SpotImages[0]?.url}
             />
-            <div id='rating'>{Math.trunc(oneSpot?.avgRating)}</div>
             <div id='spotName'>{oneSpot?.name}</div>
             <div id='address'>{oneSpot?.address}</div>
             <div id='cityState'>{`${oneSpot?.city}, ${oneSpot?.state}`}</div>
