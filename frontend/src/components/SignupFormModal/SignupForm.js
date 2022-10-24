@@ -32,11 +32,11 @@ function SignupForm() {
 
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="signupForm" onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
-      <label>
+      <label id="firstName">
         First Name
         <input
           type="text"
@@ -45,7 +45,7 @@ function SignupForm() {
           required
         />
       </label>
-      <label>
+      <label id="lastName">
         Last Name
         <input
           type="text"
@@ -54,7 +54,7 @@ function SignupForm() {
           required
         />
       </label>
-      <label>
+      <label id="email">
         Email
         <input
           type="text"
@@ -63,7 +63,7 @@ function SignupForm() {
           required
         />
       </label>
-      <label>
+      <label id="username">
         Username
         <input
           type="text"
@@ -72,7 +72,7 @@ function SignupForm() {
           required
         />
       </label>
-      <label>
+      <label id="password">
         Password
         <input
           type="password"
@@ -81,7 +81,7 @@ function SignupForm() {
           required
         />
       </label>
-      <label>
+      <label id="confirmPassword">
         Confirm Password
         <input
           type="password"
@@ -90,7 +90,7 @@ function SignupForm() {
           required
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <button id="submitButton" type="submit">Submit</button>
     </form>
   );
 }

@@ -55,56 +55,58 @@ const AddReview = () => {
 
   return (
     <>
+      <div className="createReview">
 
         <form
           id='review-form'
           onSubmit={handleSubmit}
-        >
+          >
         <h2>Please Leave a Review</h2>
         {validationErrors.length > 0 && (
           validationErrors.map(err => {
             <div>{err}</div>
           })
-        )}
+          )}
           <div id='review-content'>
             <textarea
               id='review-text'
               value={review}
               onChange={(e) => setReview(e.target.value)}
-            required
-            maxLength={255}
-            />
+              required
+              maxLength={255}
+              />
             <input
               id='review-rating'
               type='number'
               min='1'
               max='5'
               value={stars}
-            onChange={(e) => setStars(e.target.value)}
-            required
-            />
+              onChange={(e) => setStars(e.target.value)}
+              required
+              />
             <button
               id='review-button'
               type='submit'
-            >
+              >
               Submit Review
             </button>
 
-            <button onClick={() => history.push(`/spots/${spotId}`)}>
+            <button className="cancelButton" onClick={() => history.push(`/spots/${spotId}`)}>
               Cancel
             </button>
           </div>
 
           {/* {hasSubmit && validationErrors.length > 0 && (
-          <div id='error-div'>
+            <div id='error-div'>
             The following errors were found:
             <ul id='error-list'>
-              {validationErrors.map((error, idx) => <li id='errors' key={idx}>{error}</li>)}
+            {validationErrors.map((error, idx) => <li id='errors' key={idx}>{error}</li>)}
             </ul>
-          </div>
-        )} */}
+            </div>
+          )} */}
         </form>
 
+          </div>
     </>
   );
 };

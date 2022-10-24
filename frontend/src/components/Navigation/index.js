@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
+import SignupFormPage from '../SignupFormModal/index'
 import "./Navigation.css";
 
 function Navigation({ isLoaded }) {
@@ -15,26 +16,28 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink to='/signup'>Sign Up</NavLink>
+        <SignupFormPage />
+        {/* <NavLink to='/signup'>
+          <button className='signupButton'>SignUp</button>
+        </NavLink> */}
       </>
     );
   }
 
   return (
-        <div className='navigation'>
-    <ul>
-        <li className="home">
-          <NavLink
-            exact
-            to='/'
-          >
-            Home
-          </NavLink>
-      </li>
-      <li className="profile">
-          {isLoaded && sessionLinks}
-      </li>
-      </ul>
+    <div className='navigation'>
+      <div className='home'>
+        <NavLink
+          exact
+          to='/'
+        >
+          <img
+            className='img'
+            src='https://i.imgur.com/zE4UHjw.png'
+          />
+        </NavLink>
+      </div>
+      <div className='profile'>{isLoaded && sessionLinks}</div>
     </div>
   );
 }

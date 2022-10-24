@@ -144,7 +144,7 @@ console.log(spot)
           />
         </label>
 
-        <button type='submit'>Confirm Changes</button>
+        <button className="confirmChangesButton" type='submit'>Confirm Changes</button>
       </form>
     </>
   );

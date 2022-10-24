@@ -19,7 +19,8 @@ const AddSpot = (spot) => {
   const [country, setCountry] = useState(spot?.country);
   const [description, setDescription] = useState(spot?.description);
   const [price, setPrice] = useState(spot?.price);
-  // const [url, setUrl] = useState(spot?.url);
+  // const [image, setImage] = useState(spot?.image);
+  const [url, setUrl] = useState(spot?.url);
   const [errors, setErrors] = useState([]);
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmit, setHasSubmit] = useState(false);
@@ -33,10 +34,11 @@ const AddSpot = (spot) => {
     if (!country) errors.push("Please enter a country");
     if (!description) errors.push("Please enter a description for the spot");
     if (!price) errors.push("Please enter a price");
-    // if (!url) errors.push("Please enter a url");
+    // if (!image) errors.push("Please upload a image");
+    if (!url) errors.push("Please enter a url");
 
     setValidationErrors(errors);
-  }, [address, city, state, country, name, description, price]);
+  }, [address, city, state, country, name, description, price, url]);
 
   useEffect(() => {
     dispatch(createSpot(spot));
@@ -57,7 +59,8 @@ const AddSpot = (spot) => {
       name,
       description,
       price,
-      // url
+      // image
+      url
     };
 
     if (!validationErrors.length) {
@@ -83,14 +86,14 @@ const AddSpot = (spot) => {
 
   return (
     <>
-      <div className='newSpotContainer'>
-        <form onSubmit={handleSubmit}>
+      <div >
+        <form className='newSpotContainer' onSubmit={handleSubmit}>
           <ul>
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
             ))}
           </ul>
-          <label>
+          <label id='spotName'>
             Name
             <input
               type='text'
@@ -99,7 +102,7 @@ const AddSpot = (spot) => {
               required
             />
           </label>
-          <label>
+          <label id='address'>
             Address
             <input
               type='text'
@@ -108,7 +111,7 @@ const AddSpot = (spot) => {
               required
             />
           </label>
-          <label>
+          <label id='city'>
             City
             <input
               type='text'
@@ -117,7 +120,7 @@ const AddSpot = (spot) => {
               required
             />
           </label>
-          <label>
+          <label id='state'>
             State
             <input
               type='text'
@@ -126,7 +129,7 @@ const AddSpot = (spot) => {
               required
             />
           </label>
-          <label>
+          <label id='country'>
             Country
             <input
               type='text'
@@ -135,7 +138,7 @@ const AddSpot = (spot) => {
               required
             />
           </label>
-          <label>
+          <label id='description'>
             Description
             <input
               type='text'
@@ -144,7 +147,7 @@ const AddSpot = (spot) => {
               required
             />
           </label>
-          <label>
+          <label id='price'>
             Price
             <input
               type='Number'
@@ -153,17 +156,17 @@ const AddSpot = (spot) => {
               required
             />
           </label>
-          {/* <label>
-            Url
+          <label id='url'>
+            Image url
             <input
-              type='text'
+              type='url'
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               required
             />
-          </label> */}
+          </label>
 
-          <button type='submit'>Submit</button>
+          <button id="submitButton" type='submit'>Submit</button>
         </form>
       </div>
     </>

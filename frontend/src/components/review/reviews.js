@@ -21,8 +21,8 @@ const AllReviews = (id) => {
 
   return (
     <>
-     <div>
-        <ul>
+     <div className="reviews">
+        {/* <ul> */}
           {
             allReviewsArr.map(review => (
               <div>
@@ -39,7 +39,7 @@ const AllReviews = (id) => {
               </div>
             ))
         }
-      </ul>
+      {/* </ul> */}
      </div>
     </>
   )

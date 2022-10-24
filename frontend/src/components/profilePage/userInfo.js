@@ -9,18 +9,19 @@ import "./userSpots.css";
 const AllUserSpots = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const userSpots = useSelector((state) => state.spot.allSpots); //useSelector for the state being used to attain info
+  // const state = useState()
+  const userSpots = useSelector((state) => state.spot.spot); //useSelector for the state being used to attain info
   const allUserSpotsArr = Object.values(userSpots);
   const user = useSelector((state) => state.session.user);
-  const { spotId, reviewId, userId } = useParams();
+  const { spotId, reviewId } = useParams();
   const oneSpot = useSelector((state) => state.spot.spot);
 
   useEffect(() => {
     dispatch(getUsersSpots(user.id))
   }, []);
 
-  console.log(user.id, 'USERID++++++++++++++++??????????')
 
+console.group(userSpots, "userSpotsArr")
   // useEffect(() => {
   //   dispatch(getUsersSpots(user.id))
   //     .then((userId) => {
@@ -32,8 +33,9 @@ const AllUserSpots = () => {
     dispatch(getUserReviews(spotId));
   }, []);
 
-  const userReviews = useSelector((state) => state.spot.spot);
+  const userReviews = useSelector((state) => state.spot.spot.review);
   if (!allUserSpotsArr.length) return null;
+
 
   const reviewDelete = () => {
     dispatch(deleteReview(reviewId));
@@ -43,10 +45,10 @@ const AllUserSpots = () => {
 
   return (
     <>
-      <div className='outerUserSpotContainer'>
+      <div className='userSpotPageContainer'>
         <ul>
           {allUserSpotsArr.map((spot) => (
-            <div className='userSpotCard'>
+            <div className='userSpotPage'>
               <div>{spot.name}</div>
               <div>{spot.address}</div>
               <div>{spot.city}</div>
@@ -63,8 +65,8 @@ const AllUserSpots = () => {
             </div>
           ))}
         </ul>
-        <div>
-          <ul>
+        <div className="userReview">
+          {/* <ul> */}
             {userReviews.map((review) => (
               <div key={review.id}>
                 <div>{review.User.firstName}</div>
@@ -73,9 +75,9 @@ const AllUserSpots = () => {
                 <div>{review.stars}</div>
               </div>
             ))}
-          </ul>
+          {/* </ul> */}
           {oneSpot?.review?.userId === user?.id && (
-            <button onClick={() => reviewDelete()}>delete Review</button>
+            <button className="deleteReviewButton" onClick={() => reviewDelete()}>delete Review</button>
           )}
         </div>
       </div>
