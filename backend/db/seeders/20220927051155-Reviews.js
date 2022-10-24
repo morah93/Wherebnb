@@ -13,7 +13,7 @@ module.exports = {
       {
       spotId: 1,
       userId: 5,
-      review: 'This home is amazing. We felt that we were immersed in nature, both inside and outside. Sarah was a great communicator, and our experience was one-of-a-kind. We hope to be back again to experience this extraordinary home.',
+      review: 'This home is amazing. We felt that we were immersed in nature, both inside and outside. Our experience was one-of-a-kind. We hope to be back again to experience this extraordinary home.',
       stars: 5
       },
       {
@@ -25,13 +25,13 @@ module.exports = {
       {
       spotId: 2,
       userId: 3,
-      review: 'What an amazing summer week we had at this perfect location. Short walk to beach (or drive if you prefer). On the bay side great walking access to any outdoor activity. Convenient to all dining options. Amazing location!',
+      review: 'What an amazing summer week we had at this perfect location. Short walk to beach (or drive if you prefer). Amazing location!',
       stars: 5
       },
       {
       spotId: 2,
       userId: 1,
-      review: 'I absolutely loved the house. Hosts were super nice and responsive. The house was even bigger than it looked on the pictures. Hoping to stay again. I wish the hosts all the best and I highly recommend this place if you really want a holiday for yourself!',
+      review: 'I absolutely loved the house. Hosts were super nice and responsive. The house was even bigger than it looked on the pictures.',
       stars: 5
       },
       {
@@ -61,7 +61,7 @@ module.exports = {
       {
       spotId: 5,
       userId: 1,
-      review: 'The house is stunningly beautiful! We had no problem fitting our 13 person party there. We loved the kitchen and pool area and spent most of our time there. We wish we had more time there than we had. We’re looking forward to possibly doing it again next year!',
+      review: 'The house is stunningly beautiful! We had no problem fitting our 13 person party there. We are looking forward to possibly doing it again next year!',
       stars: 5
       },
       {
