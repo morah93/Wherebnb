@@ -37,6 +37,12 @@ align-content: flex-start;
   border-radius: 3px;
 }
 
+.submitButton{
+  background-color:  rgb(80,117,148);
+color: white;
+margin: 10px;
+}
+
 .loginButton{
   background-color:  rgb(80,117,148);
   color: white;
@@ -72,11 +78,13 @@ align-content: flex-start;
   background-color: rgb(142, 24, 24);
   border-radius: 3px;
   color: white;
+  margin: 10px;
 }
 
 .cancelButton{
-  background-color: red;
+  background-color: rgb(165, 38, 38);
   border-radius: 5px;
+  color: white;
 
 }
 .buttonDiv{
@@ -164,14 +172,26 @@ align-content: flex-start;
 
 .review{
   font-style: italic;
+  display: flex;
+  justify-content: center;
 }
 
-.userReview {
+.userReviewNames {
   /* border: 1px solid black; */
-  display: flex;
+  display: block;
   /* justify-content: center; */
   /* align-content: space-around; */
-  margin: 10px;
+  margin: 15px;
+  /* padding-inline-start: 40px; */
+  font: Roboto,Helvetica Neue,sans-serif ;
+}
+.userReview {
+  /* border: 1px solid black; */
+  display: block;
+  /* justify-content: center; */
+  /* align-content: space-around; */
+  margin: 15px;
+  padding-inline-start: 40px;
   font: Roboto,Helvetica Neue,sans-serif ;
 }
 

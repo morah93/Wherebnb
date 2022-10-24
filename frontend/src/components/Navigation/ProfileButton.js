@@ -35,7 +35,7 @@ function ProfileButton({ user }) {
         className='menu'
         onClick={openMenu}
       >
-        <i class='fa-duotone fa-user'></i>
+        <i className='fa-duotone fa-user'></i>
       </button>
       {showMenu && (
         <div className='profile-dropdown'>

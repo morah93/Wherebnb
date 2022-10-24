@@ -31,7 +31,7 @@ const AllSpots = (spot) => {
       <div className='outerSpotContainer'>
         {allSpotsArr &&
           allSpotsArr.map((spot) => (
-            <div className='spotCard'>
+            <div className='spotCard' key={spot.id}>
               <NavLink to={`/spots/${spot.id}`}>
                 <img
                   className='spotImg'
