@@ -14,19 +14,19 @@ const OneSpot = () => {
   const dispatch = useDispatch();
   const { spotId, reviewId } = useParams();
   const history = useHistory();
-  console.log(spotId, "=============spotId");
+
   const user = useSelector((state) => state.session.user);
-  console.log(user, "---------USER");
+
   const allReviews = useSelector((state) => state.reviews.spotReviews); //useSelector for the state being used to attain info
   const allReviewsArr = Object.values(allReviews);
-  console.log(allReviews, "++++++++++++++++++++++");
+
 
   useEffect(() => {
     dispatch(getOneSpot(spotId));
   }, [spotId]);
 
   const oneSpot = useSelector((state) => state.spot.spot); //useSelector for the state being used to attain info
-  console.log(oneSpot, "onespot------");
+
 
   useEffect(() => {
     dispatch(getAllReviews(spotId));
@@ -56,18 +56,15 @@ const OneSpot = () => {
 
   return (
     <>
-
       <div className='outerContainer'>
         <div className='innerContainer'>
           <ul>
-            <div id='rating'>
-              <i className='fa-sharp fa-solid fa-star'></i>
-              {oneSpot?.avgRating}
-            </div>
+            {/* <i className='fa-sharp fa-solid fa-star'></i> */}
             <img
               className='spotImg1'
               src={oneSpot?.SpotImages[0]?.url}
             />
+            <div id='rating'>{oneSpot?.avgRating}</div>
             <div id='spotName'>{oneSpot?.name}</div>
             <div id='address'>{oneSpot?.address}</div>
             <div id='cityState'>{`${oneSpot?.city}, ${oneSpot?.state}`}</div>
@@ -106,8 +103,11 @@ const OneSpot = () => {
           <h2></h2>
           {/* <ul> */}
           {allReviewsArr.map((review) => (
-            <div className='userReview' key={review.id}>
-              <div >
+            <div
+              className='userReview'
+              key={review.id}
+            >
+              <div>
                 <div>
                   <i
                     id='starReview'
@@ -115,8 +115,8 @@ const OneSpot = () => {
                   ></i>
                   {`Stars: ${review.stars}`}
                 </div>
-                <div className="userReviewNames">{`${review?.User?.firstName} ${review?.User?.lastName}`}</div>
-                <div className="userReview">{`"${review.review}"`}</div>
+                <div className='userReviewNames'>{`${review?.User?.firstName} ${review?.User?.lastName}`}</div>
+                <div className='userReview'>{`"${review.review}"`}</div>
                 {review?.userId === user?.id && (
                   <button
                     className='deleteButton'

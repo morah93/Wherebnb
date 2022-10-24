@@ -14,9 +14,9 @@ const AllSpots = (spot) => {
   // = Object.values(allSpots) // attained info in array
 
   //create function for currentSpot
-  // console.log("this is all spots", allSpots, allSpotsArr)
+
   useEffect(() => {
-    // console.log('----------------useEffect')
+
     dispatch(getAllSpots());
   }, []);
 

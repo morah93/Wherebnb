@@ -9,7 +9,7 @@ const EditSpot = () => {
   const history = useHistory();
   const { spotId } = useParams();
   const spot = useSelector(state => state.spot.spot)
-console.log(spot)
+
   const [name, setName] = useState(spot?.name);
   const [address, setAddress] = useState(spot?.address);
   const [city, setCity] = useState(spot?.city);

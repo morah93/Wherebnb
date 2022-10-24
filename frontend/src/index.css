@@ -176,6 +176,11 @@ margin: 10px;
   justify-content: center;
 }
 
+.rating{
+  font-weight: bold;
+  margin: 4px;
+  padding: 5px;
+}
 .userReviewNames {
   /* border: 1px solid black; */
   display: block;
@@ -267,9 +272,7 @@ margin: 10px;
   color: rgb(80,117,148);
 }
 
-#rating {
-  margin: 10px ;
-}
+
 #spotName {
 margin: 10px;
 }
