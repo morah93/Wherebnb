@@ -27,7 +27,7 @@ const OneSpot = () => {
 
   const oneSpot = useSelector((state) => state.spot.spot); //useSelector for the state being used to attain info
 
-
+console.log(oneSpot.avgStarRating, 'onespot----------------=======')
   useEffect(() => {
     dispatch(getAllReviews(spotId));
   }, [spotId]);
@@ -58,13 +58,13 @@ const OneSpot = () => {
     <>
       <div className='outerContainer'>
         <div className='innerContainer'>
-          <ul>
+          {/* <ul> */}
             {/* <i className='fa-sharp fa-solid fa-star'></i> */}
-            <div id='rating'>{Math.trunc(oneSpot?.avgRating)}</div>
             <img
               className='spotImg1'
               src={oneSpot?.SpotImages[0]?.url}
             />
+            <div id='rating'>{Math.trunc(oneSpot?.avgRating)}</div>
             <div id='spotName'>{oneSpot?.name}</div>
             <div id='address'>{oneSpot?.address}</div>
             <div id='cityState'>{`${oneSpot?.city}, ${oneSpot?.state}`}</div>
@@ -98,9 +98,8 @@ const OneSpot = () => {
                 delete spot
               </button>
             )}
-          </ul>
+          {/* </ul> */}
           <h1 className='review'>Reviews</h1>
-          <h2></h2>
           {/* <ul> */}
           {allReviewsArr.map((review) => (
             <div

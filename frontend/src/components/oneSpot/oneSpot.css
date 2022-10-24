@@ -1,11 +1,25 @@
-.outerContainer {
+/* .outerContainer {
   border: 1px solid black;
   display: flex;
   justify-content: center;
-}
+} */
 
-.spotImg {
+/* .spotImg {
   height: 500px;
   width: 700px;
   border: 2px solid black;
-}
+} */
+
+/* .outerContainer {
+  /* border: 1px solid black; */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  /* justify-content: ; */
+  /* height: 100%; */
+  /* width: 100%; */
+  /* color: rgb(80,117,148); */
+  /* font: sans serif; */
+  /* font-weight: bold; */
+
+/* } */
