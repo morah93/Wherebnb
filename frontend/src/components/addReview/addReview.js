@@ -61,7 +61,7 @@ const AddReview = () => {
           id='review-form'
           onSubmit={handleSubmit}
           >
-        <h2>Please Leave a Review</h2>
+        <h2 className="review">Please Leave a Review</h2>
         {validationErrors.length > 0 && (
           validationErrors.map(err => {
             <div>{err}</div>
@@ -84,7 +84,7 @@ const AddReview = () => {
               onChange={(e) => setStars(e.target.value)}
               required
               />
-            <button
+            <button className="submitButton"
               id='review-button'
               type='submit'
               >

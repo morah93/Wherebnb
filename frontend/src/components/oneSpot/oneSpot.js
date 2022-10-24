@@ -52,7 +52,7 @@ const OneSpot = () => {
     });
   };
 
-  if (!oneSpot.SpotImages) return null;
+  if (!oneSpot?.SpotImages) return null;
 
   return (
     <>
@@ -61,12 +61,12 @@ const OneSpot = () => {
         <div className='innerContainer'>
           <ul>
             <div id='rating'>
-              <i class='fa-sharp fa-solid fa-star'></i>
+              <i className='fa-sharp fa-solid fa-star'></i>
               {oneSpot?.avgRating}
             </div>
             <img
               className='spotImg1'
-              src={oneSpot?.SpotImages[0].url}
+              src={oneSpot?.SpotImages[0]?.url}
             />
             <div id='spotName'>{oneSpot?.name}</div>
             <div id='address'>{oneSpot?.address}</div>
@@ -106,8 +106,8 @@ const OneSpot = () => {
           <h2></h2>
           {/* <ul> */}
           {allReviewsArr.map((review) => (
-            <div className='userReview'>
-              <div key={review.id}>
+            <div className='userReview' key={review.id}>
+              <div >
                 <div>
                   <i
                     id='starReview'
@@ -115,14 +115,14 @@ const OneSpot = () => {
                   ></i>
                   {`Stars: ${review.stars}`}
                 </div>
-                <div>{`${review?.User?.firstName} ${review?.User?.lastName}`}</div>
-                <div>{`"${review.review}"`}</div>
+                <div className="userReviewNames">{`${review?.User?.firstName} ${review?.User?.lastName}`}</div>
+                <div className="userReview">{`"${review.review}"`}</div>
                 {review?.userId === user?.id && (
                   <button
                     className='deleteButton'
                     onClick={() => reviewDelete(review.id)}
                   >
-                    delete review
+                    Delete Review
                   </button>
                 )}
               </div>
