@@ -12,7 +12,6 @@ const AllSpots = (spot) => {
   let allSpots = useSelector((state) => state.spot.allSpots); //useSelector for the state being used to attain info
   let allSpotsArr;
   // = Object.values(allSpots) // attained info in array
-
   //create function for currentSpot
 
   useEffect(() => {
@@ -20,6 +19,7 @@ const AllSpots = (spot) => {
     dispatch(getAllSpots());
   }, []);
 
+  console.log(getAllSpots, 'allspots----------')
   if (allSpots) {
     allSpotsArr = Object.values(allSpots);
   }

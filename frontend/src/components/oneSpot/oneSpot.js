@@ -64,7 +64,7 @@ const OneSpot = () => {
               className='spotImg1'
               src={oneSpot?.SpotImages[0]?.url}
             />
-            <div id='rating'>{oneSpot?.avgRating}</div>
+            <div id='rating'>{Math.trunc(oneSpot?.avgRating)}</div>
             <div id='spotName'>{oneSpot?.name}</div>
             <div id='address'>{oneSpot?.address}</div>
             <div id='cityState'>{`${oneSpot?.city}, ${oneSpot?.state}`}</div>
