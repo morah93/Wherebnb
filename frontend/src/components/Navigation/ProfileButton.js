@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import * as sessionActions from '../../store/session';
-
+import * as sessionActions from "../../store/session";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -20,7 +19,7 @@ function ProfileButton({ user }) {
       setShowMenu(false);
     };
 
-    document.addEventListener('click', closeMenu);
+    document.addEventListener("click", closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
@@ -32,24 +31,38 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button
+        className='menu'
+        onClick={openMenu}
+      >
+        <i class='fa-duotone fa-user'></i>
       </button>
       {showMenu && (
-        <ul className="profile-dropdown">
+        <div className='profile-dropdown'>
           <div>{user.username}</div>
           <div>{user.email}</div>
-          <div>
-            <button onClick={() => {
-              history.push('/spots')
-          }}>Create Spot</button>
-            <button onClick={() => {
+          <div className='buttonDiv'>
+            <button
+              className='createButton'
+              onClick={() => {
+                history.push("/spots");
+              }}
+            >
+              Create Spot
+            </button>
+            {/* <button onClick={() => {
               history.push(`/spots/current`)
-          }}>User's Spot's</button>
-            <button onClick={logout}>Log Out</button>
+          }}>User's Spot's</button> */}
+            {/* </div> */}
+            {/* <div> */}
+            <button
+              className='logout'
+              onClick={logout}
+            >
+              Log Out
+            </button>
           </div>
-
-        </ul>
+        </div>
       )}
     </>
   );
