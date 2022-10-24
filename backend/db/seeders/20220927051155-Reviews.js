@@ -70,66 +70,66 @@ module.exports = {
       review: 'A great home and host! We had adults and children who all had a fun few days.',
       stars: 5
       },
-      {
-      spotId: 6,
-      userId: 1,
-      review: 'It was okay.',
-      stars: 4
-      },
-      {
-      spotId: 7,
-      userId: 2,
-      review: 'Cant say enough.',
-      stars: 4
-      },
-      {
-      spotId: 8,
-      userId: 3,
-      review: 'Awesome host.',
-      stars: 5
-      },
-      {
-      spotId: 9,
-      userId: 4,
-      review: 'Amazed and will return.',
-      stars: 5
-      },
-      {
-      spotId: 10,
-      userId: 5,
-      review: 'Loved it.',
-      stars: 5
-      },
-      {
-      spotId: 6,
-      userId: 3,
-        review: 'Breathtaking location.',
-      stars: 5
-      },
-      {
-      spotId: 7,
-      userId: 1,
-      review: 'Thoroughly enjoyed this vacation',
-      stars: 5
-      },
-      {
-      spotId: 8,
-      userId: 2,
-      review: 'Amazing views.',
-      stars: 4
-      },
-      {
-      spotId: 9,
-      userId: 5,
-      review: 'Welcoming hosts.',
-      stars: 4
-      },
-      {
-      spotId: 10,
-      userId: 4,
-      review: 'Enjoyed my stay',
-      stars: 4
-      },
+      // {
+      // spotId: 6,
+      // userId: 1,
+      // review: 'It was okay.',
+      // stars: 4
+      // },
+      // {
+      // spotId: 7,
+      // userId: 2,
+      // review: 'Cant say enough.',
+      // stars: 4
+      // },
+      // {
+      // spotId: 8,
+      // userId: 3,
+      // review: 'Awesome host.',
+      // stars: 5
+      // },
+      // {
+      // spotId: 9,
+      // userId: 4,
+      // review: 'Amazed and will return.',
+      // stars: 5
+      // },
+      // {
+      // spotId: 10,
+      // userId: 5,
+      // review: 'Loved it.',
+      // stars: 5
+      // },
+      // {
+      // spotId: 6,
+      // userId: 3,
+      //   review: 'Breathtaking location.',
+      // stars: 5
+      // },
+      // {
+      // spotId: 7,
+      // userId: 1,
+      // review: 'Thoroughly enjoyed this vacation',
+      // stars: 5
+      // },
+      // {
+      // spotId: 8,
+      // userId: 2,
+      // review: 'Amazing views.',
+      // stars: 4
+      // },
+      // {
+      // spotId: 9,
+      // userId: 5,
+      // review: 'Welcoming hosts.',
+      // stars: 4
+      // },
+      // {
+      // spotId: 10,
+      // userId: 4,
+      // review: 'Enjoyed my stay',
+      // stars: 4
+      // },
     ], {});
   },
 
