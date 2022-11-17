@@ -1,0 +1,59 @@
+.outerSpotContainer {
+
+  display: grid;
+  /* position: absolute; */
+  /* border: 1px solid black; */
+  margin-bottom: 5%;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin-top: 7%;
+}
+
+.spotCard {
+  border: 1px solid black;
+  display: block;
+  /* grid-template-columns: repeat(1fr 1fr 1fr ); */
+  /* align-items: ; */
+  margin: 45px 20px;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 15em;
+  width: 15em;
+  /* border: 1px solid rgb(19, 16, 16); */
+  border-radius: 15px;
+  ;
+  }
+
+.spotImg {
+  height: 15em;
+  width: 15em;
+  border-radius: 15px;
+  /* border: 2px solid black; */
+}
+
+.allSpotscardinfo {
+  display: flex;
+  position: relative;
+  /* border: 1px solid black; */
+  /* align-content: flex-start; */
+  /* justify-content: space-between; */
+  flex-direction: column;
+  margin: 10px;
+  color: rgb(80,117,148);
+
+}
+
+.cityState{
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.starRating{
+  display: flex;
+  position: relative;
+  font-size: 12px;
+  top: -15px;
+  right: -190px;
+}

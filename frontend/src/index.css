@@ -1,26 +1,10 @@
 /* TODO Add site wide styles */
-.navigation {
-  display: flex;
-  position: sticky;
-  top: 0;
-  background-color: white;
-  /* border: 1px black solid; */
-  /* align-content: space-between; */
-  justify-content: space-between;
-  max-width: auto;
-  margin: 15px 15px 15px 15px;
-  /* height: ; */
+* {
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
 }
 
-.home{
-
-  /* border: 1px solid; */
-display: flex;
-align-content: flex-start;
-}
-
-.profile {
-  /* border: 1px solid; */
+.ProfileButton {
+  border: 1px solid;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -31,13 +15,17 @@ align-content: flex-start;
   margin: 5px;
 
 }
+
+
 .signupButton{
+  border-radius: 10px;
   background-color:  rgb(80,117,148);
   color: white;
   border-radius: 3px;
 }
 
 .submitButton{
+  border-radius: 10px;
   background-color:  rgb(80,117,148);
 color: white;
 margin: 10px;
@@ -46,13 +34,13 @@ margin: 10px;
 .loginButton{
   background-color:  rgb(80,117,148);
   color: white;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 .login {
   background-color:  rgb(80,117,148);
   color: white;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 .logout {
@@ -67,19 +55,19 @@ margin: 10px;
   border-radius: 3px;
 }
 
-.editButton {
+/* .editButton {
   background-color: rgb(80,117,148);
   color: white;
   border-radius: 3px;
-  margin: 5px;
-}
+  margin: 3px;
+} */
 
-.deleteButton{
+/* .deleteButton{
   background-color: rgb(142, 24, 24);
   border-radius: 3px;
   color: white;
-  margin: 10px;
-}
+  margin: 3px;
+} */
 
 .cancelButton{
   background-color: rgb(165, 38, 38);
@@ -87,25 +75,10 @@ margin: 10px;
   color: white;
 
 }
-.buttonDiv{
-  margin: 3px;
-}
-.profile-dropdown{
-  display: flex;
-  flex-direction: column;
-  width: auto;
-  margin: 2px;
-  padding: 5px;
-  justify-content: space-between;
-  font-weight: bold;
-  color: rgb(80,117,148);
-}
 
-.menu{
-  position: absolute;
-  top: 38px;
-  left:-28px;
-}
+
+
+
 
 .logo {
   /* display: flex; */
@@ -114,10 +87,7 @@ margin: 10px;
   max-width: 50px;
 }
 
-.img {
-  height: 100px;
-  max-width: 150px;
-}
+
 
 
 .app{
@@ -126,118 +96,48 @@ margin: 10px;
 
 }
 
-.outerSpotContainer {
 
-  display: grid;
-  /* position: absolute; */
-  /* border: 1px solid black; */
-  margin: 15px 15px 15px 15px;
-  grid-template-columns: 1fr 1fr 1fr 1fr ;
-  /* align-content: space-around; */
-  /* justify-content: center; */
-  /* height: ; */
-  /* width: auto; */
-}
 
-.allSpotsInfo {
-  display: flex;
-  /* border: 1px solid black; */
-  /* align-content: flex-start; */
-  /* justify-content: space-between; */
-  flex-direction: column;
-  margin: 10px;
-  color: rgb(80,117,148);
-  font: zector;
-  /* font-weight: bold; */
-}
 
-.outerContainer {
-  /* border: 1px solid black; */
-  /* display: flex; */
-  display: flex;
-  /* order: ; */
-  /* grid-template-columns: 1fr 1fr 1fr; */
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  flex-wrap: wrap-reverse;
-  /* justify-content: space-evenly; */
-  /* justify-content: ; */
-  /* grid-template-columns: 1fr 3fr 1fr; */
-  /* grid-template-rows: 5px 10px 10px 0.5fr fr; */
-  height: 100%;
-  width: 100%;
-  color: rgb(80,117,148);
-  font: sans serif;
-  font-weight: bold;
-  /* grid-column-start: 2; */
-  /* grid-column-end: 3; */
-}
 
-.innerContainer {
+
+
+/* .innerContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   /* grid-row: 2; */
-}
+/* } */
 
-.review{
-  font-style: italic;
-  display: flex;
-  justify-content: center;
-}
+
 
 .rating{
   font-weight: bold;
   margin: 4px;
   padding: 5px;
 }
-.userReviewNames {
-  /* border: 1px solid black; */
+/* .userReviewNames {
   display: block;
-  /* justify-content: center; */
-  /* align-content: space-around; */
   margin: 15px;
-  /* padding-inline-start: 40px; */
-  font: Roboto,Helvetica Neue,sans-serif ;
-}
-.userReview {
-  /* border: 1px solid black; */
+} */
+/* .userReview {
   display: block;
-  /* justify-content: center; */
-  /* align-content: space-around; */
   margin: 15px;
   padding-inline-start: 40px;
   font: Roboto,Helvetica Neue,sans-serif ;
-}
+} */
 
 /* #starReview {
   font-size: 10px;
 } */
-.spotImg {
-  height: 300px;
-  width: 300px;
-  border-radius: 5px;
-  /* border: 2px solid black; */
-}
-.spotImg1 {
+
+/* .spotImg1 {
   height: 500px;
   width: 600px;
   border-radius: 15px;
   /* border: 2px solid black; */
-}
-.spotCard {
-/* border: 1px solid black; */
-display: block;
-/* grid-template-columns: repeat(1fr 1fr 1fr ); */
-/* align-items: ; */
-margin: 5px 5px 5px 5px;
-height: 100%;
-width: 100%;
-/* max-width: ; */
-/* color: rgb(80,117,148); */
+/* } */
 
-}
 /* .login {
   display: flex;
   flex-direction: column;
@@ -284,41 +184,7 @@ margin: 10px;
 }
 
 
-#spotName {
-margin: 10px;
-}
-#address {
-  margin: 10px;
 
-}
-#cityState {
-  margin: 10px;
-
-}
-#country {
-  margin: 10px;
-
-}
-#description {
-  margin: 10px;
-
-}
-#price {
-  margin: 10px;
-
-}
-
-#city {
-  margin: 10px;
-}
-
-#state{
-  margin: 10px;
-}
-
-#url{
-  margin: 10px;
-}
 
 .confirmChangesButton {
   background-color: rgb(80,117,148);
@@ -326,12 +192,7 @@ margin: 10px;
   border-radius: 3px;
 }
 
-.newSpotContainer{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 25px;
-}
+
 
 
 @media (min-width: 729px){

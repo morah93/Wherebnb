@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import './Navigation.css'
 
-function ProfileButton({ user }) {
+function ProfileButton({ user, setLogin, setShowModal, setCreateSpotModal }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const history = useHistory();
@@ -35,35 +36,60 @@ function ProfileButton({ user }) {
         className='menu'
         onClick={openMenu}
       >
-        <i className='fa-duotone fa-user'></i>
+        <i className="fa-solid fa-bars" id="hamburglar"></i>
+        <i className='fa fa-user' id="user"></i>
       </button>
-      {showMenu && (
-        <div className='profile-dropdown'>
-          <div>{user.username}</div>
-          <div>{user.email}</div>
-          <div className='buttonDiv'>
-            <button
-              className='createButton'
-              onClick={() => {
-                history.push("/spots");
-              }}
-            >
-              Create Spot
-            </button>
-            {/* <button onClick={() => {
+      {showMenu &&
+        (user ? (
+          <ul className='profile-dropdown'>
+            <div>{user.username}</div>
+            <div>{user.email}</div>
+            <div className='buttonDiv'>
+              <button
+                className='createButton'
+                onClick={() => {
+                  setCreateSpotModal(true);
+                }}
+              >
+                Become a Host
+              </button>
+              {/* <button onClick={() => {
               history.push(`/spots/current`)
-          }}>User's Spot's</button> */}
-            {/* </div> */}
-            {/* <div> */}
-            <button
-              className='logout'
-              onClick={logout}
-            >
-              Log Out
-            </button>
+             }}>User's Spot's</button> */}
+              {/* </div> */}
+              {/* <div> */}
+              <button
+                className='logout'
+                onClick={logout}
+              >
+                Log Out
+              </button>
+            </div>
+          </ul>
+        ) : (
+          <div>
+            <div>
+              <button
+                onClick={() => {
+                  setLogin(true);
+                  setShowModal(true);
+                }}
+              >
+                Log In
+              </button>
+            </div>
+            <div>
+              <button
+                onClick={() => {
+                  setLogin(false);
+                  setShowModal(true);
+                }}
+              >
+                Sign Up
+              </button>
+            </div>
           </div>
-        </div>
-      )}
+        ))}
     </>
   );
 }

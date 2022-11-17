@@ -1,0 +1,12 @@
+.createReview{
+  display: grid;
+}
+
+#review-text{
+
+  display: flex;
+  width: 50%;
+  height: 200px;
+  margin-top: 10%;
+  padding-top: 1%;
+}

@@ -7,7 +7,7 @@ import { getAllReviews } from "../../store/reviews";
 import { createReview } from "../../store/reviews";
 import { deleteReview, removeReview } from "../../store/reviews";
 // import { getUserReviews } from "../../store/reviews";
-// import "./allSpots.css";
+import "./oneSpot.css";
 // import editASpot from "../editSpot/editSpot";
 
 const OneSpot = () => {
@@ -19,15 +19,15 @@ const OneSpot = () => {
 
   const allReviews = useSelector((state) => state.reviews.spotReviews); //useSelector for the state being used to attain info
   const allReviewsArr = Object.values(allReviews);
-
+  const [createReviewModal, setCreateReviewModal] = useState(false)
 
   useEffect(() => {
     dispatch(getOneSpot(spotId));
   }, [spotId]);
 
-  const oneSpot = useSelector((state) => state.spot.spot); //useSelector for the state being used to attain info
+  const oneSpot = useSelector((state) => state.spot[spotId]); //useSelector for the state being used to attain info
 
-console.log(oneSpot.avgStarRating, 'onespot----------------=======')
+console.log(oneSpot, 'onespot----------------=======')
   useEffect(() => {
     dispatch(getAllReviews(spotId));
   }, [spotId]);
@@ -51,6 +51,13 @@ console.log(oneSpot.avgStarRating, 'onespot----------------=======')
       dispatch(removeReview(reviewId));
     });
   };
+  let foundReview = true
+  for (let i = 0; i < allReviewsArr.length; i++) {
+    if (user) {
+      if(user.id === allReviewsArr[i].userId) foundReview = false
+    }
+
+  }
 
   if (!oneSpot?.SpotImages) return null;
 
@@ -59,18 +66,19 @@ console.log(oneSpot.avgStarRating, 'onespot----------------=======')
       <div className='outerContainer'>
         <div className='innerContainer'>
           {/* <ul> */}
-            {/* <i className='fa-sharp fa-solid fa-star'></i> */}
+          <div id='spotName'>{oneSpot?.name}</div>
+          <div id='rating' className='fa fa-star'>{Math.trunc(oneSpot?.avgRating)}</div>
             <img
               className='spotImg1'
               src={oneSpot?.SpotImages[0]?.url}
             />
-            <div id='rating'>{Math.trunc(oneSpot?.avgRating)}</div>
-            <div id='spotName'>{oneSpot?.name}</div>
-            <div id='address'>{oneSpot?.address}</div>
+
+
+            {/* <div id='address'>{oneSpot?.address}</div> */}
             <div id='cityState'>{`${oneSpot?.city}, ${oneSpot?.state}`}</div>
             <div id='country'>{oneSpot?.country}</div>
             <div id='description'>{`${oneSpot?.description}`}</div>
-            <div id='price'>{`$${oneSpot?.price} per night`}</div>
+            <div id='price'>{`$${oneSpot?.price} night`}</div>
             <div></div>
             {oneSpot?.ownerId === user?.id && (
               <button
@@ -82,10 +90,13 @@ console.log(oneSpot.avgStarRating, 'onespot----------------=======')
                 Edit Spot
               </button>
             )}
-            {user && (
+            {user && foundReview &&(
               <button
-                className='createButton'
-                onClick={() => addReview(spotId)}
+              className='createButton1'
+              onClick={() => {
+                // setCreateReviewModal(true)
+                addReview(spotId);
+              }}
               >
                 Create Review
               </button>
@@ -95,7 +106,7 @@ console.log(oneSpot.avgStarRating, 'onespot----------------=======')
                 className='deleteButton'
                 onClick={() => spotDelete()}
               >
-                delete spot
+                Delete Spot
               </button>
             )}
           {/* </ul> */}
@@ -110,7 +121,7 @@ console.log(oneSpot.avgStarRating, 'onespot----------------=======')
                 <div>
                   <i
                     id='starReview'
-                    className='fa-sharp fa-solid fa-star'
+                    className='fa fa-star'
                   ></i>
                   {`Stars: ${review.stars}`}
                 </div>

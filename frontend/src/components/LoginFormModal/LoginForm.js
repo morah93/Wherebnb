@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import './LoginForm.css';
 
-function LoginForm() {
+function LoginForm({setShowModal}) {
   const history = useHistory
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
@@ -21,6 +21,7 @@ function LoginForm() {
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password }))
       .then(() => {
+        setShowModal(false)
         history.push('/')
       })
       .catch(async (res) => {
@@ -53,6 +54,15 @@ function LoginForm() {
         />
       </label>
       <button className='login' type="submit">Log In</button>
+      <button
+                className='demoButton'
+        onClick={() => {
+          setCredential('Demo-lition');
+          setPassword('password')
+                }}
+              >
+                Demo User
+              </button>
     </form>
   );
 }
