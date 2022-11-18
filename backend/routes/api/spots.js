@@ -233,6 +233,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res) => {
 router.post("/:spotId/images", async (req, res) => {
   // const {id, url, preview,  address, city, state, country, lat, lng, name, description, price  } = req.body;
   const { url, preview } = req.body;
+  console.log(url, preview)
   const userId = req.user.id;
   const spot = await Spot.findByPk(req.params.spotId);
   if (!spot) {

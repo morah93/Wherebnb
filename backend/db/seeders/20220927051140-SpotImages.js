@@ -35,31 +35,31 @@ module.exports = {
         url: 'https://i.imgur.com/OrZWwBG.jpg',
         preview: true
       },
-      {
-        spotId: 6,
-        url: 'https://i.imgur.com/pSjM433.jpg',
-        preview: true
-      },
-      {
-        spotId: 7,
-        url: 'https://i.imgur.com/mZKvmiu.jpg',
-        preview: true
-      },
-      {
-        spotId: 8,
-        url: 'https://i.imgur.com/7cLUKMA.jpg',
-        preview: true
-      },
-      {
-        spotId: 9,
-        url: 'https://i.imgur.com/TCEnY0u.jpg',
-        preview: true
-      },
-      {
-        spotId: 10,
-        url: 'https://i.imgur.com/lh1bDAa.jpg',
-        preview: true
-      },
+      // {
+      //   spotId: 6,
+      //   url: 'https://i.imgur.com/pSjM433.jpg',
+      //   preview: true
+      // },
+      // {
+      //   spotId: 7,
+      //   url: 'https://i.imgur.com/mZKvmiu.jpg',
+      //   preview: true
+      // },
+      // {
+      //   spotId: 8,
+      //   url: 'https://i.imgur.com/7cLUKMA.jpg',
+      //   preview: true
+      // },
+      // {
+      //   spotId: 9,
+      //   url: 'https://i.imgur.com/TCEnY0u.jpg',
+      //   preview: true
+      // },
+      // {
+      //   spotId: 10,
+      //   url: 'https://i.imgur.com/lh1bDAa.jpg',
+      //   preview: true
+      // },
     ], {});
   },
 
