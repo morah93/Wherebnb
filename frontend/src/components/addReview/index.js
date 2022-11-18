@@ -8,9 +8,18 @@ function AddReviewModal() {
 
   return (
     <>
+      <button
+              className='createReviewButton'
+              onClick={() => {
+                setAddReviewModal(true)
+                // addReview(spotId);
+              }}
+            >
+              Create Review
+            </button>
       {addReviewModal && (
         <Modal onClose={() => setAddReviewModal(false)}>
-          <AddReview />
+          <AddReview setAddReviewModal={setAddReviewModal}/>
         </Modal>
       )}
     </>

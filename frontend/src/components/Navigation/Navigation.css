@@ -37,7 +37,7 @@
   /* border: 1px solid gray; */
   border: 1px solid rgb(52, 98, 135);
   background-color: white;
-  border-radius: 25px;
+  border-radius: 10px;
   /* position: static; */
   justify-content: center;
   /* top: 38%; */
@@ -71,7 +71,7 @@ align-self: center;
   color: white;
   border-radius: 3px;
   margin-top: 3px;
-  box-shadow: 1px 1px 5px rgba(192, 44, 36, 0.732);
+  /* box-shadow: 1px 1px 5px rgba(192, 44, 36, 0.732); */
   cursor: pointer;
   /* width: 20%; */
 }

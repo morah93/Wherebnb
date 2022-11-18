@@ -8,6 +8,8 @@ import { createReview } from "../../store/reviews";
 import { deleteReview, removeReview } from "../../store/reviews";
 // import { getUserReviews } from "../../store/reviews";
 import "./oneSpot.css";
+import EditSpotModal from "../editSpot";
+import AddReviewModal from "../addReview";
 // import editASpot from "../editSpot/editSpot";
 
 const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
@@ -19,7 +21,7 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
 
   const allReviews = useSelector((state) => state.reviews.spotReviews); //useSelector for the state being used to attain info
   const allReviewsArr = Object.values(allReviews);
-  const [createReviewModal, setCreateReviewModal] = useState(false)
+  // const [createReviewModal, setCreateReviewModal] = useState(false);
 
   useEffect(() => {
     dispatch(getOneSpot(spotId));
@@ -27,7 +29,7 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
 
   const oneSpot = useSelector((state) => state.spot[spotId]); //useSelector for the state being used to attain info
 
-console.log(oneSpot, 'onespot----------------=======')
+  // console.log(oneSpot, "onespot----------------=======");
   useEffect(() => {
     dispatch(getAllReviews(spotId));
   }, [spotId]);
@@ -52,12 +54,11 @@ console.log(oneSpot, 'onespot----------------=======')
       dispatch(removeReview(reviewId));
     });
   };
-  let foundReview = true
+  let foundReview = true;
   for (let i = 0; i < allReviewsArr.length; i++) {
     if (user) {
-      if(user.id === allReviewsArr[i].userId) foundReview = false
+      if (user.id === allReviewsArr[i].userId) foundReview = false;
     }
-
   }
 
   if (!oneSpot?.SpotImages) return null;
@@ -68,49 +69,55 @@ console.log(oneSpot, 'onespot----------------=======')
         <div className='innerContainer'>
           {/* <ul> */}
           <div id='spotName'>{oneSpot?.name}</div>
-          <div id='rating' className='fa fa-star'>{Math.trunc(oneSpot?.avgRating)}</div>
-            <img
-              className='spotImg1'
-              src={oneSpot?.SpotImages[0]?.url}
-            />
+          <div
+            id='rating'
+            className='fa fa-star'
+          >
+            {Math.trunc(oneSpot?.avgRating)}
+          </div>
+          <img
+            className='spotImg1'
+            src={oneSpot?.SpotImages[0]?.url}
+          />
 
-
-            {/* <div id='address'>{oneSpot?.address}</div> */}
-            <div id='cityState'>{`${oneSpot?.city}, ${oneSpot?.state}`}</div>
-            <div id='country'>{oneSpot?.country}</div>
-            <div id='description'>{`${oneSpot?.description}`}</div>
-            <div id='price'>{`$${oneSpot?.price} night`}</div>
-            <div></div>
-            {oneSpot?.ownerId === user?.id && (
-              <button
-                className='editButton'
+          {/* <div id='address'>{oneSpot?.address}</div> */}
+          <div id='cityState'>{`${oneSpot?.city}, ${oneSpot?.state}`}</div>
+          <div id='country'>{oneSpot?.country}</div>
+          <div id='description'>{`${oneSpot?.description}`}</div>
+          <div id='price'>{`$${oneSpot?.price} night`}</div>
+          {/* <div></div> */}
+          {/* {oneSpot?.ownerId === user?.id && (
+            <button
+              className='editButton'
               onClick={() => {
-                  // setEditSpotModal(true)
-                  history.push(`${oneSpot.id}/edit`);
-                }}
-              >
-                Edit Spot
-              </button>
-            )}
-            {user && foundReview &&(
-              <button
-              className='createReviewButton'
-              onClick={() => {
-                // setAddReviewModal(true)
-                addReview(spotId);
+                setEditSpotModal(true)
+                history.push(`${oneSpot.id}/edit`);
               }}
-              >
-                Create Review
-              </button>
-            )}
-            {oneSpot?.ownerId === user?.id && (
-              <button
-                className='deleteButton'
-                onClick={() => spotDelete()}
-              >
-                Delete Spot
-              </button>
-            )}
+            >
+              Edit Spot
+            </button>
+          )} */}
+          <EditSpotModal spot={oneSpot} />
+          {user && foundReview && (
+            <AddReviewModal />
+            // <button
+            //   className='createReviewButton'
+            //   onClick={() => {
+            //     // setAddReviewModal(true)
+            //     addReview(spotId);
+            //   }}
+            // >
+            //   Create Review
+            // </button>
+          )}
+          {oneSpot?.ownerId === user?.id && (
+            <button
+              className='deleteButton'
+              onClick={() => spotDelete()}
+            >
+              Delete Spot
+            </button>
+          )}
           {/* </ul> */}
           <h1 className='review'>Reviews</h1>
           {/* <ul> */}

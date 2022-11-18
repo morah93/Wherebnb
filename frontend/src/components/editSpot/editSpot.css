@@ -2,8 +2,19 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  height: 100px;
+  width: 75px;
+  color: white;
+  
 }
 
 .confirChangesButton{
+  margin-left: 5px;
   cursor: pointer;
+  width: 5%;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
 }

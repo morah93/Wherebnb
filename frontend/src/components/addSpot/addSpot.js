@@ -32,6 +32,7 @@ const AddSpot = ({ setShowModal}) => {
     if (!state) errors.push("Please enter a state");
     if (!country) errors.push("Please enter a country");
     if (!description) errors.push("Please enter a description for the spot");
+    if (description && description.length < 20) errors.push("Please enter more than 20 characters");
     if (!price) errors.push("Please enter a price");
     // if (!image) errors.push("Please upload a image");
     if (!previewImage) errors.push("Please enter a url");
@@ -70,14 +71,16 @@ const AddSpot = ({ setShowModal}) => {
 
 
     if (!validationErrors.length) {
-      dispatch(createSpot(newSpot))
+      return dispatch(createSpot(newSpot))
       .then(() => {
         history.push(`/`);
         alert("Successful");
         setCreateSpotModal(false)
       })
-      .catch(() => {
-        alert("Failed");
+        .catch(async (res) => {
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors)
+          alert("Failed");
       });
       // setErrors([]);
       // return dispatch(({ name, description, price })).catch(

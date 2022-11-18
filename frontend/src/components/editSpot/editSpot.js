@@ -4,19 +4,19 @@ import { getOneSpot, editASpot } from "../../store/spots";
 import "./editSpot.css";
 import { useParams, Redirect, NavLink, useHistory } from "react-router-dom";
 
-const EditSpot = (setEditSpotModal) => {
+const EditSpot = ({ setEditSpotModal, spot }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { spotId } = useParams();
-  const spot = useSelector((state) => state.spot.spot);
-
-  const [name, setName] = useState(spot?.name);
-  const [address, setAddress] = useState(spot?.address);
-  const [city, setCity] = useState(spot?.city);
-  const [state, setState] = useState(spot?.state);
-  const [country, setCountry] = useState(spot?.country);
-  const [description, setDescription] = useState(spot?.description);
-  const [price, setPrice] = useState(spot?.price);
+  // const spot = useSelector((state) => state.spot);
+  console.log(spot, 'is it printing')
+  const [name, setName] = useState(spot.name || '');
+  const [address, setAddress] = useState(spot.address || '');
+  const [city, setCity] = useState(spot.city || '');
+  const [state, setState] = useState(spot.state || '');
+  const [country, setCountry] = useState(spot.country || '');
+  const [description, setDescription] = useState(spot.description || '');
+  const [price, setPrice] = useState(spot.price || '');
   const [errors, setErrors] = useState([]);
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmit, setHasSubmit] = useState(false);

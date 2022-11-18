@@ -72,7 +72,7 @@ const AddReview = ({setAddReviewModal}) => {
               placeholder='....type here'
               value={review}
               onChange={(e) => setReview(e.target.value)}
-              required
+              // required
               maxLength={255}
             />
             <i className='fa fa-star'></i>
@@ -84,7 +84,7 @@ const AddReview = ({setAddReviewModal}) => {
               placeholder=''
               value={stars}
               onChange={(e) => setStars(e.target.value)}
-              required
+              // required
             />
             <button
               className='submitButton'
