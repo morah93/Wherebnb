@@ -10,6 +10,7 @@ import EditSpot from "./components/editSpot/editSpot";
 import AddSpot from "./components/addSpot/addSpot";
 import AllUserSpots from "./components/profilePage/userInfo";
 import AddReview from "./components/addReview/addReview";
+import Footer from "./components/footer/footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ function App() {
   return (
     <>
       <div className='app'>
+
         <Navigation isLoaded={isLoaded} />
         {isLoaded && (
           <Switch>
@@ -56,6 +58,7 @@ function App() {
             </Route>
           </Switch>
         )}
+        <Footer />
       </div>
     </>
   );

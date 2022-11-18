@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import LoginForm from './LoginForm';
+import EditSpot from './editSpot';
 
-function LoginFormModal() {
-  const [showModal, setShowModal] = useState(false);
+function EditSpotModal() {
+  const [editSpotModal, setEditSpotModal] = useState(false);
 
   return (
     <>
       {/* <button className='loginButton' onClick={() => setShowModal(true)}>Log In</button> */}
-      {showModal && (
+      {editSpotModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <LoginForm />
+          <EditSpot />
         </Modal>
       )}
     </>
   );
 }
 
-export default LoginFormModal;
+export default EditSpotModal;

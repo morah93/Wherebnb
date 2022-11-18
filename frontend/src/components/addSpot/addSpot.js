@@ -1,26 +1,25 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { createSpot } from "../../store/spots";
+import { createSpot, addSpotImg } from "../../store/spots";
 import { NavLink, useHistory, useParams } from "react-router-dom";
-
-
-const AddSpot = (spot) => {
+import './addSpot.css'
+const AddSpot = ({ setShowModal}) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { spotId } = useParams();
-  const oneSpot = useSelector((state) => state.spot.spot);
 
-  const [name, setName] = useState(spot?.name);
-  const [address, setAddress] = useState(spot?.address);
-  const [city, setCity] = useState(spot?.city);
-  const [state, setState] = useState(spot?.state);
-  const [lat, setLat] = useState(spot?.lat);
-  const [lng, setLng] = useState(spot?.lng);
-  const [country, setCountry] = useState(spot?.country);
-  const [description, setDescription] = useState(spot?.description);
-  const [price, setPrice] = useState(spot?.price);
+
+  const [createSpotModal, setCreateSpotModal] = useState(false)
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [lat, setLat] = useState(0);
+  const [lng, setLng] = useState(0);
+  const [country, setCountry] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState(1);
   // const [image, setImage] = useState(spot?.image);
-  const [url, setUrl] = useState(spot?.url);
+  const [previewImage, setPreviewImage] = useState('');
   const [errors, setErrors] = useState([]);
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmit, setHasSubmit] = useState(false);
@@ -35,20 +34,27 @@ const AddSpot = (spot) => {
     if (!description) errors.push("Please enter a description for the spot");
     if (!price) errors.push("Please enter a price");
     // if (!image) errors.push("Please upload a image");
-    if (!url) errors.push("Please enter a url");
+    if (!previewImage) errors.push("Please enter a url");
 
     setValidationErrors(errors);
-  }, [address, city, state, country, name, description, price, url]);
+  }, [address, city, state, country, name, description, price, previewImage]);
 
-  useEffect(() => {
-    dispatch(createSpot(spot));
-  }, []);
+  // console.log(
+  //   name,
+  //   address,
+  //   city,
+  //   state,
+  //   country,
+  //   description,
+  //   price,
+  //   previewImage,
+  // );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setHasSubmit(true);
-    let lat = 0
-    let lng = 0
+    let lat = 0;
+    let lng = 0;
     const newSpot = {
       address,
       city,
@@ -59,20 +65,20 @@ const AddSpot = (spot) => {
       name,
       description,
       price,
-      // image
-      url
+      previewImage,
     };
+
 
     if (!validationErrors.length) {
       dispatch(createSpot(newSpot))
-        .then(() => {
-          history.push(`/`)
-          alert("Successful")
-        }).catch(() => {
-        alert("Failed")
+      .then(() => {
+        history.push(`/`);
+        alert("Successful");
+        setCreateSpotModal(false)
       })
-
-
+      .catch(() => {
+        alert("Failed");
+      });
       // setErrors([]);
       // return dispatch(({ name, description, price })).catch(
       //   async (res) => {
@@ -86,8 +92,11 @@ const AddSpot = (spot) => {
 
   return (
     <>
-      <div >
-        <form className='newSpotContainer' onSubmit={handleSubmit}>
+      <div className="newSpotForm">
+        <form
+          className='newSpotContainer'
+          onSubmit={handleSubmit}
+        >
           <ul>
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
@@ -96,6 +105,7 @@ const AddSpot = (spot) => {
           <label id='spotName'>
             Name
             <input
+              id='nameTextBox'
               type='text'
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -105,6 +115,7 @@ const AddSpot = (spot) => {
           <label id='address'>
             Address
             <input
+              id='addressTextBox'
               type='text'
               value={address}
               onChange={(e) => setAddress(e.target.value)}
@@ -114,6 +125,7 @@ const AddSpot = (spot) => {
           <label id='city'>
             City
             <input
+              id='cityTextBox'
               type='text'
               value={city}
               onChange={(e) => setCity(e.target.value)}
@@ -123,6 +135,7 @@ const AddSpot = (spot) => {
           <label id='state'>
             State
             <input
+              id='stateTextBox'
               type='text'
               value={state}
               onChange={(e) => setState(e.target.value)}
@@ -132,45 +145,67 @@ const AddSpot = (spot) => {
           <label id='country'>
             Country
             <input
+              id='countryTextBox'
               type='text'
               value={country}
               onChange={(e) => setCountry(e.target.value)}
               required
             />
           </label>
-          <label id='description'>
-            Description
-            <input
-              type='text'
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              required
-            />
-          </label>
+
           <label id='price'>
             Price
             <input
+              id='priceTextBox'
               type='Number'
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               required
             />
           </label>
-          <label id='url'>
-            Image url
+
+            <label id='url'>
+              Image Url
             <input
-              type='url'
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
+              id='urlTextBox'
+                type='url'
+                value={previewImage}
+                onChange={(e) => setPreviewImage(e.target.value)}
+                required
+              />
+            </label>
+            <label id='description'>
+            Description
+            <input
+              id='descriptionbox'
+              type='text'
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
               required
             />
           </label>
 
-          <button id="submitButton" type='submit'>Submit</button>
+
+          <button
+            id='submitButton'
+            type='submit'
+            onClick={() => history.push('/')}
+          >
+            Submit
+          </button>
+
+            {/* <button
+              className='cancelButton'
+              onClick={() => {
+                setCreateSpotModal(false)
+                history.push(`/`)
+              }}
+            >Cancel</button> */}
+
         </form>
       </div>
     </>
   );
 };
 
-export default AddSpot
+export default AddSpot;

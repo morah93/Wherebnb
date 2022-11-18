@@ -4,12 +4,12 @@ import { getOneSpot, editASpot } from "../../store/spots";
 import "./editSpot.css";
 import { useParams, Redirect, NavLink, useHistory } from "react-router-dom";
 
-const EditSpot = () => {
+const EditSpot = (setEditSpotModal) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { spotId } = useParams();
   const spot = useSelector(state => state.spot.spot)
-console.log(spot)
+
   const [name, setName] = useState(spot?.name);
   const [address, setAddress] = useState(spot?.address);
   const [city, setCity] = useState(spot?.city);
@@ -58,6 +58,7 @@ console.log(spot)
     if (!validationErrors.length) {
       let updatedSpot = await dispatch(editASpot( spot.id, newSpot))
       if (updatedSpot) {
+        setEditSpotModal(false)
         history.push(`/spots/${spot.id}`)
       }
 
@@ -71,6 +72,8 @@ console.log(spot)
     }
     return setErrors(["Whats the error"]);
   };
+
+  console.log('is this printing?')
 
   return (
     <>

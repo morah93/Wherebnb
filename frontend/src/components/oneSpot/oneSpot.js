@@ -7,27 +7,27 @@ import { getAllReviews } from "../../store/reviews";
 import { createReview } from "../../store/reviews";
 import { deleteReview, removeReview } from "../../store/reviews";
 // import { getUserReviews } from "../../store/reviews";
-// import "./allSpots.css";
+import "./oneSpot.css";
 // import editASpot from "../editSpot/editSpot";
 
 const OneSpot = () => {
   const dispatch = useDispatch();
   const { spotId, reviewId } = useParams();
   const history = useHistory();
-  console.log(spotId, "=============spotId");
+
   const user = useSelector((state) => state.session.user);
-  console.log(user, "---------USER");
+
   const allReviews = useSelector((state) => state.reviews.spotReviews); //useSelector for the state being used to attain info
   const allReviewsArr = Object.values(allReviews);
-  console.log(allReviews, "++++++++++++++++++++++");
+  const [createReviewModal, setCreateReviewModal] = useState(false)
 
   useEffect(() => {
     dispatch(getOneSpot(spotId));
   }, [spotId]);
 
-  const oneSpot = useSelector((state) => state.spot.spot); //useSelector for the state being used to attain info
-  console.log(oneSpot, "onespot------");
+  const oneSpot = useSelector((state) => state.spot[spotId]); //useSelector for the state being used to attain info
 
+console.log(oneSpot, 'onespot----------------=======')
   useEffect(() => {
     dispatch(getAllReviews(spotId));
   }, [spotId]);
@@ -51,29 +51,34 @@ const OneSpot = () => {
       dispatch(removeReview(reviewId));
     });
   };
+  let foundReview = true
+  for (let i = 0; i < allReviewsArr.length; i++) {
+    if (user) {
+      if(user.id === allReviewsArr[i].userId) foundReview = false
+    }
+
+  }
 
   if (!oneSpot?.SpotImages) return null;
 
   return (
     <>
-
       <div className='outerContainer'>
         <div className='innerContainer'>
-          <ul>
-            <div id='rating'>
-              <i className='fa-sharp fa-solid fa-star'></i>
-              {oneSpot?.avgRating}
-            </div>
+          {/* <ul> */}
+          <div id='spotName'>{oneSpot?.name}</div>
+          <div id='rating' className='fa fa-star'>{Math.trunc(oneSpot?.avgRating)}</div>
             <img
               className='spotImg1'
               src={oneSpot?.SpotImages[0]?.url}
             />
-            <div id='spotName'>{oneSpot?.name}</div>
-            <div id='address'>{oneSpot?.address}</div>
+
+
+            {/* <div id='address'>{oneSpot?.address}</div> */}
             <div id='cityState'>{`${oneSpot?.city}, ${oneSpot?.state}`}</div>
             <div id='country'>{oneSpot?.country}</div>
             <div id='description'>{`${oneSpot?.description}`}</div>
-            <div id='price'>{`$${oneSpot?.price} per night`}</div>
+            <div id='price'>{`$${oneSpot?.price} night`}</div>
             <div></div>
             {oneSpot?.ownerId === user?.id && (
               <button
@@ -85,10 +90,13 @@ const OneSpot = () => {
                 Edit Spot
               </button>
             )}
-            {user && (
+            {user && foundReview &&(
               <button
-                className='createButton'
-                onClick={() => addReview(spotId)}
+              className='createReviewButton'
+              onClick={() => {
+                // setCreateReviewModal(true)
+                addReview(spotId);
+              }}
               >
                 Create Review
               </button>
@@ -98,28 +106,30 @@ const OneSpot = () => {
                 className='deleteButton'
                 onClick={() => spotDelete()}
               >
-                delete spot
+                Delete Spot
               </button>
             )}
-          </ul>
+          {/* </ul> */}
           <h1 className='review'>Reviews</h1>
-          <h2></h2>
           {/* <ul> */}
           {allReviewsArr.map((review) => (
-            <div className='userReview' key={review.id}>
-              <div >
+            <div
+              className='userReview'
+              key={review.id}
+            >
+              <div>
                 <div>
                   <i
                     id='starReview'
-                    className='fa-sharp fa-solid fa-star'
+                    className='fa fa-star'
                   ></i>
                   {`Stars: ${review.stars}`}
                 </div>
-                <div className="userReviewNames">{`${review?.User?.firstName} ${review?.User?.lastName}`}</div>
-                <div className="userReview">{`"${review.review}"`}</div>
+                <div className='userReviewNames'>{`${review?.User?.firstName} ${review?.User?.lastName}`}</div>
+                <div className='userReview'>{`"${review.review}"`}</div>
                 {review?.userId === user?.id && (
                   <button
-                    className='deleteButton'
+                    className='deleteReviewButton'
                     onClick={() => reviewDelete(review.id)}
                   >
                     Delete Review

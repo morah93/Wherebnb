@@ -14,7 +14,7 @@ const AllUserSpots = () => {
   const allUserSpotsArr = Object.values(userSpots);
   const user = useSelector((state) => state.session.user);
   const { spotId, reviewId } = useParams();
-  const oneSpot = useSelector((state) => state.spot.spot);
+  const oneSpot = useSelector((state) => state.spot);
 
   useEffect(() => {
     dispatch(getUsersSpots(user.id))

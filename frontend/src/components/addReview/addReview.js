@@ -13,6 +13,7 @@ const AddReview = () => {
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmit, setHasSubmit] = useState(false);
   const history = useHistory();
+  const [createReviewModal, setCreateReviewModal] = useState(false)
 
   useEffect(() => {
     const errors = [];
@@ -70,16 +71,21 @@ const AddReview = () => {
           <div id='review-content'>
             <textarea
               id='review-text'
+              placeholder="....type here"
               value={review}
               onChange={(e) => setReview(e.target.value)}
               required
               maxLength={255}
-              />
+            />
+            <i className="fa fa-star"></i>
             <input
+
               id='review-rating'
+
               type='number'
               min='1'
               max='5'
+              placeholder=""
               value={stars}
               onChange={(e) => setStars(e.target.value)}
               required

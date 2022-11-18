@@ -1,44 +1,77 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
-import LoginFormModal from "../LoginFormModal";
-import SignupFormPage from '../SignupFormModal/index'
+import SignupForm from "../SignupFormModal/SignupForm";
+import { Modal } from "../../context/Modal";
+import LoginForm from "../LoginFormModal/LoginForm";
+import AddSpot from "../addSpot/addSpot";
 import "./Navigation.css";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
-
+  const [showModal, setShowModal] = useState(false);
+  const [createSpotModal, setCreateSpotModal] = useState(false)
+  const [login, setLogin] = useState(true);
+  console.log('this is showModal', showModal)
+  console.log('this is login', login)
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = <ProfileButton user={sessionUser} />;
-  } else {
-    sessionLinks = (
-      <>
-        <LoginFormModal />
-        <SignupFormPage />
-        {/* <NavLink to='/signup'>
-          <button className='signupButton'>SignUp</button>
-        </NavLink> */}
-      </>
-    );
   }
+  // else {
+  //   sessionLinks = (
+  //     <>
+  //       <LoginFormModal />
+  //     </>
+  //   );
+  // }
 
   return (
-    <div className='navigation'>
-      <div className='home'>
-        <NavLink
-          exact
-          to='/'
-        >
-          <img
-            className='img'
-            src='https://i.imgur.com/zE4UHjw.png'
-          />
-        </NavLink>
+    <>
+      <div className='navigationContainer'>
+        <div className='navigation'>
+          <div className='homeLogo'>
+            <NavLink
+              exact
+              to='/'
+            >
+              <img
+                className='logoImg'
+                src='https://i.imgur.com/zE4UHjw.png'
+              />
+            </NavLink>
+          </div>
+          <div>
+            {isLoaded && (
+              <ProfileButton
+                user={sessionUser}
+                setLogin={setLogin}
+                setShowModal={setShowModal}
+                setCreateSpotModal={setCreateSpotModal}
+              />
+            )}
+          </div>
+        </div>
+        {showModal && (
+          <Modal onClose={() => setShowModal(false)}>
+            {login ? (
+              <LoginForm setShowModal={setShowModal} />
+            ) : (
+              <SignupForm setShowModal={setShowModal} />
+            )}
+          </Modal>
+        )}
+        {createSpotModal && (
+          <Modal onClose={() => setCreateSpotModal(false)}>
+            {sessionUser &&
+            <AddSpot setShowModal={setShowModal} />
+            }
+          </Modal>
+        )}
+
       </div>
-      <div className='profile'>{isLoaded && sessionLinks}</div>
-    </div>
+    </>
   );
 }
 
