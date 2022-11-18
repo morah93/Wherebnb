@@ -92,7 +92,7 @@ console.log(oneSpot, 'onespot----------------=======')
             )}
             {user && foundReview &&(
               <button
-              className='createButton1'
+              className='createReviewButton'
               onClick={() => {
                 // setCreateReviewModal(true)
                 addReview(spotId);
@@ -129,7 +129,7 @@ console.log(oneSpot, 'onespot----------------=======')
                 <div className='userReview'>{`"${review.review}"`}</div>
                 {review?.userId === user?.id && (
                   <button
-                    className='deleteButton'
+                    className='deleteReviewButton'
                     onClick={() => reviewDelete(review.id)}
                   >
                     Delete Review

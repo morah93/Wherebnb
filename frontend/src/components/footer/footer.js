@@ -26,13 +26,13 @@ const Footer = () => {
 
         </div> */}
       <div className="siteInfo">
-        <i className="fa fa-globe"></i>
-          English (US)
-          <i className="fa fa-dollar" ></i>
+        <i id="globeIcon" className="fa fa-globe"></i>
+          <div id="language">English (US)</div>
+          <i id="dollarIcon" className="fa fa-dollar" ></i>
           USD
-          <i className="fa fa-facebook"></i>
-          <i className="fa fa-twitter"></i>
-          <i className="fa fa-instagram"></i>
+          <i id="fbIcon" className="fa fa-facebook"></i>
+          <i id="twtIcon" className="fa fa-twitter"></i>
+          <i id="igIcon" className="fa fa-instagram"></i>
       </div>
       </div>
     </>

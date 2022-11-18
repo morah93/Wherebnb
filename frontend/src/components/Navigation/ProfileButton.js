@@ -32,20 +32,8 @@ function ProfileButton({ user, setLogin, setShowModal, setCreateSpotModal }) {
 
   return (
     <>
+      <div className="menuDiv">
       <button
-        className='menu'
-        onClick={openMenu}
-      >
-        <i className="fa-solid fa-bars" id="hamburglar"></i>
-        <i className='fa fa-user' id="user"></i>
-      </button>
-      {showMenu &&
-        (user ? (
-          <ul className='profile-dropdown'>
-            <div>{user.username}</div>
-            <div>{user.email}</div>
-            <div className='buttonDiv'>
-              <button
                 className='createButton'
                 onClick={() => {
                   setCreateSpotModal(true);
@@ -53,6 +41,29 @@ function ProfileButton({ user, setLogin, setShowModal, setCreateSpotModal }) {
               >
                 Become a Host
               </button>
+      <button
+        className='menu'
+        onClick={openMenu}
+      >
+        <i className="fa-solid fa-bars" id="hamburglar"></i>
+        <i className='fa fa-user' id="user"></i>
+      </button>
+      </div>
+
+      {showMenu &&
+        (user ? (
+          <ul className='profile-dropdown'>
+            <div>{user.username}</div>
+            <div>{user.email}</div>
+            <div className='buttonDiv'>
+              {/* <button
+                className='createButton'
+                onClick={() => {
+                  setCreateSpotModal(true);
+                }}
+              >
+                Become a Host
+              </button> */}
               {/* <button onClick={() => {
               history.push(`/spots/current`)
              }}>User's Spot's</button> */}

@@ -43,11 +43,11 @@ margin: 10px;
   border-radius: 5px;
 }
 
-.logout {
+/* .logout {
   background-color: rgb(192, 44, 36);
   color: white;
   border-radius: 3px;
-}
+} */
 
 .createButton{
   background-color:  rgb(80,117,148);
@@ -150,7 +150,7 @@ margin: 10px;
   height: 350px;
   width: 300px;
   margin: 10px;
-  justify-content: start;
+  justify-content: flex-start;
   /* align-content: space-between; */
 }
 
@@ -179,9 +179,9 @@ margin: 10px;
 }
 
 
-.review{
+/* .review{
   color: rgb(80,117,148);
-}
+} */
 
 
 

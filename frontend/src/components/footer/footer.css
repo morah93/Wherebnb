@@ -26,6 +26,30 @@
 display: flex;
 position: relative;
 align-items: center;
-align-content: space-between;
+/* align-content: space-between; */
 right: -59%;
+}
+
+#language{
+  margin-right: 5%;
+  margin-left: 5%;
+
+}
+#globeIcon{
+margin-right: 3%;
+}
+#dollarIcon{
+  margin-right: 3%;
+}
+#fbIcon{
+  margin-left: 3%;
+  margin-right: 3%;
+}
+#twtIcon{
+  margin-left: 3%;
+  margin-right: 3%;
+}
+#igIcon{
+  margin-left: 3%;
+  margin-right: 5%;
 }

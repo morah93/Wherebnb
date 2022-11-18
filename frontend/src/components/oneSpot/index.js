@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const CreateReview = () => {
+const CreateReviewModal = () => {
   const [createReviewModal, setCreateReviewModal] = useState(false);
   return (
     <>
@@ -16,3 +16,4 @@ const CreateReview = () => {
     </>
   );
 };
+export default CreateReviewModal
