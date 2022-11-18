@@ -1,6 +1,6 @@
 .footer{
   display: flex;
-  /* position: fixed; */
+  position: fixed;
   border-top: 1px solid;
   /* border: 1px solid; */
   bottom: 1px;

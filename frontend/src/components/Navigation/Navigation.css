@@ -3,7 +3,7 @@
   border-bottom: 1px solid rgb(52, 98, 135);
   /* height: 100%; */
   width: 100%;
-  background-color: #95ccfa;
+  /* background-color: #95ccfa; */
   /* border: 1px solid; */
   top: .1px;
   left: .1px;
@@ -26,6 +26,12 @@
   display: flex;
   align-items: center;
 }
+
+.buttonDiv{
+  display: flex;
+  justify-content: center;
+}
+
 .menu{
   display: flex;
   /* border: 1px solid gray; */
@@ -39,6 +45,7 @@
   margin-left: 15px;
   height: 40px;
   width: 40px;
+  cursor: pointer;
 }
 
 .homeLogo{
@@ -55,6 +62,7 @@ align-self: center;
   position: relative;
   height: 60px;
   max-width: 100px;
+  cursor: pointer;
   /* box-shadow: 2px 2px 30px rgba(3, 87, 221, 0.732); */
 }
 
@@ -62,6 +70,9 @@ align-self: center;
   background-color: rgb(192, 44, 36);
   color: white;
   border-radius: 3px;
+  margin-top: 3px;
+  box-shadow: 1px 1px 5px rgba(192, 44, 36, 0.732);
+  cursor: pointer;
   /* width: 20%; */
 }
 
@@ -71,6 +82,7 @@ align-self: center;
   width: auto;
   margin: 1px;
   padding: 15px;
+  /* cursor: pointer; */
   /* background-color: #6db2eb; */
   box-shadow: 2px 2px 30px rgba(3, 87, 221, 0.732);
   /* border: 1px solid gray; */
@@ -82,22 +94,20 @@ align-self: center;
   border-radius: 4px;
   margin: 2px;
   background-color: #6db2eb;
+  cursor: pointer;
 }
 
-.buttonDiv{
-  margin: px;
-  background-color: #6db2eb;
-  box-shadow: 2px 2px 30px rgb(0 0 0 / 10%);
-}
 
 #hamburglar{
   display: flex;
   align-self: center;
   /* height: 20px; */
   padding-right: 3px;
+  /* cursor: pointer; */
 }
 
 #user{
   display: flex;
   align-self: center;
+  /* cursor: pointer; */
 }

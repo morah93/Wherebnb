@@ -33,14 +33,15 @@ function ProfileButton({ user, setLogin, setShowModal, setCreateSpotModal }) {
   return (
     <>
       <div className="menuDiv">
-      <button
-                className='createButton'
-                onClick={() => {
-                  setCreateSpotModal(true);
-                }}
-              >
-                Become a Host
-              </button>
+        {user && (<button
+          className='createButton'
+          onClick={() => {
+            setCreateSpotModal(true);
+          }}
+        >
+          Become a Host
+        </button>
+        )}
       <button
         className='menu'
         onClick={openMenu}

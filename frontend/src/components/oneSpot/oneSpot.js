@@ -10,7 +10,7 @@ import { deleteReview, removeReview } from "../../store/reviews";
 import "./oneSpot.css";
 // import editASpot from "../editSpot/editSpot";
 
-const OneSpot = () => {
+const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
   const dispatch = useDispatch();
   const { spotId, reviewId } = useParams();
   const history = useHistory();
@@ -41,6 +41,7 @@ console.log(oneSpot, 'onespot----------------=======')
 
   const addReview = (spotId) => {
     dispatch(createReview(spotId));
+    // setAddReviewModal(true)
     history.push(`/spots/${spotId}/reviews`);
   };
 
@@ -83,7 +84,8 @@ console.log(oneSpot, 'onespot----------------=======')
             {oneSpot?.ownerId === user?.id && (
               <button
                 className='editButton'
-                onClick={() => {
+              onClick={() => {
+                  // setEditSpotModal(true)
                   history.push(`${oneSpot.id}/edit`);
                 }}
               >
@@ -94,7 +96,7 @@ console.log(oneSpot, 'onespot----------------=======')
               <button
               className='createReviewButton'
               onClick={() => {
-                // setCreateReviewModal(true)
+                // setAddReviewModal(true)
                 addReview(spotId);
               }}
               >

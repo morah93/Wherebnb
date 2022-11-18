@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import EditSpot from './editSpot';
+import './editSpot.css'
 
 function EditSpotModal() {
   const [editSpotModal, setEditSpotModal] = useState(false);
 
   return (
     <>
-      {/* <button className='loginButton' onClick={() => setShowModal(true)}>Log In</button> */}
       {editSpotModal && (
-        <Modal onClose={() => setShowModal(false)}>
+        <Modal onClose={() => setEditSpotModal(false)}>
           <EditSpot />
         </Modal>
       )}

@@ -5,7 +5,7 @@ import { NavLink, useHistory, useParams } from "react-router-dom";
 import { createReview } from "../../store/reviews";
 import "./addReview.css";
 
-const AddReview = () => {
+const AddReview = ({setAddReviewModal}) => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const [review, setReview] = useState("");
@@ -13,15 +13,18 @@ const AddReview = () => {
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmit, setHasSubmit] = useState(false);
   const history = useHistory();
-  const [createReviewModal, setCreateReviewModal] = useState(false)
+  // const [createReviewModal, setCreateReviewModal] = useState(false)
 
-  useEffect(() => {
-    const errors = [];
-    if (!review.length) errors.push("Review cannot be empty");
-    if (review.length > 255) errors.push("Review too long");
-    if (!stars) errors.push("Please put a valid number");
-    setValidationErrors(errors);
-  }, [review, stars]);
+  useEffect(
+    (setAddReviewModal) => {
+      const errors = [];
+      if (!review.length) errors.push("Review cannot be empty");
+      if (review.length > 255) errors.push("Review too long");
+      if (!stars) errors.push("Please put a valid number");
+      setValidationErrors(errors);
+    },
+    [review, stars]
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,14 +35,11 @@ const AddReview = () => {
     };
 
     if (!validationErrors.length) {
-      dispatch(createReview(payload, spotId))
-        .then(() => {
-
-          history.push(`/spots/${spotId}`);
-      })
-
+      dispatch(createReview(payload, spotId)).then(() => {
+        history.push(`/spots/${spotId}`);
+      });
+      setAddReviewModal(false);
     }
-
 
     // if (!validationErrors.length) {
     //   dispatch(createReview(payload, spotId))
@@ -56,48 +56,51 @@ const AddReview = () => {
 
   return (
     <>
-      <div className="createReview">
-
+      <div className='createReview'>
         <form
           id='review-form'
           onSubmit={handleSubmit}
-          >
-        <h2 className="review">Please Leave a Review</h2>
-        {validationErrors.length > 0 && (
-          validationErrors.map(err => {
-            <div>{err}</div>
-          })
-          )}
+        >
+          <h2 className='review'>Please Leave a Review</h2>
+          {validationErrors.length > 0 &&
+            validationErrors.map((err) => {
+              <div>{err}</div>;
+            })}
           <div id='review-content'>
             <textarea
               id='review-text'
-              placeholder="....type here"
+              placeholder='....type here'
               value={review}
               onChange={(e) => setReview(e.target.value)}
               required
               maxLength={255}
             />
-            <i className="fa fa-star"></i>
+            <i className='fa fa-star'></i>
             <input
-
               id='review-rating'
-
               type='number'
               min='1'
               max='5'
-              placeholder=""
+              placeholder=''
               value={stars}
               onChange={(e) => setStars(e.target.value)}
               required
-              />
-            <button className="submitButton"
+            />
+            <button
+              className='submitButton'
               id='review-button'
               type='submit'
-              >
+            >
               Submit Review
             </button>
 
-            <button className="cancelButton" onClick={() => history.push(`/spots/${spotId}`)}>
+            <button
+              className='cancelButton'
+              onClick={() => {
+                setAddReviewModal(false)
+                history.push(`/spots/${spotId}`);
+              }}
+            >
               Cancel
             </button>
           </div>
@@ -111,8 +114,7 @@ const AddReview = () => {
             </div>
           )} */}
         </form>
-
-          </div>
+      </div>
     </>
   );
 };

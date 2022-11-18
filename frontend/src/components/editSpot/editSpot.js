@@ -8,7 +8,7 @@ const EditSpot = (setEditSpotModal) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { spotId } = useParams();
-  const spot = useSelector(state => state.spot.spot)
+  const spot = useSelector((state) => state.spot.spot);
 
   const [name, setName] = useState(spot?.name);
   const [address, setAddress] = useState(spot?.address);
@@ -41,9 +41,9 @@ const EditSpot = (setEditSpotModal) => {
     dispatch(getOneSpot(spotId));
   }, [dispatch]);
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setHasSubmit(true)
+    setHasSubmit(true);
 
     const newSpot = {
       address,
@@ -52,103 +52,110 @@ const EditSpot = (setEditSpotModal) => {
       country,
       name,
       description,
-      price
+      price,
     };
 
     if (!validationErrors.length) {
-      let updatedSpot = await dispatch(editASpot( spot.id, newSpot))
+      let updatedSpot = await dispatch(editASpot(spot.id, newSpot));
       if (updatedSpot) {
-        setEditSpotModal(false)
-        history.push(`/spots/${spot.id}`)
+        history.push(`/spots/${spot.id}`);
       }
+      setEditSpotModal(false);
 
       setErrors([]);
-      return dispatch(({ name, description, price })).catch(
-        async (res) => {
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
-        }
-      );
+      return dispatch({ name, description, price }).catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
     }
     return setErrors(["Whats the error"]);
   };
 
-  console.log('is this printing?')
+  // console.log('edit spot is this printing?')
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Name
-          <input
-            type='text'
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Address
-          <input
-            type='text'
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          City
-          <input
-            type='text'
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          State
-          <input
-            type='text'
-            value={state}
-            onChange={(e) => setState(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Country
-          <input
-            type='text'
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Description
-          <input
-            type='text'
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Price
-          <input
-            type='Number'
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            required
-          />
-        </label>
+      <div className='editSpotForm'>
+        <form onSubmit={handleSubmit}>
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+          <label>
+            Name
+            <input
+              type='text'
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Address
+            <input
+              type='text'
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            City
+            <input
+              type='text'
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            State
+            <input
+              type='text'
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Country
+            <input
+              type='text'
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Description
+            <input
+              type='text'
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Price
+            <input
+              type='Number'
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              required
+            />
+          </label>
 
-        <button className="confirmChangesButton" type='submit'>Confirm Changes</button>
-      </form>
+          <button
+            className='confirmChangesButton'
+            type='submit'
+            onClick={() => {setEditSpotModal(false)}}
+
+          >
+            Confirm Changes
+          </button>
+        </form>
+      </div>
     </>
   );
 };

@@ -22,10 +22,15 @@
 
 #spotName {
   margin: 10px;
+  display: flex;
   /* align-self: center; */
+
+
 }
 #nameTextBox{
   margin-left: 10px;
+  display: flex;
+  align-content: center;
 }
 #address {
   margin: 10px;
