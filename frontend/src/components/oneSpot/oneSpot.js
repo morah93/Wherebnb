@@ -28,7 +28,7 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
   useEffect(() => {
     // console.log('oneSpot useEffect+++++++++')
     dispatch(getOneSpot(spotId));
-  }, [spotId, singleSpot ]);
+  }, [spotId, singleSpot, allReviews ]);
 
   const oneSpot = useSelector((state) => state.spot[spotId]); //useSelector for the state being used to attain info
 
@@ -76,6 +76,12 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
             id='rating'
             className='fa fa-star'
           >
+            {/* {
+              { for(i = 0; i<allReviews.length; i++) {
+
+              console.log(allReviews[i], 'starrssssss')
+            }
+            }} */}
             {Number(oneSpot?.avgRating).toFixed(1)}
           </div>
           <img

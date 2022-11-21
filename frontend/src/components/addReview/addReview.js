@@ -47,6 +47,8 @@ const AddReview = ({ setAddReviewModal }) => {
     }
     setAddReviewModal(false);
 
+    dispatch(getOneSpot(spotId));
+    history.push(`/spots/${spotId}`);
     // setErrors([]);
     // return dispatch(createReview())
     //   .then(() => {
@@ -57,18 +59,29 @@ const AddReview = ({ setAddReviewModal }) => {
     //   .catch(async (res) => {
     //     const data = await res.json();
     //     if (data && data.errors) setErrors(data.errors);
-        // alert("Failed");
-      // });
+    // alert("Failed");
+    // });
   };
 
   return (
     <>
       <div className='createReview'>
-          <ul>
+        {validationErrors.length > 0 && setHasSubmit && (
+          <div>
+            {" "}
+            Required Fields
+            <ul>
+              {validationErrors.map((error) => (
+                <li key={error}>{error}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {/* <ul>
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
             ))}
-          </ul>
+          </ul> */}
         <form
           id='review-form'
           onSubmit={handleSubmit}

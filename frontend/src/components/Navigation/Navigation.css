@@ -80,6 +80,7 @@ align-self: center;
   /* color: white; */
   display: flex;
   border-radius: 3px;
+  border: 1px solid lightgrey;
   /* margin-top: 3px; */
   /* box-shadow: 1px 1px 5px rgba(192, 44, 36, 0.732); */
   cursor: pointer;

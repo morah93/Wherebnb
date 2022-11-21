@@ -12,8 +12,9 @@
 }
 
 .createReview{
-  background-color: blue;
+  /* background-color: blue; */
   display: flex;
+  flex-direction: column;
   width: 120%;
 }
 
