@@ -98,6 +98,7 @@ const EditSpot = ({ setEditSpotModal, spot }) => {
               ))}
             </ul>
           </div>
+          <div id="updatetext">Please Update Info</div>
           <div className='editSpotForm'>
             <div className='formInfo'>
               Name
@@ -171,7 +172,7 @@ const EditSpot = ({ setEditSpotModal, spot }) => {
             </div>
 
             <button
-              className='confirmChangesButton'
+              className='confirmButton'
               type='submit'
               // onClick={() => {
               //   setEditSpotModal(false);

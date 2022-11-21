@@ -25,37 +25,29 @@
 }
 
 
-.signupButton{
+/* .signupButton{
   border-radius: 10px;
   background-color:  rgb(80,117,148);
   color: white;
   border-radius: 3px;
+} */
+
+
+
+.input{
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+.input:hover{
+  background-color: lightgrey;
 }
 
-.submitButton{
-  border-radius: 10px;
-  background-color:  rgb(80,117,148);
-color: white;
-margin: 10px;
+#input{
+  border: 1px solid lightgrey;
+  border-radius: 3px;
 }
-
-.loginButton{
-  background-color:  rgb(80,117,148);
-  color: white;
-  border-radius: 5px;
-}
-.loginButton:hover {
-  background-color: #fa274e;
-}
-
-.login {
-  background-color:  rgb(80,117,148);
-  color: white;
-  border-radius: 5px;
-}
-
-.login:hover {
-  background-color: #fa274e;
+#input:hover{
+  background-color: lightgrey;
 }
 
 /* .logout {
@@ -80,12 +72,7 @@ margin: 10px;
   margin: 3px;
 } */
 
-.cancelButton{
-  background-color: rgb(165, 38, 38);
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-}
+
 
 
 
@@ -123,7 +110,7 @@ margin: 10px;
 
 
 .rating{
-  font-weight: bold;
+  /* font-weight: bold; */
   margin: 4px;
   padding: 5px;
 }
@@ -175,11 +162,7 @@ margin: 10px;
 
 
 
-.confirmChangesButton {
-  background-color: rgb(80,117,148);
-  color: white;
-  border-radius: 3px;
-}
+
 
 
 

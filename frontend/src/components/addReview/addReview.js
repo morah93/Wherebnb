@@ -67,7 +67,7 @@ const AddReview = ({ setAddReviewModal }) => {
     <>
       <div className='createReview'>
         {validationErrors.length > 0 && setHasSubmit && (
-          <div>
+          <div className="error">
             {" "}
             Required Fields
             <ul>
@@ -100,9 +100,11 @@ const AddReview = ({ setAddReviewModal }) => {
               // required
               maxLength={255}
             />
+            <div className="bottom">
+
             <i className='fa fa-star'></i>
             <input
-              id='review-rating'
+              id='input'
               type='number'
               min='1'
               max='5'
@@ -128,6 +130,7 @@ const AddReview = ({ setAddReviewModal }) => {
             >
               Cancel
             </button>
+            </div>
           </div>
 
           {/* {hasSubmit && validationErrors.length > 0 && (

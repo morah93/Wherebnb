@@ -73,40 +73,63 @@
 
   .createReviewButton{
     margin: 1%;
-    background-color:  rgb(80,117,148);
-    color: white;
+    background-color: white ;
+    color: black;
     border-radius: 3px;
     width: 15%;
     cursor: pointer;
+    border: 1px solid lightgrey;
+  }
+
+  .createReviewButton:hover{
+    background-color: rgb(80,117,148);
+    box-shadow: 2px 2px 30px lightgrey;
   }
 
   .editButton {
-    background-color: rgb(80,117,148);
-    color: white;
+    background-color: white;
+    color: black;
     border-radius: 3px;
     margin: 3px;
     width: 15%;
     cursor: pointer;
+    border: 1px solid lightgrey;
+  }
+
+  .editButton:hover{
+    background-color: rgb(80,117,148);
+    box-shadow: 2px 2px 30px lightgrey;
   }
 
   .deleteButton{
-    background-color: rgb(142, 24, 24);
+    background-color: white;
     border-radius: 3px;
-    color: white;
+    color: black;
     margin: 3px;
     width: 15%;
     cursor: pointer;
-  }
-  .deleteReviewButton{
-    /* display: flex; */
-    background-color: rgb(142, 24, 24);
-    border-radius: 3px;
-    color: white;
-    margin: 3px;
-    cursor: pointer;
-    /* width: 15%; */
+    border: 1px solid lightgrey;
   }
 
+.deleteButton:hover{
+  background-color: rgb(142, 24, 24);
+  box-shadow: 2px 2px 30px lightgrey;
+}
+
+.deleteReviewButton{
+  /* display: flex; */
+  background-color: white;
+  border-radius: 3px;
+  color: gray;
+  margin: 3px;
+  cursor: pointer;
+  /* width: 15%; */
+}
+
+.deleteReviewButton:hover{
+  background-color: rgb(142, 24, 24);
+  box-shadow: 2px 2px 30px lightgrey;
+}
 
 .review{
   border-bottom: 1px solid lightgray;

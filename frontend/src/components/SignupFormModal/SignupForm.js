@@ -51,9 +51,11 @@ function SignupForm({ setShowModal }) {
           <li key={idx}>{error}</li>
         ))}
       </ul>
+      <div id="signuptext">Please Sign Up</div>
       <label id='firstName'>
         First Name
         <input
+          id="input"
           type='text'
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
@@ -63,6 +65,7 @@ function SignupForm({ setShowModal }) {
       <label id='lastName'>
         Last Name
         <input
+          id="input"
           type='text'
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
@@ -72,6 +75,7 @@ function SignupForm({ setShowModal }) {
       <label id='email'>
         Email
         <input
+          id="input"
           type='text'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -81,6 +85,7 @@ function SignupForm({ setShowModal }) {
       <label id='username'>
         Username
         <input
+          id="input"
           type='text'
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -90,6 +95,7 @@ function SignupForm({ setShowModal }) {
       <label id='password'>
         Password
         <input
+          id="input"
           type='password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -99,6 +105,7 @@ function SignupForm({ setShowModal }) {
       <label id='confirmPassword'>
         Confirm Password
         <input
+          id="input"
           type='password'
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
@@ -106,7 +113,7 @@ function SignupForm({ setShowModal }) {
         />
       </label>
       <button
-        id='submitButton'
+        id='submitButton1'
         type='submit'
       >
         Submit
