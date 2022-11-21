@@ -1,10 +1,10 @@
 .footer{
   display: flex;
-  /* position: fixed; */
+  position: fixed;
   border-top: 1px solid lightgray;
   /* border: 1px solid; */
   /* bottom: 1px; */
-  height: 50px;
+  /* height: 50px; */
   width: auto;
   background-color: white;
   bottom: .1px;
