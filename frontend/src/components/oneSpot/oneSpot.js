@@ -23,12 +23,12 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
   const allReviewsArr = Object.values(allReviews);
   // const [createReviewModal, setCreateReviewModal] = useState(false);
 
-  const singleSpot = useSelector(state => state.spot.singleSpot)
+  const singleSpot = useSelector((state) => state.spot.singleSpot);
 
   useEffect(() => {
     // console.log('oneSpot useEffect+++++++++')
     dispatch(getOneSpot(spotId));
-  }, [spotId, singleSpot, allReviews ]);
+  }, [spotId, singleSpot, allReviews]);
 
   const oneSpot = useSelector((state) => state.spot[spotId]); //useSelector for the state being used to attain info
 
@@ -71,31 +71,36 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
       <div className='outerContainer'>
         <div className='innerContainer'>
           {/* <ul> */}
-          <div id='spotName'>{oneSpot?.name}</div>
+          <div id='spotName'>{oneSpot?.name}
           <div
             id='rating'
             className='fa fa-star'
-          >
+            >
             {/* {
               { for(i = 0; i<allReviews.length; i++) {
 
-              console.log(allReviews[i], 'starrssssss')
+                console.log(allReviews[i], 'starrssssss')
             }
             }} */}
+              <div id='number'>
+
             {Number(oneSpot?.avgRating).toFixed(1)}
+                </div>
+          </div>
           </div>
           <img
             className='spotImg1'
             src={oneSpot?.SpotImages[0]?.url}
           />
 
-          {/* <div id='address'>{oneSpot?.address}</div> */}
-          <div id='cityState'>{`${oneSpot?.city}, ${oneSpot?.state}`}</div>
-          <div id='country'>{oneSpot?.country}</div>
-          <div id='description'>{`${oneSpot?.description}`}</div>
-          <div id='price'>{`$${oneSpot?.price} night`}</div>
-          {/* <div></div> */}
-            {oneSpot?.ownerId === user?.id && (
+          <div className='spotInfo'>
+            {/* <div id='address'>{oneSpot?.address}</div> */}
+            <div id='cityState'>{`${oneSpot?.city}, ${oneSpot?.state}`}</div>
+            <div id='country'>{oneSpot?.country}</div>
+            <div id='description'>{`${oneSpot?.description}`}</div>
+            <div id='price'>{`$${oneSpot?.price} night`}</div>
+          </div>
+          {oneSpot?.ownerId === user?.id && (
             // <button
             //   className='editButton'
             //   onClick={() => {
@@ -105,7 +110,7 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
             // >
             //   Edit Spot
             // </button>
-          <EditSpotModal spot={oneSpot} />
+            <EditSpotModal spot={oneSpot} />
           )}
           {user && foundReview && (
             <AddReviewModal />
@@ -130,12 +135,12 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
           {/* </ul> */}
           <h3 className='review'>Reviews</h3>
           {/* <ul> */}
-          {allReviewsArr.map((review) => (
-            <div
-              className='userReview'
-              key={review.id}
-            >
-              <div>
+          <div className='reviewContainer'>
+            {allReviewsArr.map((review) => (
+              <div
+                className='userReview'
+                key={review.id}
+              >
                 <div>
                   <i
                     id='starReview'
@@ -145,7 +150,7 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
                   {review.length}
                 </div>
                 <div className='userReviewNames'>{`${review?.User?.firstName} ${review?.User?.lastName}`}</div>
-                <div className='userReview'>{`"${review.review}"`}</div>
+                <div className='userReview1'>{`"${review.review}"`}</div>
                 {review?.userId === user?.id && (
                   <button
                     className='deleteReviewButton'
@@ -155,8 +160,8 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
                   </button>
                 )}
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
           {/* </ul> */}
         </div>
       </div>
