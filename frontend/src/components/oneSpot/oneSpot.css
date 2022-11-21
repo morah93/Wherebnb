@@ -109,15 +109,18 @@
 
 
 .review{
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid lightgray;
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: auto;
+  /* left: .1px; */
+  /* right: .1px; */
 }
 
 .userReview{
   display: flex;
   align-items: flex-start;
+  justify-content: flex-start;
   /* border-bottom: 1px solid gray; */
   font-style: italic;
   /* width: 100%; */

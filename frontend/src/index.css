@@ -1,6 +1,14 @@
 /* TODO Add site wide styles */
 * {
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+  color: black;
+
+}
+
+
+#modal-content{
+  border-radius: 5px;
+  display: flex;
 }
 
 .ProfileButton {
@@ -36,11 +44,18 @@ margin: 10px;
   color: white;
   border-radius: 5px;
 }
+.loginButton:hover {
+  background-color: #fa274e;
+}
 
 .login {
   background-color:  rgb(80,117,148);
   color: white;
   border-radius: 5px;
+}
+
+.login:hover {
+  background-color: #fa274e;
 }
 
 /* .logout {
@@ -49,12 +64,7 @@ margin: 10px;
   border-radius: 3px;
 } */
 
-.createButton{
-  background-color:  rgb(80,117,148);
-  color: white;
-  border-radius: 3px;
-  cursor: pointer;
-}
+
 
 /* .editButton {
   background-color: rgb(80,117,148);
@@ -174,6 +184,7 @@ margin: 10px;
 
 
 
-@media (min-width: 729px){
+@media (min-width: 744px){
 
 }
+/* @media (min-width: 744px) */

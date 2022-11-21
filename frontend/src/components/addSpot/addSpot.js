@@ -105,6 +105,7 @@ const AddSpot = ({ setShowModal}) => {
               <li key={idx}>{error}</li>
             ))}
           </ul>
+          {/* <h2 className="h1">Create Spot</h2> */}
           <label id='spotName'>
             Name
             <input

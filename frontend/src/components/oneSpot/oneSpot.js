@@ -86,18 +86,18 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
           <div id='description'>{`${oneSpot?.description}`}</div>
           <div id='price'>{`$${oneSpot?.price} night`}</div>
           {/* <div></div> */}
-          {/* {oneSpot?.ownerId === user?.id && (
-            <button
-              className='editButton'
-              onClick={() => {
-                setEditSpotModal(true)
-                history.push(`${oneSpot.id}/edit`);
-              }}
-            >
-              Edit Spot
-            </button>
-          )} */}
+            {oneSpot?.ownerId === user?.id && (
+            // <button
+            //   className='editButton'
+            //   onClick={() => {
+            //     setEditSpotModal(true)
+            //     history.push(`${oneSpot.id}/edit`);
+            //   }}
+            // >
+            //   Edit Spot
+            // </button>
           <EditSpotModal spot={oneSpot} />
+          )}
           {user && foundReview && (
             <AddReviewModal />
             // <button
@@ -119,7 +119,7 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
             </button>
           )}
           {/* </ul> */}
-          <h1 className='review'>Reviews</h1>
+          <h3 className='review'>Reviews</h3>
           {/* <ul> */}
           {allReviewsArr.map((review) => (
             <div
@@ -133,6 +133,7 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
                     className='fa fa-star'
                   ></i>
                   {`Stars: ${review.stars}`}
+                  {review.length}
                 </div>
                 <div className='userReviewNames'>{`${review?.User?.firstName} ${review?.User?.lastName}`}</div>
                 <div className='userReview'>{`"${review.review}"`}</div>

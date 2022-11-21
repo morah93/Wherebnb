@@ -1,11 +1,14 @@
-
+.h2{
+  display: flex;
+  justify-content: center;
+}
 .newSpotContainer{
   display: flex;
   /* border: 1px solid black; */
   flex-direction: column;
   /* justify-content: center; */
   width: auto;
-  background-color: #6db2eb;
+  background-color: white;
 }
 
 .newSpotForm{
@@ -14,8 +17,8 @@
   flex-direction: column;
   /* margin: 1px rgba(0,0,0,0); */
   /* padding: 2%; */
-  background-color: #6db2eb;
-  color: white;
+  background-color: white;
+  color: black;
   /* align-items: start; */
   width: 125%;
 }

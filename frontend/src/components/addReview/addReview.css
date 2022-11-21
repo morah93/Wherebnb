@@ -1,12 +1,33 @@
+#review-form{
+  display: flex;
+  /* background-color: ; */
+  border-radius: 4%;
+  height: 110%;
+  width: 400px;
+  background-color: white;
+  /* justify-content: center; */
+  /* align-content: center; */
+  /* align-items: center; */
+  flex-direction: column;
+}
+
 .createReview{
-  display: grid;
+  background-color: blue;
+  display: flex;
+  width: 120%;
 }
 
 #review-text{
-
   display: flex;
-  width: 50%;
+  justify-content: center;
+  align-self: center;
+  border-radius: 4%;
+  resize: none;
+  display: flex;
+  width: 90%;
   height: 200px;
   margin-top: 10%;
   padding-top: 1%;
+  background-color: lightgray;
+  padding-top: 3px;
 }

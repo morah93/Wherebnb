@@ -1,7 +1,11 @@
-.form{
-  
+.signupForm{
+  display: flex;
+  border-radius: 3px;
+  border: 1px solid;
 }
-
+#modal-content{
+  border-radius: 5px;
+}
 #firstName{
   margin: 10px;
 }
@@ -21,8 +25,8 @@
   margin: 10px;
 }
 #submitButton{
-background-color:  rgb(80,117,148);
-color: white;
+background-color:  white;
+color: black;
 margin: 10px;
 cursor: pointer;
 }

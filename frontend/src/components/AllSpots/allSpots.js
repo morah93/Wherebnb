@@ -16,10 +16,8 @@ const AllSpots = (spot) => {
   //create function for currentSpot
 
   useEffect(() => {
-
     dispatch(getAllSpots());
   }, []);
-
 
   if (allSpots) {
     allSpotsArr = Object.values(allSpots);
@@ -32,26 +30,25 @@ const AllSpots = (spot) => {
       <div className='outerSpotContainer'>
         {allSpotsArr &&
           allSpotsArr.map((spot) => (
-
-              <div className='spotCard' key={spot.id}>
-                <NavLink to={`/spots/${spot.id}`}>
-                  <img
-                    className='spotImg'
-                    src={spot?.previewImage}
-                  />
-                </NavLink>
-                <div className='allSpotscardinfo'>
-                  <div className="cityState">{`${spot?.city}, ${spot?.state}`}</div>
-                <div className="starRating">
-                  <i className="fa fa-star" />
+            <div
+              className='spotCard'
+              key={spot.id}
+             >
+              <NavLink to={`/spots/${spot.id}`}>
+                <img
+                  className='spotImg'
+                  src={spot?.previewImage}
+                />
+              </NavLink>
+              <div className='allSpotscardinfo'>
+                <div className='cityState'>{`${spot?.city}, ${spot?.state}`}</div>
+                <div id='starRating' >
+                  <i className='fa fa-star' id="starIcon"></i>
                   {Math.trunc(spot?.avgRating)}
                 </div>
-                  <div>{`$${spot?.price} night`}</div>
-                </div>
+                <div className="price">{`$${spot?.price} night`}</div>
               </div>
-
-
-
+            </div>
           ))}
       </div>
     </>

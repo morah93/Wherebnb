@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './Navigation.css'
 
@@ -42,12 +42,13 @@ function ProfileButton({ user, setLogin, setShowModal, setCreateSpotModal }) {
           Become a Host
         </button>
         )}
+        <i className="fa fa-globe" id="globe"/>
       <button
         className='menu'
         onClick={openMenu}
       >
         <i className="fa-solid fa-bars" id="hamburglar"></i>
-        <i className='fa fa-user' id="user"></i>
+        <i className='fa fa-user circle' id="user"></i>
       </button>
       </div>
 
@@ -79,7 +80,7 @@ function ProfileButton({ user, setLogin, setShowModal, setCreateSpotModal }) {
             </div>
           </ul>
         ) : (
-          <div>
+          <div className="logAndsignIn">
             <div>
               <button
                 onClick={() => {
