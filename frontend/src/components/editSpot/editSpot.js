@@ -9,14 +9,16 @@ const EditSpot = ({ setEditSpotModal, spot }) => {
   const history = useHistory();
   const { spotId } = useParams();
   // const spot = useSelector((state) => state.spot);
-  console.log(spot, 'is it printing')
-  const [name, setName] = useState(spot.name || '');
-  const [address, setAddress] = useState(spot.address || '');
-  const [city, setCity] = useState(spot.city || '');
-  const [state, setState] = useState(spot.state || '');
-  const [country, setCountry] = useState(spot.country || '');
-  const [description, setDescription] = useState(spot.description || '');
-  const [price, setPrice] = useState(spot.price || '');
+  // console.log(spot, 'is it printing')
+  const [name, setName] = useState(spot.name || "");
+  const [address, setAddress] = useState(spot.address || "");
+  const [city, setCity] = useState(spot.city || "");
+  const [state, setState] = useState(spot.state || "");
+  const [country, setCountry] = useState(spot.country || "");
+  const [description, setDescription] = useState(spot.description || "");
+  const [price, setPrice] = useState(spot.price || "");
+  const [lat, setLat] = useState(0);
+  const [lng, setLng] = useState(0);
   const [errors, setErrors] = useState([]);
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmit, setHasSubmit] = useState(false);
@@ -44,32 +46,43 @@ const EditSpot = ({ setEditSpotModal, spot }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setHasSubmit(true);
+    const lat = 0;
+    const lng = 0;
 
-    const newSpot = {
+    const editedSpot = {
       address,
       city,
       state,
       country,
+      lat,
+      lng,
       name,
       description,
       price,
     };
 
+    console.log(validationErrors, 'validationErrors');
+
     if (!validationErrors.length) {
-      let updatedSpot = await dispatch(editASpot(spot.id, newSpot));
+      let updatedSpot = await dispatch(editASpot(spot.id, editedSpot));
       if (updatedSpot) {
-        dispatch(getOneSpot)
+        // console.log("is the new spot printing");
+        dispatch(getOneSpot(spotId));
         history.push(`/spots/${spot.id}`);
       }
       setEditSpotModal(false);
 
       setErrors([]);
-      return dispatch({ address, city, state, country, name, description, price }).catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      });
+      return dispatch(editASpot())
+        .then(() => {
+          dispatch(getOneSpot(spotId));
+        })
+        .catch(async (res) => {
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors);
+        });
     }
-    return setErrors(["Whats the error"]);
+    // return setErrors(["Whats the error"]);
   };
 
   // console.log('edit spot is this printing?')
@@ -77,95 +90,96 @@ const EditSpot = ({ setEditSpotModal, spot }) => {
   return (
     <>
       <div className='editSpotFormContainer'>
-      <form  onSubmit={handleSubmit} >
-        <div className="err">
-          <ul>
-            {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
-            ))}
-          </ul>
-        </div>
-      <div className='editSpotForm'>
-          <div className='formInfo'>
-            Name
-            <input
-              id="input"
-              type='text'
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
+        <form onSubmit={handleSubmit}>
+          <div className='err'>
+            <ul>
+              {errors.map((error, idx) => (
+                <li key={idx}>{error}</li>
+              ))}
+            </ul>
           </div>
-          <div className='formInfo'>
-            Address
-            <input
-              id="input"
-              type='text'
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              required
-            />
-          </div>
-          <div className='formInfo'>
-            City
-            <input
-              id="input"
-              type='text'
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              required
-            />
-          </div>
-          <div className='formInfo'>
-            State
-            <input
-              id="input"
-              type='text'
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-              required
-            />
-          </div>
-          <div className='formInfo'>
-            Country
-            <input
-              id="input"
-              type='text'
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-              required
-            />
-          </div>
-          <div className='formInfo'>
-            Description
-            <input
-              id="input"
-              type='text'
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              required
-            />
-          </div>
-          <div className='formInfo'>
-            Price
-            <input
-              id="input"
-              type='Number'
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              required
-            />
-          </div>
+          <div className='editSpotForm'>
+            <div className='formInfo'>
+              Name
+              <input
+                id='input'
+                type='text'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+            <div className='formInfo'>
+              Address
+              <input
+                id='input'
+                type='text'
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                required
+              />
+            </div>
+            <div className='formInfo'>
+              City
+              <input
+                id='input'
+                type='text'
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                required
+              />
+            </div>
+            <div className='formInfo'>
+              State
+              <input
+                id='input'
+                type='text'
+                value={state}
+                onChange={(e) => setState(e.target.value)}
+                required
+              />
+            </div>
+            <div className='formInfo'>
+              Country
+              <input
+                id='input'
+                type='text'
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+                required
+              />
+            </div>
+            <div className='formInfo'>
+              Description
+              <input
+                id='input'
+                type='text'
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
+              />
+            </div>
+            <div className='formInfo'>
+              Price
+              <input
+                id='input'
+                type='Number'
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                required
+              />
+            </div>
 
-          <button
-            className='confirmChangesButton'
-            type='submit'
-            onClick={() => {setEditSpotModal(false)}}
-
-          >
-            Confirm Changes
-          </button>
-      </div>
+            <button
+              className='confirmChangesButton'
+              type='submit'
+              // onClick={() => {
+              //   setEditSpotModal(false);
+              // }}
+            >
+              Confirm Changes
+            </button>
+          </div>
         </form>
       </div>
     </>

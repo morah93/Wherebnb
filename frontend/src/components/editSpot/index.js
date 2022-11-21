@@ -6,7 +6,7 @@ import './editSpot.css'
 
 function EditSpotModal({spot}) {
   const [editSpotModal, setEditSpotModal] = useState(false);
-
+  // console.log('editSpot modal///////////')
   return (
     <>
 

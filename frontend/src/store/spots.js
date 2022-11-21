@@ -141,6 +141,7 @@ export const editASpot = (spotId, payload) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
+  console.log('editASpot thunk is it printing')
   if (res.ok) {
     const spot = await res.json();
     dispatch(updateSpot(spot));

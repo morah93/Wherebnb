@@ -19,7 +19,7 @@ function AddReviewModal() {
             </button>
       {addReviewModal && (
         <Modal onClose={() => setAddReviewModal(false)}>
-          <AddReview setAddReviewModal={setAddReviewModal}/>
+          <AddReview setAddReviewModal={setAddReviewModal} />
         </Modal>
       )}
     </>

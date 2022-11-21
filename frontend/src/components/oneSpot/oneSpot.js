@@ -23,9 +23,12 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
   const allReviewsArr = Object.values(allReviews);
   // const [createReviewModal, setCreateReviewModal] = useState(false);
 
+  const singleSpot = useSelector(state => state.spot.singleSpot)
+
   useEffect(() => {
+    // console.log('oneSpot useEffect+++++++++')
     dispatch(getOneSpot(spotId));
-  }, [spotId]);
+  }, [spotId, singleSpot ]);
 
   const oneSpot = useSelector((state) => state.spot[spotId]); //useSelector for the state being used to attain info
 
@@ -73,7 +76,7 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
             id='rating'
             className='fa fa-star'
           >
-            {Math.trunc(oneSpot?.avgRating)}
+            {Number(oneSpot?.avgRating).toFixed(1)}
           </div>
           <img
             className='spotImg1'

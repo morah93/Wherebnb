@@ -44,7 +44,8 @@ const AllSpots = (spot) => {
                 <div className='cityState'>{`${spot?.city}, ${spot?.state}`}</div>
                 <div id='starRating' >
                   <i className='fa fa-star' id="starIcon"></i>
-                  {Math.trunc(spot?.avgRating)}
+                  {/* {Math.trunc(spot?.avgRating)} */}
+                  {Number(spot?.avgRating).toFixed(1)}
                 </div>
                 <div className="price">{`$${spot?.price} night`}</div>
               </div>

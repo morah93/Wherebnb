@@ -76,13 +76,14 @@ align-self: center;
 
 
 .logout {
-  background-color: rgb(192, 44, 36);
-  color: white;
+  /* background-color: rgb(192, 44, 36); */
+  /* color: white; */
+  display: flex;
   border-radius: 3px;
   /* margin-top: 3px; */
   /* box-shadow: 1px 1px 5px rgba(192, 44, 36, 0.732); */
   cursor: pointer;
-  width: 100%;
+  width: 400%;
 }
 
 .logout:hover {
