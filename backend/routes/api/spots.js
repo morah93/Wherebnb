@@ -299,7 +299,7 @@ router.put("/:spotId", requireAuth, async (req, res) => {
   return res.json(updatedSpot);
 });
 
-//Create a Booking from a Spot based on the Spot's id
+//Create a Booking for a Spot based on the Spot's id
 // Done DONT TOUCH
 router.post("/:spotId/bookings", requireAuth, async (req, res) => {
   const userId = req.user.id;

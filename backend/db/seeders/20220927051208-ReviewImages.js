@@ -1,15 +1,15 @@
 'use strict';
 
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA
+}
+options.tableName = 'ReviewImages'
+
 module.exports = {
   async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     */
-    await queryInterface.bulkInsert('ReviewImages', [
+   
+    await queryInterface.bulkInsert(options, [
       {
         reviewId: 1,
         url: 'imgrev1.com'
@@ -34,11 +34,7 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     */
-    await queryInterface.bulkDelete('ReviewImages', {});
+
+    await queryInterface.bulkDelete(options, {});
   }
 };

@@ -1,4 +1,11 @@
 'use strict';
+
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA
+}
+options.tableName = 'Users'
+
 const bcrypt = require("bcryptjs");
 
 module.exports = {
@@ -10,7 +17,7 @@ module.exports = {
      *   name: 'John Doe',
      *   isBetaMember: false
      */
-    await queryInterface.bulkInsert('Users', [
+    await queryInterface.bulkInsert( options, [
       {
         firstName: 'Demo' ,
         lastName: 'Lition',
@@ -56,7 +63,7 @@ module.exports = {
      *
      * Example:
      */
-    await queryInterface.bulkDelete('Users', {
+    await queryInterface.bulkDelete(options, {
       username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2', 'FakeUser3', 'FakeUser4']}
      }, {});
   }

@@ -1,15 +1,15 @@
 'use strict';
 
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA
+}
+options.tableName = 'Reviews'
+
 module.exports = {
   async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     */
-    await queryInterface.bulkInsert('Reviews', [
+    
+    await queryInterface.bulkInsert(options, [
       {
       spotId: 1,
       userId: 5,
@@ -70,75 +70,71 @@ module.exports = {
       review: 'A great home and host! We had adults and children who all had a fun few days.',
       stars: 5
       },
-      // {
-      // spotId: 6,
-      // userId: 1,
-      // review: 'It was okay.',
-      // stars: 4
-      // },
-      // {
-      // spotId: 7,
-      // userId: 2,
-      // review: 'Cant say enough.',
-      // stars: 4
-      // },
-      // {
-      // spotId: 8,
-      // userId: 3,
-      // review: 'Awesome host.',
-      // stars: 5
-      // },
-      // {
-      // spotId: 9,
-      // userId: 4,
-      // review: 'Amazed and will return.',
-      // stars: 5
-      // },
-      // {
-      // spotId: 10,
-      // userId: 5,
-      // review: 'Loved it.',
-      // stars: 5
-      // },
-      // {
-      // spotId: 6,
-      // userId: 3,
-      //   review: 'Breathtaking location.',
-      // stars: 5
-      // },
-      // {
-      // spotId: 7,
-      // userId: 1,
-      // review: 'Thoroughly enjoyed this vacation',
-      // stars: 5
-      // },
-      // {
-      // spotId: 8,
-      // userId: 2,
-      // review: 'Amazing views.',
-      // stars: 4
-      // },
-      // {
-      // spotId: 9,
-      // userId: 5,
-      // review: 'Welcoming hosts.',
-      // stars: 4
-      // },
-      // {
-      // spotId: 10,
-      // userId: 4,
-      // review: 'Enjoyed my stay',
-      // stars: 4
-      // },
+      {
+      spotId: 6,
+      userId: 1,
+      review: 'It was okay.',
+      stars: 4
+      },
+      {
+      spotId: 7,
+      userId: 2,
+      review: 'We had a wonderful stay at this beautiful home. A true gem with a beautiful view.',
+      stars: 4
+      },
+      {
+      spotId: 8,
+      userId: 3,
+      review: 'Beautiful place, tranquil. Really enjoyed our group stay.',
+      stars: 5
+      },
+      {
+      spotId: 9,
+      userId: 4,
+      review: 'Amazed and will return.',
+      stars: 5
+      },
+      {
+      spotId: 10,
+      userId: 5,
+      review: 'One of the best places we’ve ever stayed! Breathtaking views both ways and amazing sunsets - we couldn’t get enough of them.',
+      stars: 5
+      },
+      {
+      spotId: 6,
+      userId: 3,
+        review: 'We have no words- wow. What an amazing and incredibly unique experience.',
+      stars: 5
+      },
+      {
+      spotId: 7,
+      userId: 1,
+      review: 'Thoroughly enjoyed this vacation',
+      stars: 5
+      },
+      {
+      spotId: 8,
+      userId: 2,
+      review: 'Amazing stay! Best abnb we’ve ever stayed at! The hospitality and atmosphere was excellent! ',
+      stars: 4
+      },
+      {
+      spotId: 9,
+      userId: 5,
+      review: 'If you are looking for a place this is it. It is worth the 35 minute drive to stay by St. George. It was as described will recommend to everyone.',
+      stars: 4
+      },
+      {
+      spotId: 10,
+      userId: 4,
+      review: 'Enjoyed my stay',
+      stars: 4
+      },
     ], {});
   },
 
   async down(queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     */
-     await queryInterface.bulkDelete('Reviews', {});
+
+     await queryInterface.bulkDelete(options, {});
   }
 };
