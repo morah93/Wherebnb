@@ -23,7 +23,8 @@
   width: 125%;
 }
 
-#spotName {
+#spotName1 {
+  /* border: 1px solid; */
   margin: 10px;
   display: flex;
   /* align-self: center; */
@@ -33,7 +34,7 @@
 #nameTextBox{
   margin-left: 10px;
   display: flex;
-  align-content: center;
+  /* align-content: center; */
 }
 #address {
   margin: 10px;

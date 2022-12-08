@@ -12,6 +12,7 @@ import AllUserSpots from "./components/profilePage/userInfo";
 import AddReview from "./components/addReview/addReview";
 import Footer from "./components/footer/footer";
 
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
