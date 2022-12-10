@@ -94,7 +94,7 @@ export const getUsersSpots = () => async (dispatch) => {
 };
 
 export const createSpot = (newSpot) => async (dispatch) => {
-  console.log("newSpot//////////", newSpot);
+  // console.log("newSpot//////////", newSpot);
   const { previewImage } = newSpot;
   const res = await csrfFetch("/api/spots/", {
     method: "POST",
@@ -104,7 +104,7 @@ export const createSpot = (newSpot) => async (dispatch) => {
   if (res.ok) {
     const createdSpot = await res.json();
     let spotId = createdSpot.id;
-    console.log('createdSpot++++++++', createdSpot)
+    // console.log('createdSpot++++++++', createdSpot)
     const newImgRes = await csrfFetch(`/api/spots/${spotId}/images`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -113,7 +113,7 @@ export const createSpot = (newSpot) => async (dispatch) => {
 
     if (newImgRes.ok) {
       const newImg = await newImgRes.json()
-      console.log('newIMg??????????', newImg)
+      // console.log('newIMg??????????', newImg)
       createdSpot.previewImage = newImg.url
       dispatch(addSpot(createdSpot))
     }
@@ -141,7 +141,7 @@ export const editASpot = (spotId, payload) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-  console.log('editASpot thunk is it printing')
+  // console.log('editASpot thunk is it printing')
   if (res.ok) {
     const spot = await res.json();
     dispatch(updateSpot(spot));
@@ -154,7 +154,7 @@ export const deleteSpot = (spotId) => async (dispatch) => {
     method: "DELETE",
   });
   if (res.ok) {
-    const spots = await res.json();
+    // const spots = await res.json();
     dispatch(removeSpot(spotId));
   }
 };

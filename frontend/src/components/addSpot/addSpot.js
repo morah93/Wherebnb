@@ -69,13 +69,14 @@ const AddSpot = ({ setShowModal}) => {
       previewImage,
     };
 
+    console.log(validationErrors)
 
     if (!validationErrors.length) {
       return dispatch(createSpot(newSpot))
       .then(() => {
-        history.push(`/`);
         alert("Successful");
         setCreateSpotModal(false)
+        history.push(`/`);
       })
         .catch(async (res) => {
           const data = await res.json();
@@ -105,8 +106,8 @@ const AddSpot = ({ setShowModal}) => {
               <li key={idx}>{error}</li>
             ))}
           </ul>
-          {/* <h2 className="h1">Create Spot</h2> */}
-          <label id='spotName'>
+          <h2 className="h2">Create Spot</h2>
+          <label id='spotName1'>
             Name
             <input
               id='nameTextBox'
