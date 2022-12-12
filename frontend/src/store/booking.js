@@ -34,46 +34,46 @@ const actionDeleteBooking = (bookingId) => {
 //THUNKS
 
 export const thunkViewAllSpotBookings  = async (dispatch) => {
-  const res = await csrfFetch(`/api/${spotId}/bookings`)
+  // const res = await csrfFetch(`/api/${spotId}/bookings`)
 
-  if (res.ok) {
-    const bookings = await res.json();
-    dispatch(actionViewBookings(bookings));
-    return bookings
-  }
+  // if (res.ok) {
+  //   const bookings = await res.json();
+  //   dispatch(actionViewBookings(bookings));
+  //   return bookings
+  // }
 }
 
 export const thunkCreateBooking = async (dispatch) => {
-  const res = await csrfFetch(`/api/${spotId}/booking`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newBooking),
-  });
+  // const res = await csrfFetch(`/api/${spotId}/booking`, {
+  //   method: "POST",
+  //   headers: { "Content-Type": "application/json" },
+  //   body: JSON.stringify(newBooking),
+  // });
 
-  if (res.ok) {
-    const newBooking = await res.json();
-    dispatch(actionCreateBooking(newBooking));
-  }
+  // if (res.ok) {
+  //   const newBooking = await res.json();
+  //   dispatch(actionCreateBooking(newBooking));
+  // }
 }
 
 export const thunkUpdateBooking  = async (dispatch) => {
-  const res = await csrfFetch(`/api/spots/${bookingId}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
-  if (res.ok) { }
+  // const res = await csrfFetch(`/api/spots/${bookingId}`, {
+  //   method: "PUT",
+  //   headers: { "Content-Type": "application/json" },
+  //   body: JSON.stringify(payload),
+  // });
+  // if (res.ok) { }
 }
 
 export const thunkDeleteBooking  = async (dispatch) => {
 
-  const res = await csrfFetch(`/api/booking/${bookingId}`, {
-    method: "DELETE",
-  });
-  if (res.ok) {
-    // const bookings = await res.json();
-    dispatch(actionDeleteBooking(bookingId));
-  }
+  // const res = await csrfFetch(`/api/booking/${bookingId}`, {
+  //   method: "DELETE",
+  // });
+  // if (res.ok) {
+  //   // const bookings = await res.json();
+  //   dispatch(actionDeleteBooking(bookingId));
+  // }
 }
 
 //Reducer
