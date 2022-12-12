@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/morah93/Api-project"
+    "url": "git+https://github.com/morah93/Api-project.git"
   },
   "keywords": [],
   "author": "",
@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/morah93/Api-project/issues"
   },
-  "homepage": "https://github.com/morah93/Api-project",
+  "homepage": "https://github.com/morah93/Api-project#readme",
   "dependencies": {
     "pg": "^8.8.0"
   }
