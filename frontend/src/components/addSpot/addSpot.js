@@ -2,13 +2,12 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createSpot, addSpotImg } from "../../store/spots";
 import { NavLink, useHistory, useParams } from "react-router-dom";
-import './addSpot.css'
-const AddSpot = ({ setShowModal}) => {
+import "./addSpot.css";
+const AddSpot = ({ setShowModal }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-
-  const [createSpotModal, setCreateSpotModal] = useState(false)
+  const [createSpotModal, setCreateSpotModal] = useState(false);
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -19,7 +18,7 @@ const AddSpot = ({ setShowModal}) => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(1);
   // const [image, setImage] = useState(spot?.image);
-  const [previewImage, setPreviewImage] = useState('');
+  const [previewImage, setPreviewImage] = useState("");
   const [errors, setErrors] = useState([]);
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmit, setHasSubmit] = useState(false);
@@ -32,13 +31,13 @@ const AddSpot = ({ setShowModal}) => {
     if (!state) errors.push("Please enter a state");
     if (!country) errors.push("Please enter a country");
     if (!description) errors.push("Please enter a description for the spot");
-    if (description && description.length < 20) errors.push("Please enter more than 20 characters");
+    if (description && description.length < 20)
+      errors.push("Please enter more than 20 characters");
     if (!price) errors.push("Please enter a price");
-    // if (!image) errors.push("Please upload a image");
     if (!previewImage) errors.push("Please enter a url");
 
     setValidationErrors(errors);
-  }, [address, city, state, country, name, description, price, previewImage]);
+  }, [name, address, city, state, country, description, price, previewImage]);
 
   // console.log(
   //   name,
@@ -69,44 +68,47 @@ const AddSpot = ({ setShowModal}) => {
       previewImage,
     };
 
-    console.log(validationErrors)
+    console.log(validationErrors);
 
     if (!validationErrors.length) {
       return dispatch(createSpot(newSpot))
       .then(() => {
         alert("Successful");
-        setCreateSpotModal(false)
+        setCreateSpotModal(false);
         history.push(`/`);
       })
-        .catch(async (res) => {
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors)
-          alert("Failed");
-      });
-      // setErrors([]);
-      // return dispatch(({ name, description, price })).catch(
-      //   async (res) => {
-      //     const data = await res.json();
-      //     if (data && data.errors) setErrors(data.errors);
-      //   }
-      // );
-    }
-    // return setErrors(["Whats the error"]);
-  };
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+        setErrors([]);
+          console.log(errors)
+        });
+
+        // return dispatch(({ name, description, price })).catch(
+          //   async (res) => {
+            //     const data = await res.json();
+            //     if (data && data.errors) setErrors(data.errors);
+            //   }
+            // );
+          }
+          // return setErrors(["Whats the error"]);
+        };
 
   return (
     <>
-      <div className="newSpotForm">
+      <div className='newSpotForm'>
         <form
           className='newSpotContainer'
           onSubmit={handleSubmit}
         >
-          <ul>
-            {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
-            ))}
-          </ul>
-          <h2 className="h2">Create Spot</h2>
+          <div className='errorList'>
+            <ul>
+              {errors.map((error, idx) => (
+                <li key={idx}>{error}</li>
+              ))}
+            </ul>
+          </div>
+          <h2 className='h2'>Create Spot</h2>
           <label id='spotName1'>
             Name
             <input
@@ -169,17 +171,17 @@ const AddSpot = ({ setShowModal}) => {
             />
           </label>
 
-            <label id='url'>
-              Image Url
+          <label id='url'>
+            Image Url
             <input
               id='urlTextBox'
-                type='url'
-                value={previewImage}
-                onChange={(e) => setPreviewImage(e.target.value)}
-                required
-              />
-            </label>
-            <label id='description'>
+              type='url'
+              value={previewImage}
+              onChange={(e) => setPreviewImage(e.target.value)}
+              required
+            />
+          </label>
+          <label id='description'>
             Description
             <input
               id='descriptionbox'
@@ -190,23 +192,21 @@ const AddSpot = ({ setShowModal}) => {
             />
           </label>
 
-
           <button
             id='submitButton'
             type='submit'
-            onClick={() => history.push('/')}
+            // onClick={() => history.push("/")}
           >
             Submit
           </button>
 
-            {/* <button
+          {/* <button
               className='cancelButton'
               onClick={() => {
                 setCreateSpotModal(false)
                 history.push(`/`)
               }}
             >Cancel</button> */}
-
         </form>
       </div>
     </>
