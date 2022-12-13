@@ -9,7 +9,7 @@ options.tableName = 'Users'
 const bcrypt = require("bcryptjs");
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  up: async (queryInterface, Sequelize) => {
     /**
      * Add seed commands here.
      *
@@ -53,18 +53,13 @@ module.exports = {
         username: 'FakeUser4',
         hashedPassword: bcrypt.hashSync('password3')
       }
-    ], {});
+    ]);
   },
 
-  async down(queryInterface, Sequelize) {
+  down: async (queryInterface, Sequelize) => {
     const Op = Sequelize.Op;
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     */
     await queryInterface.bulkDelete(options, {
       username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2', 'FakeUser3', 'FakeUser4']}
-     }, {});
+     });
   }
 };

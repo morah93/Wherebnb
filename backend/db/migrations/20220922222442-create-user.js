@@ -1,14 +1,12 @@
 'use strict';
 
-// const { options } = require("../../routes/api/spots");
-
 let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA
 }
 
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Users', {
       id: {
         allowNull: false,
@@ -50,8 +48,7 @@ module.exports = {
       }
     }, options);
   },
-  async down(queryInterface, Sequelize) {
-    options.tableName = 'Users'
-    await queryInterface.dropTable(options);
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('Users', options);
   }
 };

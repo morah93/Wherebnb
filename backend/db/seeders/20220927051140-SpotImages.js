@@ -7,8 +7,7 @@ if (process.env.NODE_ENV === 'production') {
 options.tableName = 'SpotImages'
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
-   
+  up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert(options, [
       {
         spotId: 1,
@@ -60,11 +59,10 @@ module.exports = {
         url: 'https://i.imgur.com/lh1bDAa.jpg',
         preview: true
       },
-    ], {});
+    ]);
   },
 
-  async down(queryInterface, Sequelize) {
-
-     await queryInterface.bulkDelete(options, {});
+  down: async (queryInterface, Sequelize) => {
+     await queryInterface.bulkDelete(options);
   }
 };
