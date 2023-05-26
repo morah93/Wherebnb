@@ -13,8 +13,8 @@ function Navigation({ isLoaded }) {
   const [showModal, setShowModal] = useState(false);
   const [createSpotModal, setCreateSpotModal] = useState(false)
   const [login, setLogin] = useState(true);
-  console.log('this is showModal', showModal)
-  console.log('this is login', login)
+  // console.log('this is showModal', showModal)
+  // console.log('this is login', login)
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = <ProfileButton user={sessionUser} />;

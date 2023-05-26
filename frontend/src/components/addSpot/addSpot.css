@@ -1,8 +1,8 @@
-.h2{
+.h2 {
   display: flex;
   justify-content: center;
 }
-.newSpotContainer{
+.newSpotContainer {
   display: flex;
   /* border: 1px solid black; */
   flex-direction: column;
@@ -11,7 +11,7 @@
   background-color: white;
 }
 
-.newSpotForm{
+.newSpotForm {
   /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
@@ -23,10 +23,10 @@
   width: 125%;
 }
 
-.errorList{
+.errorList {
   /* border: 1px solid; */
   width: 300px;
-  height: 100px;
+  height: auto;
   /* margin-top: 50px; */
   /* padding-top: 50px; */
 }
@@ -36,10 +36,8 @@
   margin: 10px;
   display: flex;
   /* align-self: center; */
-
-
 }
-#nameTextBox{
+#nameTextBox {
   margin-left: 10px;
   display: flex;
   /* align-content: center; */
@@ -49,7 +47,7 @@
   padding-left: 2%;
   /* align-self: center; */
 }
-#addressTextBox{
+#addressTextBox {
   margin-left: 10px;
 }
 /* #cityState {
@@ -57,73 +55,96 @@
     margin: 10px;
 
   } */
-  #country {
-    /* align-self: center; */
-    margin: 10px;
-  }
+#country {
+  /* align-self: center; */
+  margin: 10px;
+}
 
-  #countryTextBox{
-    margin-left: 10px;
-  }
+#countryTextBox {
+  margin-left: 10px;
+}
 
-  #description {
-    /* align-self: center; */
-    margin: 10px;
-    /* height: 50px; */
+#description {
+  /* align-self: center; */
+  margin: 10px;
+  /* height: 50px; */
+}
+#descriptionbox {
+  /* align-self: center; */
+  /* margin: 10px; */
+  height: 50px;
+}
+#price {
+  margin: 10px;
+  /* align-self: center; */
+}
 
-  }
-  #descriptionbox{
-    /* align-self: center; */
-    /* margin: 10px; */
-    height: 50px;
+#priceTextBox {
+  margin-left: 10px;
+}
 
-  }
-  #price {
-    margin: 10px;
-    /* align-self: center; */
-  }
+#city {
+  margin: 10px;
+  /* align-self: center; */
+}
 
-  #priceTextBox{
-    margin-left: 10px;
-  }
+#cityTextBox {
+  margin-left: 10px;
+}
 
-  #city {
-    margin: 10px;
-    /* align-self: center; */
-  }
+#state {
+  /* align-self: center; */
+  margin: 10px;
+}
 
-  #cityTextBox{
-    margin-left: 10px;
-  }
+#stateTextBox {
+  margin-left: 10px;
+}
 
-  #state{
-    /* align-self: center; */
-    margin: 10px;
-  }
+#url {
+  margin: 10px;
+}
 
-  #stateTextBox{
-    margin-left: 10px;
-  }
+#urlTextBox {
+  margin-left: 10px;
+}
 
-  #url{
+.buttonDiv {
+  display: flex;
+  justify-content: space-around;
+}
 
-    margin: 10px;
-  }
-
-  #urlTextBox{
-    margin-left: 10px;
-  }
-
-#submitButton{
+.submitButton {
+  /* background-color: white; */
   border-radius: 5px;
-  background-color:  rgb(80,117,148);
   color: white;
   margin: 10px;
-  }
+  width: 25%;
+  height: 60%;
+}
 
-  .cancelButton{
-    background-color: rgb(165, 38, 38);
-    border-radius: 5px;
-    color: white;
+.submitButton:hover {
+  background-color: rgb(80, 117, 148);
+  box-shadow: 2px 2px 30px lightgrey;
+}
 
-  }
+.cancelButton {
+  /* display: flex; */
+  width: 25%;
+  border-radius: 5px;
+  color: white;
+  margin: 10px;
+  height: 60%;
+}
+
+.cancelButton:hover {
+  background-color: rgb(165, 38, 38);
+  box-shadow: 2px 2px 30px lightgrey;
+}
+
+/* #modal-content{
+  /* border: 1px solid greenyellow; */
+  /* border-radius: 10px; */
+  /* width: 25%; */
+  /* display: flex; */
+/* } */ 

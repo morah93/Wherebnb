@@ -14,6 +14,7 @@
   /* border: 1px solid black; */
   position: static;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   /* align-content: center; */
@@ -30,10 +31,10 @@
   /* border: 1px solid black; */
   /* justify-content: center; */
   flex-direction: column;
-  /* padding: 15%; */
-  align-items: center;
+  padding: 8%;
+  margin-top: 85px;
+  /* align-items: flex-start; */
 }
-
 #spotName {
   /* border: 1px solid; */
   position: static;
@@ -41,14 +42,58 @@
   flex-direction: column;
   /* justify-content: center; */
   /* align-items: center; */
-  align-self: center;
+  align-self: flex-start;
   align-content: center;
-  padding-left: 8%;
+  /* padding-left: 8%; */
   margin-top: 15%;
   display: flex;
-  width: 50%;
+  /* width: 50%; */
   /* left: 20px; */
 }
+.imgContainer{
+display: flex;
+}
+.spotInfoAndBooking{
+  /* border: 1px solid; */
+  display: flex;
+  flex-direction: row-reverse;
+  /* position: static; */
+  align-items: flex-start;
+  /* width: 100%; */
+}
+
+.spotInfo{
+  /* border: 1px solid; */
+  margin-top: 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 50%;
+}
+.bookingContainer{
+  /* border: 1px solid; */
+display: flex;
+width: 50%;
+height: 100%;
+/* box-sizing: border-box; */
+justify-content: center;
+/* flex-direction: column; */
+/* align-content: center; */
+/* align-items: center; */
+flex-wrap: wrap;
+padding-top: 15px;
+}
+.booking{
+  display: flex;
+  border: 1px solid lightgray;
+  /* justify-content: center; */
+  width: 40%;
+  border-radius: 15px;
+  /* box-sizing: border-box; */
+  flex-direction: row;
+  /* align-content: center; */
+}
+
 #address {
   margin: 1px;
 
@@ -145,14 +190,6 @@
   /* width: 15%; */
 }
 
-.spotInfo{
-  /* border: 1px solid; */
-  margin-top: 1%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 45%;
-}
 
 .deleteReviewButton:hover{
   background-color: rgb(142, 24, 24);
@@ -166,6 +203,8 @@
   display: flex;
   margin-bottom: 10%;
   padding: 2%;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 .review{
@@ -173,6 +212,7 @@
   display: flex;
   justify-content: center;
   width: auto;
+  /* flex-wrap: wrap; */
   /* left: .1px; */
   /* right: .1px; */
 }
@@ -183,6 +223,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
+  flex-wrap: wrap;
   /* border-bottom: 1px solid gray; */
   font-style: italic;
   padding: 2%;

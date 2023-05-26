@@ -16,7 +16,7 @@ const viewReviews = (reviews, spotId) => {
 const getUserReview = (reviews) => {
   return {
     type: USER_REVIEWS,
-    reviews
+    reviews,
   };
 };
 
@@ -89,7 +89,7 @@ export const deleteReview = (reviewId) => async (dispatch) => {
   if (res.ok) {
     const reviews = await res.json();
     dispatch(removeReview(reviewId));
-    return reviews
+    return reviews;
   }
 };
 
@@ -99,8 +99,6 @@ const initialState = {
 };
 
 const reviewReducer = (state = initialState, action) => {
-
-
   switch (action.type) {
     case VIEW_REVIEWS:
       const allReviews = { ...state, spotReviews: {} };
@@ -110,10 +108,10 @@ const reviewReducer = (state = initialState, action) => {
       return allReviews;
 
     case USER_REVIEWS:
-      const usersReview = { ...state, userReviews: { } };
+      const usersReview = { ...state, userReviews: {} };
       action.reviews.Reviews.forEach((review) => {
         usersReview.userReviews[review.id] = review;
-      })
+      });
       return usersReview;
 
     case ADD_REVIEW:
@@ -122,12 +120,10 @@ const reviewReducer = (state = initialState, action) => {
       return createReview;
 
     case REMOVE_REVIEW:
-      const deleteReview = {...state, spotReviews: { ...state.spotReviews }};
+      const deleteReview = { ...state, spotReviews: { ...state.spotReviews } };
 
       delete deleteReview.spotReviews[action.reviewId];
       return deleteReview;
-
-
 
     default:
       return state;

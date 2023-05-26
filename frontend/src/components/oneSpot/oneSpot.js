@@ -1,3 +1,5 @@
+import React from "react";
+import moment from "moment";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getOneSpot } from "../../store/spots";
@@ -6,6 +8,8 @@ import { deleteSpot } from "../../store/spots";
 import { getAllReviews } from "../../store/reviews";
 import { createReview } from "../../store/reviews";
 import { deleteReview, removeReview } from "../../store/reviews";
+// import { DatePicker } from "@skbkontur/react-ui";
+import { thunkCreateBooking } from "../../store/booking";
 // import { getUserReviews } from "../../store/reviews";
 import "./oneSpot.css";
 import EditSpotModal from "../editSpot";
@@ -13,160 +17,233 @@ import AddReviewModal from "../addReview";
 // import editASpot from "../editSpot/editSpot";
 
 const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
-  const dispatch = useDispatch();
-  const { spotId, reviewId } = useParams();
-  const history = useHistory();
+	// const dayjs = require("dayjs");
+	const dispatch = useDispatch();
+	const { spotId, reviewId } = useParams();
+	const history = useHistory();
+	// const [lib, setLib] = useState("");
+	// const [native, setNative] = useState("");
+	const [startDate, setStartDate] = useState();
+	const [endDate, setEndDate] = useState();
 
-  const user = useSelector((state) => state.session.user);
+	// if (trip && !startDate && !endDate) {
+	// 	setStartDate(trip.startDate);
+	// 	setEndDate(trip.endDate);
+	// }
 
-  const allReviews = useSelector((state) => state.reviews.spotReviews); //useSelector for the state being used to attain info
-  const allReviewsArr = Object.values(allReviews);
-  // const [createReviewModal, setCreateReviewModal] = useState(false);
+	// let numDays =
+	// 	(endDate - startDate) / 86400000 ? (endDate - startDate) / 86400000 : 0;
+	// const currentDate = new Date();
 
-  const singleSpot = useSelector((state) => state.spot.singleSpot);
+	const user = useSelector((state) => state.session.user);
 
-  useEffect(() => {
-    // console.log('oneSpot useEffect+++++++++')
-    dispatch(getOneSpot(spotId));
-  }, [spotId, singleSpot, allReviews]);
+	const allReviews = useSelector((state) => state.reviews.spotReviews); //useSelector for the state being used to attain info
+	const allReviewsArr = Object.values(allReviews);
+	// const [createReviewModal, setCreateReviewModal] = useState(false);
 
-  const oneSpot = useSelector((state) => state.spot[spotId]); //useSelector for the state being used to attain info
+	const singleSpot = useSelector((state) => state.spot?.singleSpot);
 
-  // console.log(oneSpot, "onespot----------------=======");
-  useEffect(() => {
-    dispatch(getAllReviews(spotId));
-  }, [spotId]);
+	useEffect(() => {
+		// console.log('oneSpot useEffect+++++++++')
+		dispatch(getOneSpot(spotId));
+	}, [dispatch, spotId, singleSpot, allReviews]);
 
-  const spotDelete = () => {
-    dispatch(deleteSpot(spotId)).then(() => {
-      alert("Deletion Successful");
-      history.push("/");
-    });
-  };
+	const oneSpot = useSelector((state) => state.spot[spotId]); //useSelector for the state being used to attain info
 
-  const addReview = (spotId) => {
-    dispatch(createReview(spotId));
-    // setAddReviewModal(true)
-    history.push(`/spots/${spotId}/reviews`);
-  };
+	// console.log(oneSpot, "onespot----------------=======");
+	useEffect(() => {
+		dispatch(getAllReviews(spotId));
+	}, [dispatch, spotId]);
 
-  const reviewDelete = (reviewId) => {
-    dispatch(deleteReview(reviewId)).then(() => {
-      alert("Deletion Successful");
-      // history.push(`/spots/${spotId}/reviews`);
-      dispatch(removeReview(reviewId));
-    });
-  };
-  let foundReview = true;
-  for (let i = 0; i < allReviewsArr.length; i++) {
-    if (user) {
-      if (user.id === allReviewsArr[i].userId) foundReview = false;
-    }
-  }
+	const spotDelete = () => {
+		dispatch(deleteSpot(spotId)).then(() => {
+			alert("Deletion Successful");
+			history.push("/");
+		});
+	};
 
-  if (!oneSpot?.SpotImages) return null;
+	const addReview = (spotId) => {
+		dispatch(createReview(spotId));
+		// setAddReviewModal(true)
+		history.push(`/spots/${spotId}/reviews`);
+	};
 
-  return (
-    <>
-      <div className='outerContainer'>
-        <div className='innerContainer'>
-          {/* <ul> */}
-          <div id='spotName'>{oneSpot?.name}
-          <div
-            id='rating'
-            className='fa fa-star'
-            >
-            {/* {
-              { for(i = 0; i<allReviews.length; i++) {
+	const reviewDelete = (reviewId) => {
+		dispatch(deleteReview(reviewId)).then(() => {
+			alert("Deletion Successful");
+			// history.push(`/spots/${spotId}/reviews`);
+			dispatch(removeReview(reviewId));
+		});
+	};
+	let foundReview = true;
+	for (let i = 0; i < allReviewsArr.length; i++) {
+		if (user) {
+			if (user.id === allReviewsArr[i].userId) foundReview = false;
+		}
+	}
 
-                console.log(allReviews[i], 'starrssssss')
-            }
-            }} */}
-              <div id='number'>
+	if (!oneSpot?.SpotImages) return null;
 
-            {Number(oneSpot?.avgRating).toFixed(1)}
-                </div>
-          </div>
-          </div>
-          <img
-            className='spotImg1'
-            src={oneSpot?.SpotImages[0]?.url}
-          />
+	// const onNativeChange = (e) => {
+	// 	console.log("onNativeChange: ", e.target.value);
+	// 	setNative(e.target.value);
+	// };
 
-          <div className='spotInfo'>
-            {/* <div id='address'>{oneSpot?.address}</div> */}
-            <div id='cityState'>{`${oneSpot?.city}, ${oneSpot?.state}`}</div>
-            <div id='country'>{oneSpot?.country}</div>
-            <div id='description'>{`${oneSpot?.description}`}</div>
-            <div id='price'>{`$${oneSpot?.price} night`}</div>
-          </div>
-          {oneSpot?.ownerId === user?.id && (
-            // <button
-            //   className='editButton'
-            //   onClick={() => {
-            //     setEditSpotModal(true)
-            //     history.push(`${oneSpot.id}/edit`);
-            //   }}
-            // >
-            //   Edit Spot
-            // </button>
-            <EditSpotModal spot={oneSpot} />
-          )}
-          {user && foundReview && (
-            <AddReviewModal />
-            // <button
-            //   className='createReviewButton'
-            //   onClick={() => {
-            //     // setAddReviewModal(true)
-            //     addReview(spotId);
-            //   }}
-            // >
-            //   Create Review
-            // </button>
-          )}
-          {oneSpot?.ownerId === user?.id && (
-            <button
-              className='deleteButton'
-              onClick={() => spotDelete()}
-            >
-              Delete Spot
-            </button>
-          )}
-          {/* </ul> */}
-          <h3 className='review'>Reviews</h3>
-          {/* <ul> */}
-          <div className='reviewContainer'>
-            {allReviewsArr.map((review) => (
-              <div
-                className='userReview'
-                key={review.id}
-              >
-                <div>
-                  <i
-                    id='starReview'
-                    className='fa fa-star'
-                  ></i>
-                  {`Stars: ${review.stars}`}
-                  {review.length}
-                </div>
-                <div className='userReviewNames'>{`${review?.User?.firstName} ${review?.User?.lastName}`}</div>
-                <div className='userReview1'>{`"${review.review}"`}</div>
-                {review?.userId === user?.id && (
-                  <button
-                    className='deleteReviewButton'
-                    onClick={() => reviewDelete(review.id)}
-                  >
-                    Delete Review
-                  </button>
-                )}
-              </div>
-            ))}
-          </div>
-          {/* </ul> */}
-        </div>
-      </div>
-    </>
-  );
+	// const onLibChange = (value) => {
+	// 	console.log("onLibChange: ", value);
+	// 	setLib(value);
+	// };
+
+	const onSubmit = async (e) => {
+		e.preventDefault();
+		// if (!validationErr.length) {
+			const payload = {
+				startDate,
+				endDate
+			};
+			const data = await dispatch(thunkCreateBooking(payload, spotId));
+			// history.push(`/spots/${spotId}`);
+			console.log('DATA',data)
+		// }
+
+	};
+
+	return (
+		<>
+			<div className='outerContainer'>
+				<div className='innerContainer'>
+					{/* <ul> */}
+					{/* <div className='nameAndStar'> */}
+					<div id='spotName'>{oneSpot?.name}</div>
+					<div
+						id='rating'
+						className='fa fa-star'
+					>
+						{/* {
+								{ for(i = 0; i<allReviews.length; i++) {
+
+									console.log(allReviews[i], 'starrssssss')
+                }
+							}} */}
+						<div id='number'>{Number(oneSpot?.avgRating).toFixed(1)}</div>
+					</div>
+					{/* </div> */}
+					<div className='imgContainer'>
+						<img
+							className='spotImg1'
+							src={oneSpot?.SpotImages[0]?.url}
+						/>
+					</div>
+					<div className='spotInfoAndBooking'>
+						{/* <div className='bookingContainer'> */}
+						<div className='booking'>
+							<div id='price'>{`$${oneSpot?.price} night`}</div>
+							<div className='nameAndStar'>
+								<div
+									id='rating'
+									className='fa fa-star'
+								></div>
+								<div id='number'>{Number(oneSpot?.avgRating).toFixed(1)}</div>
+							</div>
+							<form onSubmit={onSubmit}>
+								<div className='App'>
+									<input
+										type='date'
+										value={startDate}
+										onChange={(e) => setStartDate(e.target.value)}
+									/>
+									<input
+										type='date'
+										value={endDate}
+										onChange={(e) => setEndDate(e.target.value)}
+									/>
+
+									{/* <DatePicker
+                      value={native}
+                      onValueChange={onNativeChange}
+                    /> */}
+								</div>
+								<button type="submit" >Submit</button>
+							</form>
+						</div>
+						{/* </div> */}
+						<div className='spotInfo'>
+							{/* <div id='address'>{oneSpot?.address}</div> */}
+							<div id='cityState'>{`${oneSpot?.city}, ${oneSpot?.state}`}</div>
+							<div id='country'>{oneSpot?.country}</div>
+							<div id='description'>{`${oneSpot?.description}`}</div>
+							{/* <div id='price'>{`$${oneSpot?.price} night`}</div> */}
+							<div></div>
+						</div>
+					</div>
+					{oneSpot?.ownerId === user?.id && (
+						// <button
+						//   className='editButton'
+						//   onClick={() => {
+						//     setEditSpotModal(true)
+						//     history.push(`${oneSpot.id}/edit`);
+						//   }}
+						// >
+						//   Edit Spot
+						// </button>
+						<EditSpotModal spot={oneSpot} />
+					)}
+					{/* {if (user && user != user.id) && foundReview && ( */}
+					{user && foundReview && (
+						<AddReviewModal />
+						// <button
+						//   className='createReviewButton'
+						//   onClick={() => {
+						//     // setAddReviewModal(true)
+						//     addReview(spotId);
+						//   }}
+						// >
+						//   Create Review
+						// </button>
+					)}
+					{oneSpot?.ownerId === user?.id && (
+						<button
+							className='deleteButton'
+							onClick={() => spotDelete()}
+						>
+							Delete Spot
+						</button>
+					)}
+					{/* </ul> */}
+					<h3 className='review'>Reviews</h3>
+					{/* <ul> */}
+					<div className='reviewContainer'>
+						{allReviewsArr.map((review) => (
+							<div
+								className='userReview'
+								key={review.id}
+							>
+								<div>
+									<i
+										id='starReview'
+										className='fa fa-star'
+									></i>
+									{`Stars: ${review.stars}`}
+									{review.length}
+								</div>
+								<div className='userReviewNames'>{`${review?.User?.firstName} ${review?.User?.lastName}`}</div>
+								<div className='userReview1'>{`"${review.review}"`}</div>
+								{review?.userId === user?.id && (
+									<button
+										className='deleteReviewButton'
+										onClick={() => reviewDelete(review.id)}
+									>
+										Delete Review
+									</button>
+								)}
+							</div>
+						))}
+					</div>
+					{/* </ul> */}
+				</div>
+			</div>
+		</>
+	);
 };
 
 export default OneSpot;

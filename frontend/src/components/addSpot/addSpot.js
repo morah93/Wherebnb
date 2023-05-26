@@ -1,23 +1,20 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createSpot, addSpotImg } from "../../store/spots";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import "./addSpot.css";
-const AddSpot = ({ setShowModal }) => {
+const AddSpot = ({ setCreateSpotModal }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
-
-  const [createSpotModal, setCreateSpotModal] = useState(false);
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
-  const [lat, setLat] = useState(0);
-  const [lng, setLng] = useState(0);
+  // const [lat, setLat] = useState(0);
+  // const [lng, setLng] = useState(0);
   const [country, setCountry] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(1);
-  // const [image, setImage] = useState(spot?.image);
   const [previewImage, setPreviewImage] = useState("");
   const [errors, setErrors] = useState([]);
   const [validationErrors, setValidationErrors] = useState([]);
@@ -31,24 +28,14 @@ const AddSpot = ({ setShowModal }) => {
     if (!state) errors.push("Please enter a state");
     if (!country) errors.push("Please enter a country");
     if (!description) errors.push("Please enter a description for the spot");
-    if (description && description.length < 20)
+    if (description && description.length < 20) {
       errors.push("Please enter more than 20 characters");
+    }
     if (!price) errors.push("Please enter a price");
     if (!previewImage) errors.push("Please enter a url");
 
     setValidationErrors(errors);
   }, [name, address, city, state, country, description, price, previewImage]);
-
-  // console.log(
-  //   name,
-  //   address,
-  //   city,
-  //   state,
-  //   country,
-  //   description,
-  //   price,
-  //   previewImage,
-  // );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -72,27 +59,17 @@ const AddSpot = ({ setShowModal }) => {
 
     if (!validationErrors.length) {
       return dispatch(createSpot(newSpot))
-      .then(() => {
-        alert("Successful");
-        setCreateSpotModal(false);
-        history.push(`/`);
-      })
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-        setErrors([]);
-          console.log(errors)
+        .then(() => {
+          alert("Successful");
+          setCreateSpotModal(false);
+        })
+        .catch(async (res) => {
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors);
+          console.log(errors);
         });
-
-        // return dispatch(({ name, description, price })).catch(
-          //   async (res) => {
-            //     const data = await res.json();
-            //     if (data && data.errors) setErrors(data.errors);
-            //   }
-            // );
-          }
-          // return setErrors(["Whats the error"]);
-        };
+    }
+  };
 
   return (
     <>
@@ -103,7 +80,7 @@ const AddSpot = ({ setShowModal }) => {
         >
           <div className='errorList'>
             <ul>
-              {errors.map((error, idx) => (
+              {validationErrors.map((error, idx) => (
                 <li key={idx}>{error}</li>
               ))}
             </ul>
@@ -191,22 +168,24 @@ const AddSpot = ({ setShowModal }) => {
               required
             />
           </label>
+          <div className="buttonDiv">
+            <button
+              className='submitButton'
+              type='submit'
+              // onClick={() => history.push("/")}
+            >
+              Submit
+            </button>
 
-          <button
-            id='submitButton'
-            type='submit'
-            // onClick={() => history.push("/")}
-          >
-            Submit
-          </button>
-
-          {/* <button
+            <button
               className='cancelButton'
               onClick={() => {
-                setCreateSpotModal(false)
-                history.push(`/`)
+                setCreateSpotModal(false);
               }}
-            >Cancel</button> */}
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       </div>
     </>
