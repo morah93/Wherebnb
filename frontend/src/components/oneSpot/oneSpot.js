@@ -1,5 +1,4 @@
 import React from "react";
-import moment from "moment";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getOneSpot } from "../../store/spots";
@@ -23,9 +22,10 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
 	const history = useHistory();
 	// const [lib, setLib] = useState("");
 	// const [native, setNative] = useState("");
-	const [startDate, setStartDate] = useState();
-	const [endDate, setEndDate] = useState();
-
+	const [startDate, setStartDate] = useState("");
+	const [endDate, setEndDate] = useState("");
+	const [errors, setErrors] = useState([]);
+	const [validationErrors, setValidationErrors] = useState([]);
 	// if (trip && !startDate && !endDate) {
 	// 	setStartDate(trip.startDate);
 	// 	setEndDate(trip.endDate);
@@ -54,6 +54,14 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
 	useEffect(() => {
 		dispatch(getAllReviews(spotId));
 	}, [dispatch, spotId]);
+
+	useEffect(() => {
+		const errors = [];
+		const currentDate = new Date();
+		if (startDate <= currentDate) errors.push("Invalid Start Date");
+		if (endDate <= currentDate) errors.push("Invalid End Date");
+		setValidationErrors(errors);
+	}, [startDate, endDate]);
 
 	const spotDelete = () => {
 		dispatch(deleteSpot(spotId)).then(() => {
@@ -96,16 +104,26 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
-		// if (!validationErr.length) {
-			const payload = {
-				startDate,
-				endDate
-			};
-			const data = await dispatch(thunkCreateBooking(payload, spotId));
-			// history.push(`/spots/${spotId}`);
-			console.log('DATA',data)
-		// }
+		const payload = {
+			startDate,
+			endDate,
+		};
+		console.log(validationErrors);
 
+		if (!validationErrors.length) {
+			// const data = await
+			return dispatch(thunkCreateBooking(payload, spotId))
+				.then(() => {
+					// history.push("/");
+					alert("Booking Successful");
+				})
+				.catch(async (res) => {
+					const data = await res.json();
+					if (data && data.errors) setErrors(data.errors);
+					console.log(errors);
+				});
+			// history.push(`/spots/${spotId}`);
+		}
 	};
 
 	return (
@@ -136,36 +154,45 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
 					</div>
 					<div className='spotInfoAndBooking'>
 						{/* <div className='bookingContainer'> */}
-						<div className='booking'>
-							<div id='price'>{`$${oneSpot?.price} night`}</div>
-							<div className='nameAndStar'>
-								<div
-									id='rating'
-									className='fa fa-star'
-								></div>
-								<div id='number'>{Number(oneSpot?.avgRating).toFixed(1)}</div>
-							</div>
-							<form onSubmit={onSubmit}>
-								<div className='App'>
-									<input
-										type='date'
-										value={startDate}
-										onChange={(e) => setStartDate(e.target.value)}
-									/>
-									<input
-										type='date'
-										value={endDate}
-										onChange={(e) => setEndDate(e.target.value)}
-									/>
+						{oneSpot?.ownerId !== user?.id && (
+							<div className='booking'>
+								<div id='price'>{`$${oneSpot?.price} night`}</div>
+								<div className='nameAndStar'>
+									<div
+										id='rating'
+										className='fa fa-star'
+									></div>
+									<div id='number'>{Number(oneSpot?.avgRating).toFixed(1)}</div>
+								</div>
+								<form onSubmit={onSubmit}>
+									<div className="errorList">
+									<ul>
+										{validationErrors.map((error, idx) => (
+											<li key={idx}>{error}</li>
+										))}
+									</ul>
+									</div>
+									<div className='App'>
+										<input
+											type='date'
+											value={startDate}
+											onChange={(e) => setStartDate(e.target.value)}
+										/>
+										<input
+											type='date'
+											value={endDate}
+											onChange={(e) => setEndDate(e.target.value)}
+										/>
 
-									{/* <DatePicker
+										{/* <DatePicker
                       value={native}
                       onValueChange={onNativeChange}
                     /> */}
-								</div>
-								<button type="submit" >Submit</button>
-							</form>
-						</div>
+									</div>
+									<button type='submit'>Submit</button>
+								</form>
+							</div>
+						)}
 						{/* </div> */}
 						<div className='spotInfo'>
 							{/* <div id='address'>{oneSpot?.address}</div> */}

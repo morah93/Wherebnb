@@ -40,13 +40,14 @@ const actionDeleteBooking = (payload) => {
 
 //THUNKS
 
-export const thunkViewAllUserBookings = async (dispatch) => {
+export const thunkViewAllUserBookings = () => async (dispatch) => {
   const res = await csrfFetch(`/api/bookings/current`);
 
   if (res.ok) {
-    const userBookings = await res.json();
-    dispatch(actionViewUserBookings(userBookings));
-    return userBookings;
+    const payload = await res.json();
+    console.log('userBookings', payload)
+    dispatch(actionViewUserBookings(payload));
+    return payload;
   }
 };
 export const thunkViewAllSpotBookings = (payload) => async (dispatch) => {
@@ -76,16 +77,17 @@ export const thunkCreateBooking = (payload, spotId) => async (dispatch) => {
   }
 };
 
-export const thunkUpdateBooking = (payload) => async (dispatch) => {
-  const res = await csrfFetch(`/api/bookings/${payload.id}`, {
+export const thunkUpdateBooking = (payload, bookingId) => async (dispatch) => {
+  console.log('payload', payload)
+  const res = await csrfFetch(`/api/bookings/${bookingId}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
   if (res.ok) {
-    const editedBooking = await res.json();
-    dispatch(actionEditBooking(editedBooking));
-    return actionEditBooking;
+    const payload = await res.json();
+    dispatch(actionEditBooking(payload));
+    return payload;
   }
   return;
 };
@@ -104,8 +106,8 @@ export const thunkDeleteBooking = (bookingId) => async (dispatch) => {
 //Reducer
 const initialState = {
   // bookings: {
-  //   user: {},
-  //   spot: {}
+    // user: {}
+    // spot: {}
   // }
   // spotBookings: {},
   // userBookings: {},
