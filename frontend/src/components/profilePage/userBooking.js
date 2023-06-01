@@ -18,7 +18,9 @@ const UserPage = () => {
 	// const { spotId } = useParams();
 
 	const [isLoaded, setIsLoaded] = useState(false);
-  const currentDate = new Date();
+  // const currentDate = new Date();
+  let currentDate = new Date().toISOString().slice(0, 10)
+  console.log('currentDAte', currentDate)
 	/* Subscribe to the store and listen to changes in the spots slice of state.
   newState is an object containing all spots, which can't be mapped over, it needs to be converted to an array */
 

@@ -25,6 +25,7 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
 	const [startDate, setStartDate] = useState("");
 	const [endDate, setEndDate] = useState("");
 	const [errors, setErrors] = useState([]);
+	const [hasSubmitted, setHasSubmitted] = useState(false)
 	const [validationErrors, setValidationErrors] = useState([]);
 	// if (trip && !startDate && !endDate) {
 	// 	setStartDate(trip.startDate);
@@ -33,7 +34,8 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
 
 	// let numDays =
 	// 	(endDate - startDate) / 86400000 ? (endDate - startDate) / 86400000 : 0;
-	// const currentDate = new Date();
+	// const currentDate = new Date.UTC();
+	let currentDate = new Date().toISOString().slice(0, 10)
 
 	const user = useSelector((state) => state.session.user);
 
@@ -57,9 +59,10 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
 
 	useEffect(() => {
 		const errors = [];
-		const currentDate = new Date();
+
 		if (startDate <= currentDate) errors.push("Invalid Start Date");
 		if (endDate <= currentDate) errors.push("Invalid End Date");
+		if (startDate === endDate) errors.push("End date cannot equal start date");
 		setValidationErrors(errors);
 	}, [startDate, endDate]);
 
@@ -104,10 +107,13 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
+		setHasSubmitted(true)
 		const payload = {
 			startDate,
 			endDate,
 		};
+		console.log('currentDAte', currentDate)
+		console.log('startDAte', startDate)
 		console.log(validationErrors);
 
 		if (!validationErrors.length) {
@@ -164,10 +170,10 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
 									></div>
 									<div id='number'>{Number(oneSpot?.avgRating).toFixed(1)}</div>
 								</div>
-								<form onSubmit={onSubmit}>
+								<form onSubmit={onSubmit} hasSubmitted={hasSubmitted}>
 									<div className="errorList">
 									<ul>
-										{validationErrors.map((error, idx) => (
+										{hasSubmitted && validationErrors.length > 0 && validationErrors.map((error, idx) => (
 											<li key={idx}>{error}</li>
 										))}
 									</ul>
