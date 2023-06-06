@@ -45,7 +45,7 @@ export const thunkViewAllUserBookings = () => async (dispatch) => {
 
   if (res.ok) {
     const payload = await res.json();
-    console.log('userBookings', payload)
+    // console.log('userBookings', payload)
     dispatch(actionViewUserBookings(payload));
     return payload;
   }

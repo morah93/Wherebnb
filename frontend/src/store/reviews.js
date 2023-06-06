@@ -13,10 +13,10 @@ const viewReviews = (reviews, spotId) => {
   };
 };
 
-const getUserReview = (reviews) => {
+const getUserReview = (userReview) => {
   return {
     type: USER_REVIEWS,
-    reviews,
+    userReview,
   };
 };
 
@@ -47,12 +47,12 @@ export const getAllReviews = (spotId) => async (dispatch) => {
 };
 
 export const getUserReviews = (spotId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/spots/${spotId}/reviews`);
+  const res = await csrfFetch(`/api/reviews/current`);
 
   if (res.ok) {
-    const userReviews = await res.json();
-    dispatch(getUserReview(spotId));
-    return userReviews;
+    const userReview = await res.json();
+    dispatch(getUserReview(userReview.Reviews));
+    return userReview;
   }
 };
 
@@ -99,6 +99,7 @@ const initialState = {
 };
 
 const reviewReducer = (state = initialState, action) => {
+  let newState;
   switch (action.type) {
     case VIEW_REVIEWS:
       const allReviews = { ...state, spotReviews: {} };
@@ -108,11 +109,13 @@ const reviewReducer = (state = initialState, action) => {
       return allReviews;
 
     case USER_REVIEWS:
-      const usersReview = { ...state, userReviews: {} };
-      action.reviews.Reviews.forEach((review) => {
-        usersReview.userReviews[review.id] = review;
+      newState = {...state, userReviews:{}}
+      // const usersReview = { ...state, userReviews: {} };
+      // action.reviews.Reviews.forEach((review) => {
+      action.userReview.forEach((review) => {
+        newState.userReviews[review.id] = review;
       });
-      return usersReview;
+      return newState;
 
     case ADD_REVIEW:
       const createReview = { ...state, spotReviews: { ...state.spotReviews } };

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import "./Navigation.css";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 function ProfileButton({ user, setLogin, setShowModal, setCreateSpotModal }) {
   const dispatch = useDispatch();
@@ -66,9 +67,12 @@ function ProfileButton({ user, setLogin, setShowModal, setCreateSpotModal }) {
 
       {showMenu &&
         (user ? (
-          <ul className='profile-dropdown'>
-            <div>{user.username}</div>
+        <ul className='profile-dropdown'>
+          <div>{user.username}</div>
             <div>{user.email}</div>
+          <NavLink exact to='/user'>
+          Profile
+          </NavLink>
             <div className='buttonDiv'>
               {/* <button
                 className='createButton'
