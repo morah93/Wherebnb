@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getOneSpot, editASpot } from "../../store/spots";
@@ -93,7 +94,7 @@ const EditSpot = ({ setEditSpotModal, spot }) => {
         <form onSubmit={handleSubmit}>
           <div className='err'>
             <ul>
-              {errors.map((error, idx) => (
+              {validationErrors.map((error, idx) => (
                 <li key={idx}>{error}</li>
               ))}
             </ul>

@@ -4,12 +4,38 @@
   flex-direction: column;
 } */
 .loginFormContainer{
-  /* display: flex; */
-  /* justify-content: space-between; */
+  display: flex;
+  /* justify-content: center; */
   /* flex-direction: column; */
+  height: 15%;
   border: 1px solid;
   border-radius: 5px;
   padding: 5px;
+}
+
+.loginForm{
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  height: 200px;
+  /* justify-content: center; */
+}
+
+.headingDiv{
+  display: flex;
+  justify-content: center;
+  border-bottom: 0.5px solid lightgray;
+  width: 100%;
+}
+.heading{
+  display: flex;
+  align-self: center;
+  /* border-bottom: 1px solid lightgray; */
+}
+
+.labelDiv{
+  display: flex;
+  flex-direction: column;
 }
 
 .loginButton{
@@ -23,14 +49,32 @@
   box-shadow: 2px 2px 30px lightgrey;
 }
 
-.passwordInput{
+.demoButton{
+  background-color:  white;
+  border-radius: 20px;
+  border: 1px solid lightgrey;
+}
+
+.loginDemoButtons{
+  display: flex;
+}
+
+.emailInput{
+  display: flex;
   padding-left: 10px;
+  padding-bottom: 10px;
+}
+.passwordInput{
+  display: flex;
+  padding-left: 10px;
+  padding-bottom: 10px;
+
 }
 
 .login {
   margin-left: 3%;
   background-color:  white;
-  border-radius: 3px;
+  border-radius: 20px;
   border: 1px solid lightgrey;
 }
 

@@ -1,6 +1,7 @@
 import AddReview from "../addReview/addReview";
 import { Modal } from "../../context/Modal";
 import React, { useState } from "react";
+import ReactDOM from "react-dom";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -9,7 +10,7 @@ const CreateReviewModal = () => {
   return (
     <>
       {createReviewModal && (
-        <Modal onClose={() => setCreateSpotModal(false)}>
+        <Modal onClose={() => setCreateReviewModal(false)}>
           {sessionUser && <AddReview />}
         </Modal>
       )}

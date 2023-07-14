@@ -1,0 +1,92 @@
+/* .divContainer{
+  display: flex;
+  flex-direction: column;
+} */
+
+.userDiv{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* justify-content: center;
+  align-self: center; */
+  /* margin-left: 100px; */
+  /* padding-right: 100%; */
+  /* width: 100%; */
+}
+
+.spotImg{
+  height: 340px;
+  width: 320px;
+}
+
+#heading{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.listings-container{
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  margin: 10px;
+}
+
+.userSpots{
+  display: flex;
+  flex-direction: column;
+}
+
+.spot{
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 50px;
+  margin-top: 10px;
+}
+
+.listingInfo{
+  display: flex;
+  flex-direction: column;
+  /* margin-left: 20px; */
+  /* justify-content: center; */
+  /* justify-self: center; */
+  /* align-items: center; */
+  /* align-content: center; */
+  /* align-self: center; */
+}
+
+.delete-button{
+  margin-bottom: 10px;
+}
+
+.userReview{
+  display: flex;
+}
+
+.review-div{
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  /* margin: 16px 0px; */
+  margin-top: 50px;
+  padding: 0px 0px 0px 40px;
+  /* margin-bottom: 50px;
+  margin-top: 10px; */
+}
+
+
+.bookingDiv{
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+}
+
+.bookingInner{
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  /* margin: 16px 0px; */
+  margin-top: 50px;
+  padding: 0px 0px 0px 40px;
+}
