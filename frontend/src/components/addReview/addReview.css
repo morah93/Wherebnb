@@ -79,3 +79,9 @@
   align-items: center;
   /* padding-bottom: 7%; */
 /* }  */
+.createReviewButton{
+  background-color: #4e7393;
+  color: white;
+  margin-top: 15px;
+  height: 30px;
+}

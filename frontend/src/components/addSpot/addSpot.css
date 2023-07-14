@@ -39,12 +39,12 @@
 }
 #nameTextBox {
   margin-left: 10px;
-  display: flex;
+  /* display: flex; */
   /* align-content: center; */
 }
 #address {
   margin: 10px;
-  padding-left: 2%;
+  /* padding-left: 2%; */
   /* align-self: center; */
 }
 #addressTextBox {
@@ -59,6 +59,11 @@
   /* align-self: center; */
   margin: 10px;
 }
+#label {
+  /* align-self: center; */
+  margin: 10px;
+  /* gap: 5px; */
+}
 
 #countryTextBox {
   margin-left: 10px;
@@ -72,7 +77,9 @@
 #descriptionbox {
   /* align-self: center; */
   /* margin: 10px; */
-  height: 50px;
+  height: 35px;
+  width: 200px;
+  margin-left: 10px;
 }
 #price {
   margin: 10px;
@@ -111,7 +118,8 @@
 
 .buttonDiv {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .submitButton {
@@ -119,18 +127,19 @@
   border-radius: 5px;
   color: white;
   margin: 10px;
-  width: 25%;
+  width: 70px;
   height: 60%;
 }
 
 .submitButton:hover {
   background-color: rgb(80, 117, 148);
   box-shadow: 2px 2px 30px lightgrey;
+  color: white;
 }
 
 .cancelButton {
   /* display: flex; */
-  width: 25%;
+  width: 70px;
   border-radius: 5px;
   color: white;
   margin: 10px;
@@ -138,6 +147,7 @@
 }
 
 .cancelButton:hover {
+  color: white;
   background-color: rgb(165, 38, 38);
   box-shadow: 2px 2px 30px lightgrey;
 }
@@ -147,4 +157,4 @@
   /* border-radius: 10px; */
   /* width: 25%; */
   /* display: flex; */
-/* } */ 
+/* } */

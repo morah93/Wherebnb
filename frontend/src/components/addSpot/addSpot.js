@@ -86,7 +86,7 @@ const AddSpot = ({ setCreateSpotModal }) => {
             </ul>
           </div>
           <h2 className='h2'>Create Spot</h2>
-          <label id='spotName1'>
+          <label id='label'>
             Name
             <input
               id='nameTextBox'
@@ -96,7 +96,7 @@ const AddSpot = ({ setCreateSpotModal }) => {
               required
             />
           </label>
-          <label id='address'>
+          <label id='label'>
             Address
             <input
               id='addressTextBox'
@@ -106,7 +106,7 @@ const AddSpot = ({ setCreateSpotModal }) => {
               required
             />
           </label>
-          <label id='city'>
+          <label id='label'>
             City
             <input
               id='cityTextBox'
@@ -116,7 +116,7 @@ const AddSpot = ({ setCreateSpotModal }) => {
               required
             />
           </label>
-          <label id='state'>
+          <label id='label'>
             State
             <input
               id='stateTextBox'
@@ -126,7 +126,7 @@ const AddSpot = ({ setCreateSpotModal }) => {
               required
             />
           </label>
-          <label id='country'>
+          <label id='label'>
             Country
             <input
               id='countryTextBox'
@@ -137,7 +137,7 @@ const AddSpot = ({ setCreateSpotModal }) => {
             />
           </label>
 
-          <label id='price'>
+          <label id='label'>
             Price
             <input
               id='priceTextBox'
@@ -148,7 +148,7 @@ const AddSpot = ({ setCreateSpotModal }) => {
             />
           </label>
 
-          <label id='url'>
+          <label id='label'>
             Image Url
             <input
               id='urlTextBox'
@@ -158,7 +158,7 @@ const AddSpot = ({ setCreateSpotModal }) => {
               required
             />
           </label>
-          <label id='description'>
+          <label id='label'>
             Description
             <input
               id='descriptionbox'

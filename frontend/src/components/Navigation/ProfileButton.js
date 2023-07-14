@@ -38,18 +38,19 @@ function ProfileButton({ user, setLogin, setShowModal, setCreateSpotModal }) {
       <div className='menuDiv'>
         {user && (
           <button
-            className='createButton'
+            className='createSpot'
             onClick={() => {
               setCreateSpotModal(true);
             }}
           >
-            Become a Host
+            Airbnb your home
           </button>
         )}
         <i
           className='fa fa-globe'
           id='globe'
         />
+        <div className="buttonDiv">
         <button
           className='menu'
           onClick={openMenu}
@@ -63,15 +64,20 @@ function ProfileButton({ user, setLogin, setShowModal, setCreateSpotModal }) {
             id='user'
           ></i>
         </button>
-      </div>
+        </div>
+
 
       {showMenu &&
         (user ? (
         <ul className='profile-dropdown'>
           <div>{user.username}</div>
             <div>{user.email}</div>
-          <NavLink exact to='/user'>
-          Profile
+          <NavLink exact to='/user' className='profileLink'>
+            {/* Profile */}
+            <i
+            className='fa fa-user circle'
+            id='user1'
+          ></i>
           </NavLink>
             <div className='buttonDiv'>
               {/* <button
@@ -121,7 +127,8 @@ function ProfileButton({ user, setLogin, setShowModal, setCreateSpotModal }) {
               </button>
             </div>
           </div>
-        ))}
+          ))}
+        </div>
     </>
   );
 }

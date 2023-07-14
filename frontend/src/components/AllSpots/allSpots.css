@@ -1,81 +1,82 @@
 .outerSpotContainer {
-  display: flex;
-    justify-content: center;
-    flex-flow: row wrap;
-  /* position: absolute; */
-  /* border: 1px solid black; */
-  margin-bottom: 5%;
-  /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
-  margin-top: 7%;
-  gap: 40px;
+	display: flex;
+	justify-content: center;
+	flex-flow: row wrap;
+	/* position: absolute; */
+	/* border: 1px solid black; */
+	margin-bottom: 5px;
+	/* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
+	margin-top: 25px;
+	gap: 25px;
 }
 
 .spotCard {
-  /* border: 1px solid black; */
-  display: flex;
-  /* grid-template-columns: repeat(1fr 1fr 1fr ); */
-  /* align-items: ; */
-  margin: 45px 20px;
-  height: 100%;
-  width: 100%;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  height: 15em;
-  width: 15em;
-  /* border: 1px solid rgb(19, 16, 16); */
-  border-radius: 15px;
-  ;
-  }
-
-  .allSpotscardinfo{
-    /* border: 1px solid; */
-    height: 100%;
-    width: 15em;
-  }
-
-.spotImg {
-  height: 15em;
-  width: 15em;
-  border-radius: 15px;
-  /* border: 2px solid black; */
+	/* border: 1px solid black; */
+	display: flex;
+	/* grid-template-columns: repeat(1fr 1fr 1fr ); */
+	/* align-items: ; */
+	/* margin: 45px 20px; */
+	height: 100%;
+	width: 100%;
+	/* justify-content: center; */
+	flex-direction: column;
+	/* align-items: center; */
+	height: 395px;
+	width: 301px;
+	/* border: 1px solid rgb(19, 16, 16); */
+	border-radius: 15px;
 }
 
 .allSpotscardinfo {
-  display: flex;
-  position: static;
-  /* border: 1px solid black; */
-  /* align-content: flex-start; */
-  /* justify-content: space-between; */
-  flex-direction: column;
-  /* align-items: flex-start; */
-  align-self: start;
-  margin: 10px;
-  color: black;
-
+	/* border: 1px solid; */
+	height: 100%;
+	width: 301px;
 }
 
-.cityState{
-  font-size: 13px;
-  font-weight: bold;
+.spotImg {
+	height: 286px;
+	width: 301px;
+	border-radius: 15px;
+	/* border: 2px solid black; */
 }
 
-.price{
-  font-size: 13px;
-  font-weight: bold;
+
+.allSpotscardinfo {
+	display: flex;
+	position: static;
+	/* border: 1px solid black; */
+	/* align-content: flex-start; */
+	/* justify-content: space-between; */
+	flex-direction: column;
+	/* align-items: flex-start; */
+	align-self: start;
+	margin: 10px;
+	color: black;
 }
 
-#starRating{
-  display: flex;
-  /* justify-self: space-between; */
-  /* position: absolute; */
-  /* align-self: start; */
-  font-size: 11px;
-  /* align-self: flex-end; */
-  /* right: 8%; */
-  /* top: -30%; */
+.cityState {
+	font-size: 13px;
+	font-weight: bold;
+	margin-bottom: 7px;
 }
 
-#starIcon{
-  margin-right: 2%;
+.price {
+	font-size: 13px;
+	font-weight: bold;
+}
+
+#starRating {
+	display: flex;
+	/* justify-self: space-between; */
+	/* position: absolute; */
+	/* align-self: start; */
+	font-size: 11px;
+	margin-bottom: 7px;
+	/* align-self: flex-end; */
+	/* right: 8%; */
+	/* top: -30%; */
+}
+
+#starIcon {
+	margin-right: 2%;
 }

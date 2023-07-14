@@ -7,7 +7,7 @@ const Footer = () => {
     <>
       <div className="footer">
         <div className="info">
-        © 2022 WhereBnb
+        © 2023 WhereBnb
           Privacy
           Terms
           Sitemap
@@ -27,7 +27,7 @@ const Footer = () => {
         </div> */}
       <div className="siteInfo">
         <i id="globeIcon" className="fa fa-globe"></i>
-          <div id="language">English (US)</div>
+          <div id="language">English(US)</div>
           <i id="dollarIcon" className="fa fa-dollar" ></i>
           USD
           <i id="fbIcon" className="fa fa-facebook"></i>

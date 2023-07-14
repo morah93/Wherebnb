@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getOneSpot } from "../../store/spots";
-import { NavLink, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { deleteSpot } from "../../store/spots";
 import { getAllReviews } from "../../store/reviews";
 import { createReview } from "../../store/reviews";
@@ -13,6 +13,7 @@ import { thunkCreateBooking } from "../../store/booking";
 import "./oneSpot.css";
 import EditSpotModal from "../editSpot";
 import AddReviewModal from "../addReview";
+import { GoogleMap, Marker } from "@react-google-maps/api";
 // import editASpot from "../editSpot/editSpot";
 
 const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
@@ -20,39 +21,26 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
 	const dispatch = useDispatch();
 	const { spotId, reviewId } = useParams();
 	const history = useHistory();
-	// const [lib, setLib] = useState("");
-	// const [native, setNative] = useState("");
 	const [startDate, setStartDate] = useState("");
 	const [endDate, setEndDate] = useState("");
 	const [errors, setErrors] = useState([]);
-	const [hasSubmitted, setHasSubmitted] = useState(false)
+	const [hasSubmitted, setHasSubmitted] = useState(false);
 	const [validationErrors, setValidationErrors] = useState([]);
-	// if (trip && !startDate && !endDate) {
-	// 	setStartDate(trip.startDate);
-	// 	setEndDate(trip.endDate);
-	// }
 
-	// let numDays =
-	// 	(endDate - startDate) / 86400000 ? (endDate - startDate) / 86400000 : 0;
-	// const currentDate = new Date.UTC();
-	let currentDate = new Date().toISOString().slice(0, 10)
-
+	let currentDate = new Date().toISOString().slice(0, 10);
+	const bookedDates = useSelector((state) => state.spot.bookedDates);
 	const user = useSelector((state) => state.session.user);
 
 	const allReviews = useSelector((state) => state.reviews.spotReviews); //useSelector for the state being used to attain info
 	const allReviewsArr = Object.values(allReviews);
 	// const [createReviewModal, setCreateReviewModal] = useState(false);
 
-	const singleSpot = useSelector((state) => state.spot?.singleSpot);
-
 	useEffect(() => {
-		// console.log('oneSpot useEffect+++++++++')
 		dispatch(getOneSpot(spotId));
-	}, [dispatch, spotId, singleSpot, allReviews]);
+	}, [dispatch, spotId, allReviews]);
 
 	const oneSpot = useSelector((state) => state.spot[spotId]); //useSelector for the state being used to attain info
-
-	// console.log(oneSpot, "onespot----------------=======");
+	// const firstName = oneSpot.;
 	useEffect(() => {
 		dispatch(getAllReviews(spotId));
 	}, [dispatch, spotId]);
@@ -94,26 +82,19 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
 	}
 
 	if (!oneSpot?.SpotImages) return null;
-
-	// const onNativeChange = (e) => {
-	// 	console.log("onNativeChange: ", e.target.value);
-	// 	setNative(e.target.value);
-	// };
-
-	// const onLibChange = (value) => {
-	// 	console.log("onLibChange: ", value);
-	// 	setLib(value);
-	// };
+	const spotOwner = oneSpot.owner; //useSelector for the state being used to attain info
+	console.log("onespot", oneSpot);
+	console.log("one", spotOwner);
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
-		setHasSubmitted(true)
+		setHasSubmitted(true);
 		const payload = {
 			startDate,
 			endDate,
 		};
-		console.log('currentDAte', currentDate)
-		console.log('startDAte', startDate)
+		console.log("currentDAte", currentDate);
+		console.log("startDAte", startDate);
 		console.log(validationErrors);
 
 		if (!validationErrors.length) {
@@ -132,24 +113,19 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
 		}
 	};
 
+	const isDateBooked = (date) => {
+		return bookedDates.includes(date);
+	};
+
 	return (
 		<>
 			<div className='outerContainer'>
 				<div className='innerContainer'>
 					{/* <ul> */}
-					{/* <div className='nameAndStar'> */}
-					<div id='spotName'>{oneSpot?.name}</div>
-					<div
-						id='rating'
-						className='fa fa-star'
-					>
-						{/* {
-								{ for(i = 0; i<allReviews.length; i++) {
+					<div className='nameAndStar1'>
+						<div id='spotName'>{oneSpot?.name}</div>
 
-									console.log(allReviews[i], 'starrssssss')
-                }
-							}} */}
-						<div id='number'>{Number(oneSpot?.avgRating).toFixed(1)}</div>
+					<div id='cityStateCountry'>{`${oneSpot?.city}, ${oneSpot?.state}, ${oneSpot?.country}`}</div>
 					</div>
 					{/* </div> */}
 					<div className='imgContainer'>
@@ -162,53 +138,164 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
 						{/* <div className='bookingContainer'> */}
 						{oneSpot?.ownerId !== user?.id && (
 							<div className='booking'>
-								<div id='price'>{`$${oneSpot?.price} night`}</div>
 								<div className='nameAndStar'>
+									<div id='price'>{`$${oneSpot?.price} night`}</div>
 									<div
 										id='rating'
 										className='fa fa-star'
-									></div>
-									<div id='number'>{Number(oneSpot?.avgRating).toFixed(1)}</div>
+									>
+										<div id='number'>
+											{Number(oneSpot?.avgRating).toFixed(1)}
+										</div>
+									</div>
 								</div>
-								<form onSubmit={onSubmit} hasSubmitted={hasSubmitted}>
-									<div className="errorList">
-									<ul>
-										{hasSubmitted && validationErrors.length > 0 && validationErrors.map((error, idx) => (
-											<li key={idx}>{error}</li>
-										))}
-									</ul>
+								<form
+									className='form'
+									onSubmit={onSubmit}
+									hasSubmitted={hasSubmitted}
+								>
+									<div className='errorList'>
+										<ul>
+											{hasSubmitted &&
+												validationErrors.length > 0 &&
+												validationErrors.map((error, idx) => (
+													<li key={idx}>{error}</li>
+												))}
+										</ul>
 									</div>
 									<div className='App'>
-										<input
-											type='date'
-											value={startDate}
-											onChange={(e) => setStartDate(e.target.value)}
-										/>
-										<input
-											type='date'
-											value={endDate}
-											onChange={(e) => setEndDate(e.target.value)}
-										/>
+										<div className='checkIn'>
+											<p id='checkIn'>CHECK-IN</p>
+											<input
+												id='checkInInput'
+												type='date'
+												value={startDate}
+												min={currentDate}
+												onChange={(e) => setStartDate(e.target.value)}
+											/>
+										</div>
+
+										<div className='checkout'>
+											<p id='checkout'>CHECKOUT</p>
+											<input
+												id='checkoutInput'
+												type='date'
+												value={endDate}
+												onChange={(e) => setEndDate(e.target.value)}
+											/>
+										</div>
 
 										{/* <DatePicker
                       value={native}
                       onValueChange={onNativeChange}
                     /> */}
 									</div>
-									<button type='submit'>Submit</button>
+									<button
+										className='reserve'
+										type='submit'
+									>
+										Reserve
+									</button>
 								</form>
+								<div className='booking-des'> You won't be charged yet </div>
+								<div className='booking-fee-wrap'>
+									{/* <div className="booking-individual-fee"> */}
+									{/* <div> ${oneSpot.price} x {((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 23)).toFixed()} night </div> */}
+									{/* <div> ${oneSpot.price * ((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 23)).toFixed()}  </div> */}
+									{/* </div> */}
+									<div className='booking-individual-fee'>
+										<div id='div1'> Cleaning fee</div>
+										<div id='div2'> $150 </div>
+									</div>
+									<div className='booking-individual-fee'>
+										<div id='div1'>Service fee</div>
+										<div id='div2'> $71 </div>
+									</div>
+									<div className='booking-individual-fee booking-fee-total'>
+										{/* <div> Total before taxes </div> */}
+										{/* <div> ${oneSpot.price * ((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 23)).toFixed() + 150 + 71} </div> */}
+									</div>
+								</div>
 							</div>
 						)}
 						{/* </div> */}
 						<div className='spotInfo'>
+							<p id='hostedBy'>Entire home hosted by owner</p>
 							{/* <div id='address'>{oneSpot?.address}</div> */}
 							<div id='cityState'>{`${oneSpot?.city}, ${oneSpot?.state}`}</div>
 							<div id='country'>{oneSpot?.country}</div>
 							<div id='description'>{`${oneSpot?.description}`}</div>
 							{/* <div id='price'>{`$${oneSpot?.price} night`}</div> */}
-							<div></div>
+
+							<div className='check-in'>
+								<div className='self-check-in'>
+									{/* <i className="fa-solid fa-door-open"></i> */}
+									<img
+										className='check-in-img'
+										src='https://imgur.com/Y8A5rKd.png'
+										alt='spot'
+									/>
+									<div className='self-check-in-1'>
+										<strong> Self check-in </strong>
+										<div className='check-in-des'>
+											Check yourself in with the lockbox.
+										</div>
+									</div>
+								</div>
+
+								<div
+									className='self-check-in'
+									id='super'
+								>
+									{/* <i class="fa-regular fa-id-badge"></i> */}
+									<img
+										className='check-in-img'
+										src='https://imgur.com/5gPJvEp.png'
+										alt='spot'
+									/>
+									<div className='superhost'>
+										<strong> {oneSpot.firstName} Superhost </strong>
+										<div className='check-in-des'>
+											{" "}
+											Superhosts are experienced, highly rated hosts who are
+											committed to providing great stays for guests.
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className='amenitiesContainer'>
+								<p className='ameneties'>What this place offers</p>
+								<div className='individual-amenities-container'>
+									<img
+										className='individual-amenities-img'
+										src='https://imgur.com/fHVWE9K.png'
+										alt='spot'
+									/>
+									<div className='individual-amenities-title'>Wifi</div>
+								</div>
+								<div className='individual-amenities-container'>
+									<img
+										className='individual-amenities-img'
+										src='https://imgur.com/csXC3RL.png'
+										alt='spot'
+									/>
+									<div className='individual-amenities-title'>TV</div>
+								</div>
+								<div className='individual-amenities-container'>
+									<img
+										className='individual-amenities-img'
+										src='https://imgur.com/cHR1Rxx.png'
+										alt='spot'
+									/>
+									<div className='individual-amenities-title'>
+										Air conditioning
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
+					<div></div>
+
 					{oneSpot?.ownerId === user?.id && (
 						// <button
 						//   className='editButton'
@@ -223,7 +310,9 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
 					)}
 					{/* {if (user && user != user.id) && foundReview && ( */}
 					{user && foundReview && (
-						<AddReviewModal />
+						<div className="create-review">
+							<AddReviewModal />
+						</div>
 						// <button
 						//   className='createReviewButton'
 						//   onClick={() => {
@@ -234,43 +323,46 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
 						//   Create Review
 						// </button>
 					)}
-					{oneSpot?.ownerId === user?.id && (
+					{/* {oneSpot?.ownerId === user?.id && (
 						<button
 							className='deleteButton'
 							onClick={() => spotDelete()}
 						>
 							Delete Spot
 						</button>
-					)}
+					)} */}
 					{/* </ul> */}
-					<h3 className='review'>Reviews</h3>
 					{/* <ul> */}
-					<div className='reviewContainer'>
-						{allReviewsArr.map((review) => (
-							<div
-								className='userReview'
-								key={review.id}
-							>
-								<div>
-									<i
-										id='starReview'
-										className='fa fa-star'
-									></i>
-									{`Stars: ${review.stars}`}
-									{review.length}
+
+					<div className='reviewAndMap'>
+						<div className='reviewContainer'>
+							<p className='review'>reviews</p>
+							{allReviewsArr.map((review) => (
+								<div
+									className='userReview'
+									key={review.id}
+								>
+									<div>
+										<i
+											id='starReview'
+											className='fa fa-star'
+										></i>
+										{`Stars: ${review.stars}`}
+										{review.length}
+									</div>
+									<div className='userReviewNames'>{`${review?.User?.firstName} ${review?.User?.lastName}`}</div>
+									<div className='userReview1'>{`"${review.review}"`}</div>
+									{review?.userId === user?.id && (
+										<button
+											className='deleteReviewButton'
+											onClick={() => reviewDelete(review.id)}
+										>
+											Delete Review
+										</button>
+									)}
 								</div>
-								<div className='userReviewNames'>{`${review?.User?.firstName} ${review?.User?.lastName}`}</div>
-								<div className='userReview1'>{`"${review.review}"`}</div>
-								{review?.userId === user?.id && (
-									<button
-										className='deleteReviewButton'
-										onClick={() => reviewDelete(review.id)}
-									>
-										Delete Review
-									</button>
-								)}
-							</div>
-						))}
+							))}
+						</div>
 					</div>
 					{/* </ul> */}
 				</div>

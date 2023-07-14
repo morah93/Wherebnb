@@ -29,7 +29,8 @@ display: flex;
 position: relative;
 align-items: center;
 /* align-content: space-between; */
-right: -59%;
+right: -57%;
+
 }
 
 #language{
