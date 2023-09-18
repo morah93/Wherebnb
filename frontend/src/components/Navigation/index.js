@@ -67,7 +67,7 @@ function Navigation({ isLoaded }) {
 						{sessionUser && <AddSpot setCreateSpotModal={setCreateSpotModal} />}
 					</Modal>
 				)}
-				<div className='tags'>
+				{/* <div className='tags'>
 					<div className='pool'>
 						<img
 							src='https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg'
@@ -187,7 +187,7 @@ function Navigation({ isLoaded }) {
 						/>{" "}
 						<p id="countryside">Countryside</p>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</>
 	);

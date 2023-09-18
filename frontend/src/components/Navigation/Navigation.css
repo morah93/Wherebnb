@@ -35,52 +35,56 @@
 
 .buttonDiv{
   display: flex;
+  position: relative;
   /* justify-content: start; */
-  /* width: 50%; */
+  width: 100%;
+  height: 20px;
   align-self: center;
 }
 
-.profileLink{
-  display: flex;
-  align-self: center;
-}
+
 
 .menu{
   display: flex;
   /* border: 1px solid gray; */
   border: 1px solid lightgrey;
   background-color: white;
-  border-radius: 20px;
+  border-radius: 10px;
   /* position: static; */
   justify-content: center;
   /* top: 38%; */
-  margin-right:30%;
+  margin-right: 200px;
   /* margin-left: 20%; */
-  height: 2rem;
-  width: 7rem;
-  cursor: pointer;
+  height: 35px;
+  width: 65px;
 }
 
 .menu:hover{
+  cursor: pointer;
   box-shadow: 2px 2px 30px lightgrey;
 }
 
 .homeLogo{
-
   /* border: 1px solid; */
 display: flex;
 align-content: flex-start;
+/* width: 150px; */
 /* justify-self: start; */
 align-self: center;
+margin-left: 150px;
 
 }
 
 .logoImg {
   position: relative;
   height: 60px;
-  max-width: 100px;
-  cursor: pointer;
+  max-width: 150px;
   /* box-shadow: 2px 2px 30px rgba(3, 87, 221, 0.732); */
+}
+
+.logoImg:hover{
+  cursor: pointer;
+  box-shadow: 2px 2px 30px lightgrey;
 }
 
 
@@ -88,36 +92,48 @@ align-self: center;
   /* background-color: rgb(192, 44, 36); */
   /* color: white; */
   display: flex;
-  margin-right: 85px;
-  border-radius: 5px;
-  border: 1px solid lightgrey;
-  margin-top: 4px;
-  margin-bottom: 4px;
+  justify-content: center;  /* margin-right: 85px; */
+  /* border-radius: 5px; */
+  align-items: center;
+  border: 1px solid white;
+  /* margin-top: 4px; */
+  /* margin-bottom: 4px; */
+  font-size: medium;
+  height: 30px;
   background-color: white;
   /* box-shadow: 1px 1px 5px rgba(192, 44, 36, 0.732); */
-  width: 70px;
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 8px;
 }
 
 .logout:hover {
   background-color: #fa274e;
-  box-shadow: 1px 1px 5px rgba(192, 44, 36, 0.732);
+  border: 1px solid #fa274e;
+  /* box-shadow: 1px 1px 5px rgba(192, 44, 36, 0.732); */
 
 }
 .logAndsignIn{
-position: absolute;
+position:absolute;
 border: 1px solid lightgrey;
 flex-direction: column;
-justify-content: center;
-align-content: center;
-height: 7em;
-width: 125px;
+margin-top: 150px;
+right: 35px;
+height: 100px;
+width: 200px;
 border-radius: 5px;
 background-color: white;
 box-shadow: 2px 2px 30px lightgrey;
 font-size: small;
-justify-content: space-around;
-align-content: space-around;
 }
+
+.dropDown{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+
 #logintext{
   display: flex;
   justify-self: center;
@@ -126,21 +142,49 @@ align-content: space-around;
   margin-bottom: 5px;
   padding-left: 10px;
 }
+#login1{
+  border: white;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  /* align-self: center; */
+  /* align-content: center; */
+  /* border-radius: 5px; */
+  width: 100%;
+  margin-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* margin-left: 16px; */
+}
+
 #login{
   border: white;
   background-color: white;
   display: flex;
   justify-content: center;
+  /* align-items: center; */
+  /* align-self: center; */
+  /* align-content: center; */
   /* border-radius: 5px; */
   width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* margin-left: 16px; */
 }
+
+#login1:hover{
+  box-shadow: 2px 2px 30px lightgrey;
+  background-color: rgb(80,117,148);
+  color: white;
+}
+
 #login:hover{
+  color: white;
   box-shadow: 2px 2px 30px lightgrey;
   background-color: rgb(80,117,148);
 }
+
 #signup:hover{
   box-shadow: 2px 2px 30px lightgrey;
   background-color: rgb(80,117,148);
@@ -162,14 +206,14 @@ align-content: space-around;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 10%;
-  height: 75px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  /* align-items: flex-start; */
+  width: 205px;
+  height: 200px;
+  /* padding-top: 10px; */
+  /* padding-bottom: 10px; */
+  align-items: center;
   /* align-content: flex-start; */
-  margin-top: 150px;
-  margin-left: 13%;
+  margin-top: 265px;
+  /* margin-right: 25px; */
   /* padding: 15px; */
   /* cursor: pointer; */
   background-color: white;
@@ -177,11 +221,62 @@ align-content: space-around;
   border: 1px solid lightgrey;
   /* font-weight: bold; */
   color: gray;
-  font-size: small;
-  border-radius: 15px;
-  gap: 4px;
+  border-radius: 10px;
+  /* gap: 5px; */
   /* margin-right: 1px; */
   /* top: 0; */
+}
+
+.dropdownUserInfo{
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+  /* font-size: medium; */
+  /* margin-top: 10px; */
+  justify-content: center;
+  height: 40px;
+}
+
+#username{
+  /* font-size: small; */
+  height: 25px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+#email{
+  height: 25px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+
+}
+
+.profileLink{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  width: 100%;
+  height: 35px;
+  /* align-self: center; */
+  text-decoration: none;
+}
+.profileLink1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-top: 25px; */
+  /* margin-bottom: 5px; */
+  width: 100%;
+  height: 35px;
+  /* align-self: center; */
+  text-decoration: none;
+}
+.profileLink:hover{
+  cursor: pointer;
+  background-color: rgb(80, 117, 148);
+  color: white;
 }
 
 .demoButton{
@@ -200,6 +295,7 @@ align-content: space-around;
   /* background-color:  rgb(80,117,148);
   border-radius: 3px;
   cursor: pointer; */
+  position: relative;
   color: black;
   border-radius: 22px;
   border: 2px solid white;
@@ -213,7 +309,9 @@ align-content: space-around;
 
 .createSpot:hover{
   cursor: pointer;
-  background-color: lightgray;
+  background-color: rgb(80,117,148);
+  box-shadow: 2px 2px 30px lightgrey;
+  color: white;
 }
 
 #hamburglar{
@@ -231,7 +329,7 @@ align-content: space-around;
   /* cursor: pointer; */
 }
 #user1{
-padding-right: 125px;
+padding-right: 10px;
 padding-top: 4px;
 }
 #user:hover{

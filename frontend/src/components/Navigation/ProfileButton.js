@@ -69,15 +69,21 @@ function ProfileButton({ user, setLogin, setShowModal, setCreateSpotModal }) {
 
       {showMenu &&
         (user ? (
-        <ul className='profile-dropdown'>
-          <div>{user.username}</div>
-            <div>{user.email}</div>
+          <div className='profile-dropdown'>
+            <div className="dropdownUserInfo">
+          <div id="username">{user.username}</div>
+            <div id="email">{user.email}</div>
+            </div>
           <NavLink exact to='/user' className='profileLink'>
-            {/* Profile */}
+              {/* Profile */}
+              <div className='profileLink1'>
             <i
             className='fa fa-user circle'
             id='user1'
-          ></i>
+              ></i>
+
+              My account
+              </div>
           </NavLink>
             <div className='buttonDiv'>
               {/* <button
@@ -100,13 +106,12 @@ function ProfileButton({ user, setLogin, setShowModal, setCreateSpotModal }) {
                 Log Out
               </button>
             </div>
-          </ul>
+          </div>
         ) : (
           <div className='logAndsignIn'>
-            <div id="logintext">Log In/Sign Up</div>
-            <div>
+            <div className="dropDown">
               <button
-                id='login'
+                id='login1'
                 onClick={() => {
                   setLogin(true);
                   setShowModal(true);
@@ -117,7 +122,7 @@ function ProfileButton({ user, setLogin, setShowModal, setCreateSpotModal }) {
               </button>
 
               <button
-                id='signup'
+                id='login'
                 onClick={() => {
                   setLogin(false);
                   setShowModal(true);

@@ -95,7 +95,7 @@ const UserPage = () => {
 											<p>Price: {spot.price}</p>
 											<div>
 												<button
-													className='delete-button'
+													className='deleteButton'
 													onClick={async (e) => {
 														e.preventDefault();
 														const spotDeleted = await dispatch(
@@ -136,7 +136,7 @@ const UserPage = () => {
 												<p>Rating: {review.stars}</p>
 												<div>
 													<button
-														className='delete-button'
+														className='deleteButton'
 														onClick={async (e) => {
 															e.preventDefault();
 															const reviewDeleted = await dispatch(
@@ -178,9 +178,9 @@ const UserPage = () => {
 											{booking.userId} Start Date: {booking.startDate} · End
 											date: {booking.endDate}
 										{currentDate < booking.startDate ? (
-											
+
 												<button
-													className='delete-button'
+													className='deleteButton'
 													onClick={async (e) => {
 														e.preventDefault();
 														const bookingDeleted = await dispatch(

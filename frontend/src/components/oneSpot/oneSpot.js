@@ -122,13 +122,13 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
 			<div className='outerContainer'>
 				<div className='innerContainer'>
 					{/* <ul> */}
+					{/* </div> */}
+					<div className='imgContainer'>
 					<div className='nameAndStar1'>
 						<div id='spotName'>{oneSpot?.name}</div>
 
-					<div id='cityStateCountry'>{`${oneSpot?.city}, ${oneSpot?.state}, ${oneSpot?.country}`}</div>
+						<div id='cityStateCountry'>{`${oneSpot?.city}, ${oneSpot?.state}, ${oneSpot?.country}`}</div>
 					</div>
-					{/* </div> */}
-					<div className='imgContainer'>
 						<img
 							className='spotImg1'
 							src={oneSpot?.SpotImages[0]?.url}
@@ -220,11 +220,13 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
 						)}
 						{/* </div> */}
 						<div className='spotInfo'>
-							<p id='hostedBy'>Entire home hosted by owner</p>
-							{/* <div id='address'>{oneSpot?.address}</div> */}
-							<div id='cityState'>{`${oneSpot?.city}, ${oneSpot?.state}`}</div>
-							<div id='country'>{oneSpot?.country}</div>
-							<div id='description'>{`${oneSpot?.description}`}</div>
+							<div className='spotDesc'>
+								<p id='hostedBy'>Entire home hosted by owner</p>
+								{/* <div id='address'>{oneSpot?.address}</div> */}
+								<div id='cityState'>{`${oneSpot?.city}, ${oneSpot?.state}`}</div>
+								<div id='country'>{oneSpot?.country}</div>
+								<div id='description'>{`${oneSpot?.description}`}</div>
+							</div>
 							{/* <div id='price'>{`$${oneSpot?.price} night`}</div> */}
 
 							<div className='check-in'>
@@ -292,6 +294,8 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
 									</div>
 								</div>
 							</div>
+
+
 						</div>
 					</div>
 					<div></div>
@@ -310,7 +314,7 @@ const OneSpot = ({ setEditSpotModal, setAddReviewModal }) => {
 					)}
 					{/* {if (user && user != user.id) && foundReview && ( */}
 					{user && foundReview && (
-						<div className="create-review">
+						<div className='create-review'>
 							<AddReviewModal />
 						</div>
 						// <button

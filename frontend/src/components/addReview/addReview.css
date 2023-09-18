@@ -3,7 +3,7 @@
   /* background-color: ; */
   border-radius: 4%;
   height: 110%;
-  width: 400px;
+  width: 450px;
   background-color: white;
   /* justify-content: center; */
   /* align-content: center; */
@@ -15,19 +15,35 @@
   /* background-color: blue; */
   display: flex;
   flex-direction: column;
-  width: 120%;
+  width: 450px;
   /* padding-left: 5% border: 1px solid lightgrey;; */
 }
 
 .error{
-  padding-top: 5px;
+  padding-top: 25px;
   padding-left: 5%;
 }
 
 .bottom{
   display: flex;
+  flex-direction: column;
   margin-bottom: 3%;
-  /* justify-content: space-between; */
+  justify-content: center;
+}
+
+#starRating-div{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  height: 20px;
+}
+
+#button-div{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  align-items: center;
 }
 
 #review-text{
@@ -37,14 +53,22 @@
   border-radius: 4%;
   resize: none;
   display: flex;
-  width: 90%;
+  width: 350px;
   height: 200px;
-  margin-top: 1%;
-  margin-bottom: 3%;
-  padding-top: 1%;
-  background-color: lightgray;
-  padding-top: 3px;
+  padding-top: 15px;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  /* padding-top: 1%; */
+  background-color: white;
+  /* padding-top: 3px; */
 }
+
+#input{
+  width: 50px;
+  height: 25px;
+  background-color: white;
+}
+
 
  .submitButton{
   background-color: white;
@@ -78,10 +102,30 @@
   align-self: center;
   align-items: center;
   /* padding-bottom: 7%; */
-/* }  */
-.createReviewButton{
-  background-color: #4e7393;
-  color: white;
-  margin-top: 15px;
-  height: 30px;
-}
+  /* }  */
+  /* .createReviewButton{
+    background-color: #4e7393;
+    color: white;
+    margin-top: 15px;
+    height: 25px;
+  }
+
+  .createReviewButton:hover{
+    background-color: rgb(165, 38, 38);
+    box-shadow: 2px 2px 30px lightgrey;
+  } */
+
+  .createReviewButton{
+    margin-top: 25px;
+    background-color: rgb(80,117,148);
+    color: white;
+    border-radius: 6px;
+    width: 250px;
+    height: 35px;
+    border: 1px solid lightgrey;
+  }
+
+  .createReviewButton:hover{
+    cursor: pointer;
+    box-shadow: 2px 2px 30px lightgrey;
+  }

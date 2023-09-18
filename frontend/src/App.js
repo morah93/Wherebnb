@@ -6,7 +6,6 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import AllSpots from "./components/AllSpots/allSpots";
 import OneSpot from "./components/oneSpot/oneSpot";
-import OneSpot1 from "./components/oneSpot/oneSpot1";
 import EditSpot from "./components/editSpot/editSpot";
 import AddSpot from "./components/addSpot/addSpot";
 import AddReview from "./components/addReview/addReview";
@@ -57,9 +56,6 @@ function App() {
 						<Route path='/spots/:spotId'>
 							<OneSpot />
 						</Route>
-						{/* <Route path='/spots/:spotId'>
-							<OneSpot1 />
-						</Route> */}
 						<Route path='/signup'>
 							<SignupFormPage />
 						</Route>

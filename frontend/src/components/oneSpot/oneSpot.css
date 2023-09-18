@@ -37,34 +37,48 @@
 }
 #spotName {
   /* display: flex; */
+  display: flex;
+  width: 659px;
+  justify-content: start;
   margin-bottom: 10px;
-  margin-left: 18%;
   font-size: x-large;
-  margin-top: 30px;
 }
 .spotName {
   /* position: static; */
-  /* display: flex; */
   /* flex-direction: column; */
   /* align-self: flex-start;
   align-content: center; */
 }
 
+.nameAndStar1{
+  display: flex;
+  margin-top: 50px;
+  flex-direction: column;
+  width: 659px;
+  margin-bottom: 20px;
+}
+
 #cityStateCountry{
   display: flex;
-  margin-bottom: 10px;
-  margin-left: 210px;
+  justify-content: start;
+  font-size: large;
+  /* margin-bottom: 15px; */
+  /* margin-left: 320px; */
+  width: 659px;
   text-decoration-line: underline;
 }
 
 .imgContainer{
 display: flex;
 justify-content: center;
+align-items: center;
+flex-direction: column;
 }
 .spotInfoAndBooking{
   /* border: 1px solid; */
   display: flex;
   flex-direction: row-reverse;
+  justify-content: center;
   /* position: static; */
   /* align-items: flex-start; */
   /* width: 100%; */
@@ -76,15 +90,20 @@ justify-content: center;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 50%;
+  width: 659px;
   border-bottom: 1px solid lightgray;
   padding-bottom: 50px;
+}
+
+.spotDesc{
+  margin-left: -25px;
 }
 
 #hostedBy{
   /* color: gray; */
   /* justify-content: end; */
-  margin: 0px;
+  /* margin-left: -25px; */
+  margin-top: 0px;
   font-size: x-large;
 }
 
@@ -115,12 +134,7 @@ padding-top: 15px;
 }
 
 
-.nameAndStar1{
-  display: flex;
-  /* justify-content: space-between; */
-  /* height: 20px; */
-  flex-direction: column;
-}
+
 
 #rating1{
   display: flex;
@@ -200,24 +214,31 @@ height: 300px;
   color: white;
 }
 
+.reserve:hover{
+  cursor: pointer;
+  box-shadow: 2px 2px 30px lightgrey;
+}
+
 #address {
   margin: 1px;
 
 }
 #cityState {
   /* margin-top: 10px; */
-  margin-left: 5% ;
+  margin-left: 3px ;
 
 }
 #country {
-  margin-left: 5% ;
-    /* margin-top: 1px; */
+  margin-left: 3px ;
+  /* margin-top: 1px; */
 
-  }
-  #description {
-    margin-left: 5% ;
-    /* margin-bottom: ; */
+}
+#description {
+    margin-left: 3px ;
+    /* margin-left: 5% ; */
+    padding-bottom: 50px;
     /* margin: 1px; */
+    border-bottom: 1px solid lightgray;
 
   }
   #price {
@@ -243,20 +264,7 @@ height: 300px;
     margin-left: 1%;
   }
 
-  .createReviewButton{
-    margin: 1%;
-    background-color: white ;
-    color: black;
-    border-radius: 3px;
-    width: 15%;
-    cursor: pointer;
-    border: 1px solid lightgrey;
-  }
 
-  .createReviewButton:hover{
-    background-color: rgb(80,117,148);
-    box-shadow: 2px 2px 30px lightgrey;
-  }
 
   .editButton {
     background-color: white;
@@ -295,12 +303,12 @@ height: 300px;
   border-radius: 3px;
   color: black;
   margin: 3px;
-  cursor: pointer;
   /* width: 15%; */
 }
 
 
 .deleteReviewButton:hover{
+  cursor: pointer;
   background-color: rgb(142, 24, 24);
   box-shadow: 2px 2px 30px lightgrey;
   color: white;
@@ -313,9 +321,10 @@ height: 300px;
   /* margin-bottom: 10%; */
   /* padding: 2%; */
   flex-direction: column;
+  justify-self: start;
   /* align-items: stretch; */
-  width: 50%;
-  margin-left: 18%;
+  width: 659px;
+  /* margin-left: 230px; */
   margin-bottom: 10%;
 }
 
@@ -370,7 +379,7 @@ height: 300px;
 .reviewAndMap{
   display: flex;
   /* justify-content: space-evenly; */
-  margin-left: 100px;
+  /* margin-left: 100px; */
 }
 
 #starReview{
@@ -395,7 +404,6 @@ font-size: x-large;
 }
 
 .check-in{
-  border-top: 1px solid lightgray;
   border-bottom: 1px solid lightgray;
   margin-top: 10px;
   margin-bottom: 10px;

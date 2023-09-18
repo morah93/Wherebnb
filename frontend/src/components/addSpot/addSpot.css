@@ -2,25 +2,32 @@
   display: flex;
   justify-content: center;
 }
-.newSpotContainer {
+.newSpotContaine {
   display: flex;
   /* border: 1px solid black; */
   flex-direction: column;
-  /* justify-content: center; */
-  width: auto;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  /* height: 750px; */
   background-color: white;
 }
 
 .newSpotForm {
   /* border: 1px solid black; */
   display: flex;
+  justify-content: center;
   flex-direction: column;
+  align-items: center;
   /* margin: 1px rgba(0,0,0,0); */
   /* padding: 2%; */
   background-color: white;
   color: black;
+  border-radius: 5px;
   /* align-items: start; */
-  width: 125%;
+  width: 450px;
+  height: 750px;
+  /* padding-bottom: 100px; */
 }
 
 .errorList {
@@ -29,6 +36,23 @@
   height: auto;
   /* margin-top: 50px; */
   /* padding-top: 50px; */
+}
+
+#label{
+  display: flex;
+  flex-direction: column;
+  /* gap: 10px; */
+}
+
+#tets{
+  border: 1px solid lightgray;
+  background-color: white;
+  margin-bottom: 10px;
+  width: 275px;
+  height: 30px;
+  border-radius: 5px;
+  /* gap: 10px; */
+  /* border-radius: 5px; */
 }
 
 #spotName1 {
@@ -118,17 +142,19 @@
 
 .buttonDiv {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  /* justify-content: space-between; */
   align-items: center;
+  height: 100%;
 }
 
 .submitButton {
   /* background-color: white; */
   border-radius: 5px;
   color: white;
-  margin: 10px;
-  width: 70px;
-  height: 60%;
+  /* margin: 10px; */
+  width: 63%;
+  height: 35px;
 }
 
 .submitButton:hover {
@@ -139,11 +165,11 @@
 
 .cancelButton {
   /* display: flex; */
-  width: 70px;
+  width: 63%;
   border-radius: 5px;
   color: white;
-  margin: 10px;
-  height: 60%;
+  margin-right: 12px;
+  height: 35px;
 }
 
 .cancelButton:hover {

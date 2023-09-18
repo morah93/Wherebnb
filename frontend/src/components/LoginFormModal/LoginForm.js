@@ -24,6 +24,7 @@ function LoginForm({ setShowModal }) {
 				alert("Log In Successful");
 			})
 			.catch(async (res) => {
+				console.log(res, 'res')
 				const data = await res.json();
 				if (data && data.errors) setErrors(data.errors);
 			});
@@ -36,34 +37,32 @@ function LoginForm({ setShowModal }) {
 				className='loginForm'
 			>
 				<div className='headingDiv'>
-					<h3 className='heading'>Log in or sign up</h3>
+					<h3 className='heading'>Log in</h3>
 				</div>
 				<ul>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
-				<div className='labelDiv'>
-					<label className='emailInput'>
-						Username or Email
+				<div className='inputDiv'>
+					<input
+						id='text'
+						type='text'
+						placeholder="email"
+						value={credential}
+						onChange={(e) => setCredential(e.target.value)}
+						required
+					/>
+
 						<input
-							id='input'
-							type='text'
-							value={credential}
-							onChange={(e) => setCredential(e.target.value)}
-							required
-						/>
-					</label>
-					<label className='passwordInput'>
-						Password
-						<input
-							id='input'
-							type='password'
+							id='text1'
+						type='password'
+						placeholder="password"
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 							required
 						/>
-					</label>
+
 				</div>
 				<div className='loginDemoButtons'>
 					<button
@@ -78,7 +77,7 @@ function LoginForm({ setShowModal }) {
 							setCredential("Demo-lition");
 							setPassword("password");
 							alert("Log In Successful");
-							history.push('/');
+							history.push("/");
 						}}
 					>
 						Demo User
